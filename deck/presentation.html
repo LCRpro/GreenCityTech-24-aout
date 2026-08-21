@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Présentation — GreenCity Tech</title>
+<style>
+  :root{ --w:1280px; --h:720px; }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:#0b0a16;overflow:hidden;font-family:"Segoe UI",system-ui,sans-serif;}
+  #viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0b0a16;cursor:default;}
+  #stage{position:relative;width:var(--w);height:var(--h);transform-origin:center center;
+    box-shadow:0 30px 90px rgba(0,0,0,.6);border-radius:6px;overflow:hidden;background:#fff;}
+  #stage iframe{position:absolute;inset:0;width:var(--w);height:var(--h);border:0;opacity:0;visibility:hidden;transition:opacity .18s ease;}
+  #stage iframe.on{opacity:1;visibility:visible;}
+
+  /* zones de clic */
+  .clickzone{position:fixed;top:0;bottom:0;width:22%;z-index:20;cursor:pointer;}
+  #zprev{left:0;} #znext{right:0;width:78%;}
+
+  /* HUD */
+  #hud{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;align-items:center;gap:14px;
+    padding:10px 18px;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent);
+    transition:opacity .3s;font-weight:700;font-size:14px;}
+  #hud.hide{opacity:0;}
+  #hud .btn{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#fff;
+    border-radius:8px;padding:7px 12px;cursor:pointer;font-weight:800;font-size:13px;}
+  #hud .btn:hover{background:rgba(255,255,255,.25);}
+  #counter{font-variant-numeric:tabular-nums;opacity:.9;}
+  #title{opacity:.75;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .grow{flex:1;}
+  #bar{position:fixed;left:0;bottom:0;height:4px;background:linear-gradient(90deg,#7C3AED,#EC4899);z-index:31;transition:width .2s;}
+  #hint{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:30;color:#fff;
+    background:rgba(0,0,0,.5);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;transition:opacity .4s;}
+  #hint.hide{opacity:0;pointer-events:none;}
+</style>
+</head>
+<body>
+<div id="viewport">
+  <div id="stage"></div>
+</div>
+<div class="clickzone" id="zprev"></div>
+<div class="clickzone" id="znext"></div>
+<div id="bar"></div>
+<div id="hint">◀ ▶ ou espace pour naviguer · <b>F</b> plein écran · <b>Échap</b> pour sortir</div>
+<div id="hud">
+  <button class="btn" id="bPrev">◀</button>
+  <button class="btn" id="bNext">▶</button>
+  <span id="counter">1 / 23</span>
+  <span id="title"></span>
+  <span class="grow"></span>
+  <button class="btn" id="bFull">⛶ Plein écran (F)</button>
+</div>
+
+<script>
+const SLIDES = [
+  ["01-couverture.html","Couverture"],
+  ["02-intro.html","01 · Introduction"],
+  ["03-contexte.html","Contexte"],
+  ["04-organisation-methode.html","02 · Organisation & méthode"],
+  ["05-organisation-equipe.html","Organisation d'équipe"],
+  ["06-methode-rituels.html","Méthode & rituels"],
+  ["07-arbitrages-budget.html","Arbitrages & budget"],
+  ["08-intercalaire-mise-en-oeuvre.html","03 · Mise en œuvre DevOps"],
+  ["09-versioning-environnements.html","Versioning & environnements"],
+  ["10-architecture-technique.html","Architecture technique"],
+  ["11-supervision-logs.html","Supervision & logs"],
+  ["12-architecture-deploiement.html","Architecture déploiement"],
+  ["13-pipeline-cicd.html","Pipeline CI/CD"],
+  ["14-intercalaire-qualite.html","04 · Qualité, conformité, sécurité"],
+  ["15-qualite-securite-conformite.html","Qualité, sécurité & conformité"],
+  ["16-tests-accessibilite.html","Tests & accessibilité"],
+  ["17-intercalaire-gestion-produit.html","05 · Gestion produit & relation client"],
+  ["18-gestion-produit-evolutions.html","Gestion produit & évolutions"],
+  ["19-suivi-demonstrations-satisfaction.html","Suivi & satisfaction"],
+  ["20-intercalaire-inclusion.html","06 · Inclusion et management"],
+  ["21-inclusion-management.html","Inclusion & management"],
+  ["22-conclusion.html","Conclusion"],
+  ["23-merci.html","Merci"],
+];
+
+const stage = document.getElementById("stage");
+const frames = SLIDES.map(([src], i) => {
+  const f = document.createElement("iframe");
+  f.dataset.i = i;
+  // charge la 1re tout de suite, les autres en lazy à l'approche
+  if (i === 0) f.src = src;
+  f.setAttribute("scrolling", "no");
+  stage.appendChild(f);
+  return f;
+});
+
+let cur = 0;
+const N = SLIDES.length;
+
+function ensureLoaded(i){
+  if(i>=0 && i<N && !frames[i].src) frames[i].src = SLIDES[i][0];
+}
+function go(i){
+  i = Math.max(0, Math.min(N-1, i));
+  ensureLoaded(i); ensureLoaded(i+1); ensureLoaded(i-1); // préchargement voisins
+  frames[cur].classList.remove("on");
+  frames[i].classList.add("on");
+  cur = i;
+  document.getElementById("counter").textContent = (i+1)+" / "+N;
+  document.getElementById("title").textContent = SLIDES[i][1];
+  document.getElementById("bar").style.width = ((i+1)/N*100)+"%";
+}
+
+function fit(){
+  const s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+  stage.style.transform = "scale("+s+")";
+}
+window.addEventListener("resize", fit);
+
+function toggleFull(){
+  if(!document.fullscreenElement){ document.documentElement.requestFullscreen?.(); }
+  else { document.exitFullscreen?.(); }
+}
+
+// clavier
+window.addEventListener("keydown", e=>{
+  switch(e.key){
+    case "ArrowRight": case "ArrowDown": case " ": case "PageDown": case "n": e.preventDefault(); go(cur+1); break;
+    case "ArrowLeft": case "ArrowUp": case "PageUp": case "p": e.preventDefault(); go(cur-1); break;
+    case "Home": go(0); break;
+    case "End": go(N-1); break;
+    case "f": case "F": toggleFull(); break;
+  }
+});
+// clics
+document.getElementById("znext").onclick = ()=>go(cur+1);
+document.getElementById("zprev").onclick = ()=>go(cur-1);
+document.getElementById("bNext").onclick = ()=>go(cur+1);
+document.getElementById("bPrev").onclick = ()=>go(cur-1);
+document.getElementById("bFull").onclick = toggleFull;
+
+// auto-hide HUD + curseur + hint
+let t;
+function activity(){
+  document.getElementById("hud").classList.remove("hide");
+  document.getElementById("viewport").style.cursor = "default";
+  clearTimeout(t);
+  t = setTimeout(()=>{
+    document.getElementById("hud").classList.add("hide");
+    document.getElementById("viewport").style.cursor = "none";
+  }, 2500);
+}
+window.addEventListener("mousemove", activity);
+window.addEventListener("keydown", activity);
+setTimeout(()=>document.getElementById("hint").classList.add("hide"), 4500);
+
+fit(); go(0); activity();
+</script>
+</body>
+</html>
