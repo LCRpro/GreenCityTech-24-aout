@@ -1,8 +1,8 @@
 # Dépendances Node (installées localement pour générer le deck)
 node_modules/
 
-# Aperçus PNG des slides — régénérables via deck/_shot.js
-deck/previews/
+# Aperçus PNG des slides — régénérables via outils/_shot.js
+previews/
 
 # Fichiers système / éditeur
 .DS_Store
