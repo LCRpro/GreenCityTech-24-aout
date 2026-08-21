@@ -1,0 +1,14 @@
+# Dépendances Node (installées localement pour générer le deck)
+node_modules/
+
+# Aperçus PNG des slides — régénérables via deck/_shot.js
+deck/previews/
+
+# Fichiers système / éditeur
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Playwright
+.playwright-cli/

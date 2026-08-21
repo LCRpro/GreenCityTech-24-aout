@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Architecture DevOps de déploiement</title><link rel="stylesheet" href="./shared.css"></head>
+<body><section class="slide"><div class="content">
+  <div class="eyebrow">Architecture technique</div>
+  <h1 class="title sm">Déploiement, exploitation et observabilité</h1>
+  <div class="grid-4" style="margin-top:24px; grid-template-columns: 1.1fr 1.1fr 1.1fr .9fr;">
+    <div class="card navy">
+      <div class="card-kicker">Source & CI/CD</div>
+      <div class="card-title">GitHub + Actions</div>
+      <ul class="bullets">
+        <li>Code source</li>
+        <li>Pull requests</li>
+        <li>Builds</li>
+        <li>Déploiements</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-kicker">Registry</div>
+      <div class="card-title">Images Docker</div>
+      <ul class="bullets">
+        <li>Frontend / web</li>
+        <li>Dashboard</li>
+        <li>API backend</li>
+        <li>Versions traçables</li>
+      </ul>
+    </div>
+    <div class="card emerald">
+      <div class="card-kicker">Hébergement</div>
+      <div class="card-title">VPS + Docker Compose</div>
+      <ul class="bullets">
+        <li>Dév / intégration</li>
+        <li>Préproduction</li>
+        <li>Production</li>
+        <li>Rollbacks simples</li>
+      </ul>
+    </div>
+    <div class="card soft-green">
+      <div class="card-kicker">Observabilité</div>
+      <div class="card-title">4 niveaux</div>
+      <ul class="bullets">
+        <li>Netdata</li>
+        <li>UptimeRobot</li>
+        <li>Sentry</li>
+        <li>Logs</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid-3" style="margin-top:22px">
+    <div class="card">
+      <div class="card-kicker">Conteneurs applicatifs</div>
+      <p class="card-text">Portail web, interface d’administration et API backend sont packagés dans des images Docker et déployés sur VPS via Docker Compose.</p>
+    </div>
+    <div class="card">
+      <div class="card-kicker">Services de données</div>
+      <p class="card-text">Base de données par environnement, stockage photo dédié, secrets séparés, sauvegardes avant déploiements sensibles.</p>
+    </div>
+    <div class="card sun">
+      <div class="card-kicker">Positionnement</div>
+      <p class="card-text">Architecture sobre et maîtrisable aujourd’hui, avec possibilité d’évolution vers des services plus managés si la charge ou la disponibilité l’exigent.</p>
+    </div>
+  </div>
+</div></section></body></html>

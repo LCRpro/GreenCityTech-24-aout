@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Organisation d’équipe</title><link rel="stylesheet" href="./shared.css">
+<style>
+  .team { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; align-items:stretch; }
+  .team .stack { display:flex; flex-direction:column; gap:12px; }
+  .team .card { padding:14px 18px; }
+  .team h3 { font-size:22px; margin:2px 0 8px; }
+  .team .bullets li { font-size:16px; margin:3px 0; line-height:1.28; }
+  .team .kicker { font-size:12px; }
+  .role-pills { display:flex; flex-direction:column; gap:9px; margin-top:12px; }
+  .role-pills .pill { width:100%; font-size:16px; padding:9px 14px; }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="stage">
+    <div class="head">
+      <span class="num">2</span>
+      <h2>Organisation d’équipe</h2>
+      <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
+    </div>
+
+    <div class="objective">
+      <div class="k">Objectif</div>
+      <div class="v">Une équipe plus structurée afin de gagner en efficacité, en visibilité et en qualité</div>
+    </div>
+
+    <div class="team">
+      <div class="stack">
+        <div class="card indigo">
+          <div class="kicker">Pilotage</div>
+          <h3>Product Owner</h3>
+          <ul class="bullets">
+            <li>Porte la vision produit</li>
+            <li>Arbitre &amp; priorise</li>
+            <li>Protège l’équipe</li>
+            <li>Organise</li>
+          </ul>
+        </div>
+        <div class="card violet">
+          <div class="kicker">Pilotage</div>
+          <h3>DevOps senior</h3>
+          <ul class="bullets">
+            <li>CI/CD</li>
+            <li>Déploiement</li>
+            <li>Environnements</li>
+            <li>Supervision</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker" style="color:var(--violet-deep)">Développement</div>
+        <h3>4 développeurs initiaux</h3>
+        <div class="role-pills">
+          <span class="pill magenta">Lead Developer</span>
+        </div>
+        <ul class="bullets" style="margin-top:12px">
+          <li>Coordonne l’équipe</li>
+          <li>Répartit les tâches</li>
+          <li>Garantit la cohérence technique</li>
+        </ul>
+        <div class="role-pills">
+          <span class="pill tint">Dev Mobile</span>
+          <span class="pill violet">Dev Backend</span>
+          <span class="pill indigo">Dev Full Stack</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker" style="color:var(--violet-deep)">Arbitrages</div>
+        <h3>Une équipe resserrée au lancement</h3>
+        <ul class="bullets">
+          <li>Périmètre fonctionnel encore limité</li>
+          <li>Phase de démarrage</li>
+          <li>Maîtrise des coûts</li>
+          <li>Montée en compétence progressive sur les sujets DevOps</li>
+          <li>Cohérence en passant d’un prototype à un projet plus structuré</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

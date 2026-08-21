@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Git et environnements</title><link rel="stylesheet" href="./shared.css"></head>
+<body><section class="slide"><div class="content">
+  <div class="eyebrow">Flux de livraison</div>
+  <h1 class="title sm">Stratégie Git et environnements</h1>
+  <div class="grid-2" style="margin-top:28px; align-items:start;">
+    <div class="card">
+      <div class="card-kicker">Branches</div>
+      <div class="mini-diagram" style="margin-top:18px">
+        <div class="card navy"><div class="card-title">main</div><p class="card-text">Production</p></div>
+        <div class="mini-line"></div>
+        <div class="card emerald"><div class="card-title">develop</div><p class="card-text">Intégration continue</p></div>
+        <div class="mini-line"></div>
+        <div class="card soft-green"><div class="card-title">feature/*</div><p class="card-text">Branches courtes de développement</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-kicker">Principe</div>
+      <div class="card-title">Préproduction = environnement, pas branche permanente</div>
+      <ul class="bullets">
+        <li>Développement / intégration : automatisé depuis `develop`</li>
+        <li>Préproduction : version candidate via tag / release</li>
+        <li>Production : validation manuelle obligatoire</li>
+      </ul>
+      <div style="margin-top:18px" class="chip-row"><span class="chip emerald">Simple</span><span class="chip navy">Traçable</span><span class="chip sun">Mature</span></div>
+    </div>
+  </div>
+</div></section></body></html>

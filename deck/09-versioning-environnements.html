@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Versioning & environnements</title><link rel="stylesheet" href="./shared.css">
+<style>
+  .env-grid { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+  .env-grid .card h3 { font-size:26px; margin:2px 0 14px; }
+  .env-item { margin-bottom:14px; }
+  .env-item .pill { width:100%; font-size:17px; padding:12px 16px; }
+  .env-item p { margin:8px 4px 0; font-size:18px; line-height:1.32; color:var(--indigo); }
+  .env-item.on-dark p { color:rgba(255,255,255,.9); }
+  .brandmark { margin-top:6px; font-family:"Baloo 2",sans-serif; font-weight:800; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .brandmark .gh { width:26px; height:26px; border-radius:50%; background:var(--indigo); }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="stage">
+    <div class="head">
+      <span class="num">5</span>
+      <h2>Versioning &amp; environnements</h2>
+      <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
+    </div>
+
+    <div class="env-grid">
+      <div class="card">
+        <div class="kicker" style="color:var(--violet-deep)">Versionning</div>
+        <h3>Structuration du versioning</h3>
+        <div class="env-item">
+          <span class="pill magenta">main</span>
+          <p>Branche de production, seulement via merge depuis develop</p>
+        </div>
+        <div class="env-item">
+          <span class="pill violet">develop</span>
+          <p>Branche d’intégration des nouvelles fonctionnalités</p>
+        </div>
+        <div class="env-item">
+          <span class="pill indigo">feature/* · hotfix/* · doc/*</span>
+          <p>Branches courtes destinées à un seul but</p>
+        </div>
+        <div class="brandmark"><span class="gh"></span>GitHub</div>
+      </div>
+
+      <div class="card">
+        <div class="kicker" style="color:var(--violet-deep)">Environnements</div>
+        <h3>Environnements séparés avec leurs propres règles et leur utilité</h3>
+        <div class="env-item">
+          <span class="pill magenta">production</span>
+          <p>Environnement sensible, le déploiement n’est actionné que manuellement.</p>
+        </div>
+        <div class="env-item">
+          <span class="pill violet">preproduction</span>
+          <p>Version candidate à la production. Accessible aux clients pour démo &amp; recette.</p>
+        </div>
+        <div class="env-item">
+          <span class="pill indigo">dev</span>
+          <p>Environnement de dev interne pour intégration, déploiement automatisé.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

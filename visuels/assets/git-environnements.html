@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git et environnements</title>
+  <link rel="stylesheet" href="../base-assets/shared.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    body { background: transparent; }
+    .canvas {
+      position: relative;
+      width: 1600px;
+      height: 900px;
+      overflow: hidden;
+      background: transparent;
+    }
+    .branch-label {
+      position: absolute;
+      z-index: 2;
+      padding: 14px 20px;
+      border-radius: 18px;
+      font-family: Montserrat, sans-serif;
+      font-weight: 800;
+      font-size: 21px;
+      letter-spacing: -.03em;
+      box-shadow: 0 16px 40px rgba(15,30,58,.08);
+    }
+    .env {
+      position: absolute;
+      z-index: 2;
+      width: 436px;
+      padding: 22px 24px;
+      border-radius: 24px;
+      box-shadow: 0 16px 46px rgba(15,30,58,.10);
+    }
+    .env .kicker {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .72;
+    }
+    .env .label {
+      margin-top: 12px;
+      font-family: Montserrat, sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .env .desc {
+      margin-top: 8px;
+      font-size: 16px;
+      line-height: 1.5;
+      opacity: .84;
+    }
+    .tag {
+      position: absolute;
+      z-index: 2;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(246,194,74,.18);
+      border: 1px solid rgba(246,194,74,.45);
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    svg.connectors {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: visible;
+    }
+  </style>
+</head>
+<body>
+  <section class="canvas">
+    <svg class="connectors" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="gitMain" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#0F1E3A"/>
+          <stop offset="100%" stop-color="#16315e"/>
+        </linearGradient>
+        <linearGradient id="gitDev" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1FAE9A"/>
+          <stop offset="100%" stop-color="#1E5A3A"/>
+        </linearGradient>
+        <linearGradient id="gitTag" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#F6C24A"/>
+          <stop offset="100%" stop-color="#1FAE9A"/>
+        </linearGradient>
+        <filter id="softGlow">
+          <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0F1E3A" flood-opacity="0.10"/>
+        </filter>
+      </defs>
+
+      <path d="M 290 220 L 1130 220" stroke="url(#gitMain)" stroke-width="7" stroke-linecap="round" fill="none" filter="url(#softGlow)"/>
+      <path d="M 290 300 L 980 300 Q 1030 300 1068 270 L 1110 236" stroke="url(#gitDev)" stroke-width="7" stroke-linecap="round" fill="none" filter="url(#softGlow)"/>
+      <path d="M 290 380 L 520 380 Q 575 380 610 338 L 770 180" stroke="#1E5A3A" stroke-width="7" stroke-linecap="round" fill="none" filter="url(#softGlow)"/>
+      <path d="M 990 300 L 1110 300 L 1170 220" stroke="url(#gitTag)" stroke-width="7" stroke-linecap="round" fill="none" filter="url(#softGlow)"/>
+
+      <path d="M 1180 220 L 1180 466" stroke="#F6C24A" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="8 10"/>
+      <circle cx="990" cy="300" r="8" fill="#F6C24A"/>
+      <circle cx="770" cy="180" r="8" fill="#1E5A3A"/>
+    </svg>
+
+    <div class="branch-label" style="left:110px; top:192px; background:#0F1E3A; color:white;">main</div>
+    <div class="branch-label" style="left:110px; top:272px; background:#1FAE9A; color:white;">develop</div>
+    <div class="branch-label" style="left:110px; top:352px; background:#1E5A3A; color:white;">feature/*</div>
+    <div class="branch-label" style="left:1070px; top:192px; background:#F6C24A; color:#0F1E3A;">tag / release</div>
+
+    <div class="tag" style="left:740px; top:410px;">Pull request</div>
+    <div class="tag" style="left:700px; top:450px;">Merge après revue + CI verte</div>
+    <div class="tag" style="left:760px; top:136px;">Hotfix possible sur `main`</div>
+
+    <article class="env" style="left:84px; top:550px; background:rgba(31,174,154,.95); color:white;">
+      <div class="kicker">Environnement 01</div>
+      <div class="label">Développement</div>
+      <div class="desc">Branche `develop`, intégration continue, tests, build et déploiement automatisé.</div>
+    </article>
+
+    <article class="env" style="left:582px; top:550px; background:rgba(255,255,255,.88); color:var(--navy); border:1px solid rgba(15,30,58,.08);">
+      <div class="kicker" style="color:var(--forest);">Environnement 02</div>
+      <div class="label">Préproduction</div>
+      <div class="desc">Version candidate via `tag/release`, recette métier et démonstration client.</div>
+    </article>
+
+    <article class="env" style="left:1080px; top:550px; background:rgba(15,30,58,.96); color:white;">
+      <div class="kicker">Environnement 03</div>
+      <div class="label">Production</div>
+      <div class="desc">Branche `main`, protégée, déploiement après validation manuelle.</div>
+    </article>
+  </section>
+</body>
+</html>

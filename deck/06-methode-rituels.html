@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Méthode & rituels</title><link rel="stylesheet" href="./shared.css">
+<style>
+  .m-row { display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:14px; }
+  .m-row .card { padding:16px 22px; }
+  .m-row .card h3 { font-size:24px; margin:4px 0 8px; }
+  .m-row .bullets li { font-size:18px; margin:5px 0; line-height:1.3; }
+  .res-pills { display:flex; flex-direction:column; gap:10px; justify-content:center; }
+  .res-pills .pill { width:100%; font-size:17px; padding:12px 18px; }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="stage">
+    <div class="head">
+      <span class="num">3</span>
+      <h2>Méthode &amp; rituels</h2>
+      <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
+    </div>
+
+    <div class="objective">
+      <div class="k">Objectif</div>
+      <div class="v">Un cadre de travail clair pour mieux coordonner l’équipe et sécuriser l’avancement</div>
+    </div>
+
+    <div class="m-row">
+      <div class="card indigo">
+        <div class="kicker">Cadre retenu</div>
+        <h3>Cycles courts</h3>
+        <ul class="bullets">
+          <li>Sprints de 2 semaines</li>
+          <li>Backlog priorisé par le PO</li>
+          <li>Kanban séparé pour incidents &amp; urgences</li>
+          <li>Décisions tracées</li>
+        </ul>
+      </div>
+      <div class="card tint">
+        <div class="kicker" style="color:var(--violet-deep)">Pourquoi ce choix</div>
+        <h3>Structurer sans alourdir</h3>
+        <ul class="bullets">
+          <li>Équipe restreinte</li>
+          <li>Socle fragile à structurer</li>
+          <li>Priorités évolutives selon retours clients</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="m-row" style="margin-bottom:0">
+      <div class="card">
+        <div class="kicker" style="color:var(--violet-deep)">Cadre retenu</div>
+        <h3>Des rituels utiles</h3>
+        <ul class="bullets">
+          <li>Point dev tous les 2j : identification des blocages, réajustements</li>
+          <li>Suivi global hebdomadaire interne avec PO, équipe DEV &amp; DevOps</li>
+          <li>Fin de sprint : démo client &amp; rétrospective équipe</li>
+          <li>Pilotage mensuel avec collectivités clientes &amp; arbitrages</li>
+        </ul>
+      </div>
+      <div class="res-pills">
+        <span class="pill tint">Décisions plus rapides</span>
+        <span class="pill magenta">Moins de flou</span>
+        <span class="pill violet">Meilleure coordination</span>
+        <span class="pill indigo">Livraisons plus fiables</span>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,319 @@
+/* =========================================================
+   GreenCity Tech — Deck final (reconstruction HTML éditable)
+   Palette : violet / magenta   ·   Auteur : Liam Cariou
+   ========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+
+:root {
+  --violet: #7C3AED;
+  --violet-deep: #6D28D9;
+  --violet-soft: #A78BFA;
+  --indigo: #1E1B4B;      /* remplace le navy sombre */
+  --magenta: #EC4899;     /* remplace le doré */
+  --magenta-deep: #DB2777;
+  --lilac: #F3E8FF;
+  --lilac-2: #EDE4FE;
+  --foam: #FAF7FF;
+  --ink: #241B3D;
+  --muted: rgba(30, 27, 75, 0.62);
+  --line: rgba(30, 27, 75, 0.10);
+  --card-shadow: 0 18px 40px rgba(30, 27, 75, 0.12);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+  color: var(--indigo);
+  background: #dfd8f2;
+}
+
+/* ---------- Slide frame (16:9) ---------- */
+.slide {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(124,58,237,.10), transparent 26%),
+    radial-gradient(circle at 88% 6%, rgba(236,72,153,.10), transparent 22%),
+    linear-gradient(150deg, #faf7ff 0%, #f3edfb 55%, #f7f4ff 100%);
+}
+
+/* faint circuit / grid at the top */
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(30,27,75,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30,27,75,.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.30), transparent 60%);
+  pointer-events: none;
+}
+
+/* soft organic wave, bottom-right corner */
+.slide::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  bottom: -160px;
+  width: 640px;
+  height: 420px;
+  border-radius: 50% 50% 0 46%;
+  transform: rotate(-8deg);
+  background: linear-gradient(120deg, rgba(30,27,75,.92), rgba(124,58,237,.86));
+  opacity: .16;
+  pointer-events: none;
+}
+
+.stage {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 44px 60px;
+}
+
+/* ---------- Brand mark & wordmark ---------- */
+.logo { display: block; }
+.logo.sm { width: 46px; height: 46px; }
+.logo.md { width: 84px; height: 84px; }
+.logo.lg { width: 132px; height: 132px; }
+
+.wordmark {
+  font-family: "Baloo 2", "Segoe UI", sans-serif;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--indigo);
+  line-height: 1;
+}
+
+/* ---------- Cover ---------- */
+.cover .topbar,
+.cover .bottombar {
+  position: absolute;
+  left: 64px; right: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  color: var(--indigo);
+}
+.cover .topbar { top: 48px; font-size: 30px; }
+.cover .bottombar { bottom: 48px; font-size: 26px; align-items: flex-end; }
+.cover .date { color: var(--violet-deep); }
+
+.cover .brand {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+.cover .brand .wordmark { font-size: 80px; white-space: nowrap; }
+
+.cover .subtitle {
+  position: absolute;
+  top: 64%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 1.08;
+  color: var(--indigo);
+}
+
+.nws {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+}
+.nws .nws-badge {
+  display: block;
+  width: auto; height: 62px;
+}
+.nws .nws-name { font-size: 22px; line-height: 1.05; }
+.nws .nws-name small { display:block; font-weight:600; font-size:12px; letter-spacing:.14em; color: var(--muted); }
+
+/* ---------- Section divider ---------- */
+.divider .center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 46px;
+}
+.numbox {
+  position: relative;
+  flex: none;
+  width: 216px; height: 216px;
+}
+.numbox::before {
+  content: "";
+  position: absolute; inset: 0;
+  transform: translate(-16px, -16px);
+  border-radius: 44px;
+  background: linear-gradient(135deg, var(--magenta), var(--violet-soft));
+}
+.numbox span {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 44px;
+  background: var(--indigo);
+  color: #fff;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: 104px;
+  box-shadow: 0 24px 50px rgba(30,27,75,.28);
+}
+.divider .sec-title {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: 74px;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  color: var(--indigo);
+  max-width: 620px;
+}
+.divider .sec-title::after {
+  content: "";
+  display: block;
+  width: 120px; height: 8px; border-radius: 999px;
+  margin-top: 14px;
+  background: linear-gradient(90deg, var(--violet), var(--magenta));
+}
+
+/* ---------- Content header ---------- */
+.head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+.head .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 16px;
+  background: var(--indigo); color: #fff;
+  font-family: "Baloo 2", sans-serif; font-weight: 800; font-size: 28px;
+}
+.head h2 {
+  margin: 0;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  letter-spacing: -.02em;
+  color: var(--indigo);
+}
+.head .head-logo {
+  margin-left: auto;
+}
+
+/* ---------- Objective banner ---------- */
+.objective {
+  background: rgba(255,255,255,.72);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 13px 26px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 16px;
+}
+.objective .k {
+  font-size: 12px; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--violet-deep);
+}
+.objective .v {
+  margin-top: 3px;
+  font-family: "Baloo 2", sans-serif; font-weight: 700;
+  font-size: 26px; color: var(--indigo);
+}
+
+/* ---------- Cards ---------- */
+.cols { display: grid; gap: 22px; }
+.cols.c2 { grid-template-columns: 1fr 1fr; }
+.cols.c3 { grid-template-columns: repeat(3, 1fr); }
+.cols.c12-11 { grid-template-columns: 1.15fr .85fr; }
+
+.card {
+  background: rgba(255,255,255,.82);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 20px 24px;
+  box-shadow: var(--card-shadow);
+}
+.card.indigo { background: var(--indigo); color: #fff; border-color: transparent; }
+.card.violet { background: linear-gradient(150deg, var(--violet), var(--violet-deep)); color: #fff; border-color: transparent; }
+.card.tint   { background: rgba(243,232,255,.86); border-color: rgba(124,58,237,.18); }
+
+.kicker {
+  font-size: 13px; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; opacity: .72;
+}
+.card h3 {
+  margin: 6px 0 14px;
+  font-family: "Baloo 2", sans-serif; font-weight: 700;
+  font-size: 30px; letter-spacing: -.01em;
+}
+.card.indigo .kicker, .card.violet .kicker { opacity: .8; }
+
+.bullets { margin: 0; padding-left: 22px; }
+.bullets li { font-size: 20px; line-height: 1.38; margin: 6px 0; }
+.bullets.tight li { font-size: 19px; margin: 5px 0; }
+
+/* ---------- Pills / badges ---------- */
+.pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 22px; border-radius: 999px;
+  font-family: "Baloo 2", sans-serif; font-weight: 800;
+  font-size: 20px; letter-spacing: .04em; text-transform: uppercase;
+}
+.pill.violet  { background: linear-gradient(135deg, var(--violet), var(--violet-deep)); color:#fff; }
+.pill.magenta { background: linear-gradient(135deg, var(--magenta), var(--magenta-deep)); color:#fff; }
+.pill.indigo  { background: var(--indigo); color:#fff; }
+.pill.tint    { background: rgba(243,232,255,.9); color: var(--violet-deep); }
+
+/* ---------- Stat tiles ---------- */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.stat {
+  border-radius: 20px; padding: 16px 18px; text-align: center;
+  border: 1px solid var(--line); background: rgba(255,255,255,.86);
+}
+.stat.hl { background: var(--indigo); color:#fff; border-color: transparent; }
+.stat .s-k { font-size: 12px; font-weight: 700; letter-spacing:.16em; text-transform: uppercase; opacity:.7; }
+.stat .s-v { font-family: "Baloo 2", sans-serif; font-weight:800; font-size: 34px; margin-top: 4px; }
+
+/* ---------- Table ---------- */
+.table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 18px; overflow: hidden; box-shadow: var(--card-shadow); }
+.table th { background: var(--indigo); color:#fff; text-align:left; padding: 13px 16px; font-family:"Baloo 2",sans-serif; font-size: 15px; letter-spacing:.06em; text-transform: uppercase; }
+.table th.r, .table td.r { text-align: right; }
+.table td { background: rgba(255,255,255,.9); padding: 12px 16px; font-size: 19px; border-top: 1px solid var(--line); }
+.table tr.total td { background: rgba(243,232,255,.9); font-weight: 700; }
+
+/* three-up objective row (like the MIEUX LIVRER / EXPLOITER / PILOTER band) */
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; }
+.trio .t-txt { margin-top: 12px; font-size: 20px; color: var(--indigo); line-height: 1.3; }
+
+/* author chip (cover context card) */
+.person {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 8px;
+}
+.person .p-name { font-family:"Baloo 2",sans-serif; font-weight:800; font-size: 34px; color: var(--indigo); }
+.person .p-role { font-size: 15px; font-weight: 700; letter-spacing:.14em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- Index page ---------- */
+.deck-index { min-height: 100vh; padding: 40px; }
+.deck-index h1 { font-family:"Baloo 2",sans-serif; }
+.thumbs { display:grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 14px; margin-top: 20px; }
+.thumbs a { text-decoration:none; color:var(--indigo); background:#fff; border:1px solid var(--line); border-radius:16px; padding:14px; font-family:"Baloo 2",sans-serif; font-weight:700; box-shadow: var(--card-shadow); }
+.thumbs a b { color: var(--violet-deep); }

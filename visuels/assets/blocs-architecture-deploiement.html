@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blocs architecture de déploiement</title>
+  <link rel="stylesheet" href="../base-assets/shared.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: transparent;
+    }
+
+    .canvas {
+      width: 1600px;
+      height: 900px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      color: var(--navy);
+    }
+
+    .grid {
+      position: absolute;
+      inset: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      align-content: start;
+    }
+
+    .block {
+      min-height: 132px;
+      border-radius: 28px;
+      padding: 18px 20px;
+      box-shadow: 0 18px 40px rgba(15, 30, 58, 0.08);
+    }
+
+    .kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .72;
+    }
+
+    .title {
+      margin-top: 10px;
+      font-family: Montserrat, sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+
+    .navy {
+      background: rgba(15, 30, 58, 0.96);
+      color: white;
+    }
+
+    .emerald {
+      background: rgba(31, 174, 154, 0.96);
+      color: white;
+    }
+
+    .soft {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(15, 30, 58, 0.08);
+      color: var(--navy);
+    }
+
+    .mint {
+      background: rgba(230, 246, 239, 0.94);
+      border: 1px solid rgba(31, 174, 154, 0.18);
+      color: var(--forest);
+    }
+
+    .sun {
+      background: rgba(246, 194, 74, 0.94);
+      color: var(--navy);
+    }
+
+    .wide {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="canvas">
+    <section class="grid">
+      <article class="block navy">
+        <div class="kicker">Source</div>
+        <div class="title">GitHub</div>
+      </article>
+
+      <article class="block navy">
+        <div class="kicker">CI/CD</div>
+        <div class="title">GitHub Actions</div>
+      </article>
+
+      <article class="block soft">
+        <div class="kicker">Registry</div>
+        <div class="title">Registry Docker</div>
+      </article>
+
+      <article class="block mint">
+        <div class="kicker">Application</div>
+        <div class="title">App mobile</div>
+      </article>
+
+      <article class="block soft">
+        <div class="kicker">Application</div>
+        <div class="title">Portail web citoyen</div>
+      </article>
+
+      <article class="block emerald">
+        <div class="kicker">Application</div>
+        <div class="title">Interface admin</div>
+      </article>
+
+      <article class="block navy">
+        <div class="kicker">Application</div>
+        <div class="title">API backend</div>
+      </article>
+
+      <article class="block soft">
+        <div class="kicker">Application</div>
+        <div class="title">API partenaires</div>
+      </article>
+
+      <article class="block emerald">
+        <div class="kicker">Hébergement</div>
+        <div class="title">VPS Dev</div>
+      </article>
+
+      <article class="block emerald">
+        <div class="kicker">Hébergement</div>
+        <div class="title">VPS Préproduction</div>
+      </article>
+
+      <article class="block emerald">
+        <div class="kicker">Hébergement</div>
+        <div class="title">VPS Production</div>
+      </article>
+
+      <article class="block emerald">
+        <div class="kicker">Orchestration</div>
+        <div class="title">Docker Compose</div>
+      </article>
+
+      <article class="block soft">
+        <div class="kicker">Données</div>
+        <div class="title">Base de données</div>
+      </article>
+
+      <article class="block soft">
+        <div class="kicker">Stockage</div>
+        <div class="title">Bucket S3</div>
+      </article>
+
+      <article class="block mint">
+        <div class="kicker">Supervision</div>
+        <div class="title">NetData</div>
+      </article>
+
+      <article class="block mint">
+        <div class="kicker">Externe</div>
+        <div class="title">UptimeRobot</div>
+      </article>
+
+      <article class="block emerald">
+        <div class="kicker">Applicatif</div>
+        <div class="title">Sentry</div>
+      </article>
+
+      <article class="block navy wide">
+        <div class="kicker">Diagnostic</div>
+        <div class="title">Logs structurés</div>
+      </article>
+    </section>
+  </section>
+</body>
+
+</html>

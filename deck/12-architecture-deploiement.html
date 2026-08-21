@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Architecture déploiement</title><link rel="stylesheet" href="./shared.css">
+<style>
+  .diagram { position:relative; width:1160px; height:548px; margin:0 auto; }
+
+  .n { position:absolute; z-index:2; border-radius:16px; padding:11px 15px;
+       background:#fff; border:1px solid var(--line); box-shadow:0 8px 20px rgba(30,27,75,.07); }
+  .n .nk { display:block; font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); }
+  .n .nt { display:block; font-family:"Baloo 2",sans-serif; font-weight:800; font-size:19px; color:var(--indigo); line-height:1.08; margin-top:2px; }
+  .n .ic { position:absolute; top:11px; right:13px; font-size:14px; color:var(--violet-deep); opacity:.85; }
+  .n.dark    { background:var(--indigo); border-color:transparent; }
+  .n.violet  { background:linear-gradient(150deg,var(--violet),var(--violet-deep)); border-color:transparent; }
+  .n.magenta { background:linear-gradient(150deg,var(--magenta),var(--magenta-deep)); border-color:transparent; }
+  .n.dark .nt,.n.violet .nt,.n.magenta .nt { color:#fff; }
+  .n.dark .nk,.n.violet .nk,.n.magenta .nk { color:rgba(255,255,255,.72); }
+  .n.dark .ic,.n.violet .ic,.n.magenta .ic { color:#fff; opacity:.9; }
+
+  .box { position:absolute; z-index:1; border-radius:24px;
+         background:rgba(237,228,252,.5); border:1.5px solid rgba(124,58,237,.16); }
+  .box .bk { position:absolute; top:14px; left:20px; font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); }
+  .box .bt { position:absolute; top:26px; left:20px; font-family:"Baloo 2",sans-serif; font-weight:800; font-size:20px; color:var(--indigo); }
+  .box .srv { position:absolute; top:16px; right:18px; font-size:18px; color:var(--indigo); opacity:.45; }
+
+  svg.wires { position:absolute; inset:0; width:1160px; height:548px; z-index:1; pointer-events:none; overflow:visible; }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="stage">
+    <div class="head">
+      <span class="num">8</span>
+      <h2>Architecture déploiement</h2>
+      <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
+    </div>
+
+    <div class="diagram">
+      <!-- boxes (behind) -->
+      <div class="box" style="left:545px; top:0; width:615px; height:372px">
+        <span class="bk">Hébergement</span><span class="bt">VPS Production</span><span class="srv">▤</span>
+      </div>
+      <div class="box" style="left:250px; top:424px; width:300px; height:122px">
+        <span class="bk">Hébergement</span><span class="bt" style="font-size:18px">VPS Monitoring</span><span class="srv">▤</span>
+      </div>
+
+      <!-- wires -->
+      <svg class="wires" viewBox="0 0 1160 548">
+        <defs>
+          <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto-start-reverse">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#1E1B4B"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke="#1E1B4B" stroke-width="2.4">
+          <!-- CI flow (dashed) -->
+          <line x1="235" y1="38"  x2="298" y2="38"  stroke-dasharray="7 6" marker-end="url(#ah)"/>
+          <line x1="505" y1="38"  x2="543" y2="38"  stroke-dasharray="7 6" marker-end="url(#ah)"/>
+          <line x1="235" y1="180" x2="561" y2="106" stroke-dasharray="7 6" marker-end="url(#ah)"/>
+          <!-- internal (solid, double) -->
+          <line x1="715" y1="146" x2="715" y2="212" marker-start="url(#ah)" marker-end="url(#ah)"/>
+          <line x1="865" y1="254" x2="878" y2="254" marker-start="url(#ah)" marker-end="url(#ah)"/>
+          <line x1="715" y1="296" x2="715" y2="428" marker-start="url(#ah)" marker-end="url(#ah)"/>
+          <!-- backend -> bucket (solid) -->
+          <line x1="563" y1="256" x2="239" y2="325" marker-end="url(#ah)"/>
+          <!-- db -> backup (dashed) -->
+          <line x1="1010" y1="288" x2="1010" y2="428" stroke-dasharray="7 6" marker-end="url(#ah)"/>
+          <!-- vps prod -> monitoring netdata (dashed) -->
+          <line x1="610" y1="372" x2="512" y2="476" stroke-dasharray="7 6" marker-end="url(#ah)"/>
+        </g>
+      </svg>
+
+      <!-- left satellites -->
+      <div class="n" style="left:0; top:8px; width:235px"><span class="nk">Source</span><span class="nt">GitHub</span><span class="ic">&lt;/&gt;</span></div>
+      <div class="n" style="left:300px; top:8px; width:205px"><span class="nk">Registry</span><span class="nt">Registry</span><span class="ic">▦</span></div>
+      <div class="n" style="left:0; top:150px; width:235px"><span class="nk">Monitoring</span><span class="nt">UptimeRobot</span><span class="ic">◉</span></div>
+      <div class="n violet" style="left:0; top:290px; width:235px"><span class="nk">BDD</span><span class="nt">Bucket S3</span><span class="ic">▤</span></div>
+
+      <!-- VPS Production inner nodes -->
+      <div class="n dark" style="left:565px; top:64px; width:300px"><span class="nk">Frontend</span><span class="nt">Portail Web</span><span class="ic">▢▦</span></div>
+      <div class="n" style="left:880px; top:64px; width:260px"><span class="nk">Network</span><span class="nt">Traefik</span><span class="ic">⇄▦</span></div>
+      <div class="n" style="left:880px; top:150px; width:260px"><span class="nk">Monitoring</span><span class="nt">Netdata child</span><span class="ic">✓▦</span></div>
+      <div class="n dark" style="left:565px; top:214px; width:300px"><span class="nk">Backend</span><span class="nt">Backend &amp; API</span><span class="ic">⚙▦</span></div>
+      <div class="n violet" style="left:880px; top:222px; width:260px"><span class="nk">BDD</span><span class="nt">Base de données</span><span class="ic">▤</span></div>
+
+      <!-- monitoring host + bottom nodes -->
+      <div class="n" style="left:270px; top:478px; width:260px"><span class="nk">Monitoring</span><span class="nt">Netdata</span><span class="ic">✓</span></div>
+      <div class="n dark" style="left:565px; top:430px; width:300px"><span class="nk">Client</span><span class="nt">App mobile</span><span class="ic">▢▦</span></div>
+      <div class="n magenta" style="left:880px; top:430px; width:260px"><span class="nk">Backup</span><span class="nt">Backup BDD</span><span class="ic">▤</span></div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Tests et accessibilité</title><link rel="stylesheet" href="./shared.css"></head>
+<body><section class="slide"><div class="content">
+  <div class="eyebrow">Tests</div>
+  <h1 class="title sm">Parcours critiques, mobile et accessibilité</h1>
+  <div class="grid-3" style="margin-top:28px">
+    <div class="card soft-green"><div class="card-kicker">Tests web</div><div class="card-title">Jest + Cypress</div><p class="card-text">Unitaires, intégration et E2E sur les parcours clés : signalement, photo, statut, consultation.</p></div>
+    <div class="card"><div class="card-kicker">Tests mobile</div><div class="card-title">Progressifs</div><p class="card-text">Tests unitaires, build de validation si possible, suivi des crashs et recette manuelle avant diffusion.</p></div>
+    <div class="card navy"><div class="card-kicker">Accessibilité</div><div class="card-title">Automatique + humain</div><p class="card-text">Les scans détectent une partie des défauts, mais la compréhension des parcours et la lisibilité doivent être vérifiées humainement.</p></div>
+  </div>
+  <div class="table" style="margin-top:28px">
+    <table class="table">
+      <thead><tr><th>Zone</th><th>Ce qu’on vérifie</th><th>Pourquoi c’est sensible</th></tr></thead>
+      <tbody>
+        <tr><td>Mobile</td><td>Permissions, réseau faible, crashs, compatibilité écran</td><td>Chaîne plus spécifique, plus coûteuse à industrialiser</td></tr>
+        <tr><td>Web</td><td>Clavier, contrastes, messages d’erreur, responsive</td><td>Plateforme citoyenne accessible à des publics variés</td></tr>
+        <tr><td>Parcours critiques</td><td>Création signalement, photo, géolocalisation, traitement</td><td>Une régression bloque directement l’usage métier</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section></body></html>

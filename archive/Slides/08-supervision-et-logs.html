@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Supervision et logs</title><link rel="stylesheet" href="./shared.css"></head>
+<body><section class="slide"><div class="content">
+  <div class="eyebrow">Exploitation</div>
+  <h1 class="title sm">Supervision, observabilité et logs</h1>
+  <div class="grid-4" style="margin-top:30px">
+    <div class="card"><div class="card-kicker">Système</div><div class="card-title">Netdata</div><p class="card-text">Santé des VPS, CPU, mémoire, disque, réseau, disponibilité.</p></div>
+    <div class="card soft-green"><div class="card-kicker">Externe</div><div class="card-title">UptimeRobot</div><p class="card-text">Disponibilité vue depuis Internet, SSL, temps de réponse, checks simples sur le portail et l’API.</p></div>
+    <div class="card emerald"><div class="card-kicker">Applicatif</div><div class="card-title">Sentry</div><p class="card-text">Erreurs réelles, exceptions, versions impactées, fréquence observée côté utilisateur.</p></div>
+    <div class="card navy"><div class="card-kicker">Diagnostic</div><div class="card-title">Logs structurés</div><p class="card-text">Horodatage, niveaux, correlation ID, rotation et vigilance RGPD.</p></div>
+  </div>
+  <div class="card" style="margin-top:28px">
+    <div class="card-kicker">Justification</div>
+    <div class="card-title">Séparer les niveaux plutôt que promettre une observabilité totale</div>
+    <ul class="bullets">
+      <li>Netdata répond à la santé système.</li>
+      <li>UptimeRobot répond à la disponibilité vue de l’extérieur.</li>
+      <li>Sentry répond aux erreurs applicatives réelles.</li>
+      <li>Les logs servent au diagnostic détaillé.</li>
+      <li>Les alertes doivent rester ciblées pour éviter le bruit.</li>
+    </ul>
+  </div>
+</div></section></body></html>

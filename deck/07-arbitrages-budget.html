@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Arbitrages & budget</title><link rel="stylesheet" href="./shared.css">
+<style>
+  .b-row { display:grid; grid-template-columns: 1.05fr .95fr; gap:18px; }
+  .b-left { display:flex; flex-direction:column; gap:14px; }
+  .b-left .card { padding:16px 22px; }
+  .b-left .card h3 { font-size:23px; margin:4px 0 8px; }
+  .b-left .bullets li { font-size:17px; margin:5px 0; line-height:1.3; }
+  .budget-panel { padding:16px 20px; }
+  .budget-panel .kicker { color:var(--violet-deep); }
+  .budget-panel h3 { font-family:"Baloo 2",sans-serif; font-weight:800; font-size:23px; margin:3px 0 10px; color:var(--indigo); }
+  .budget-panel .stat { padding:11px 12px; }
+  .budget-panel .s-v { font-size:26px; }
+  .budget-panel .table th { padding:8px 14px; font-size:13px; }
+  .budget-panel .table td { padding:7px 14px; font-size:16px; }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="stage">
+    <div class="head">
+      <span class="num">4</span>
+      <h2>Arbitrages &amp; budget</h2>
+      <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
+    </div>
+
+    <div class="objective">
+      <div class="k">Objectif</div>
+      <div class="v">Un lancement cadré pour structurer le projet sans surdimensionner les moyens</div>
+    </div>
+
+    <div class="b-row">
+      <div class="b-left">
+        <div class="card">
+          <div class="kicker" style="color:var(--violet-deep)">Arbitrages</div>
+          <h3>Des choix de lancement ciblés</h3>
+          <ul class="bullets">
+            <li>Capitalisation sur l’équipe dev du prototype</li>
+            <li>Renfort gestion de projet &amp; DevOps pour structurer le projet</li>
+            <li>Infrastructure simple, peu coûteuse &amp; efficace au départ</li>
+          </ul>
+        </div>
+        <div class="card indigo">
+          <div class="kicker">Budget</div>
+          <h3>Un coût difficile à estimer</h3>
+          <ul class="bullets">
+            <li>Coût global du projet encore difficile à estimer sans documents</li>
+            <li>Le budget évoluera avec les collectivités clientes</li>
+            <li>Infrastructure de départ peu coûteuse</li>
+            <li>Le besoin DevOps peut être estimé plus facilement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card budget-panel">
+        <div class="kicker">Budget DevOps</div>
+        <h3>Estimation partielle</h3>
+        <div class="stats" style="margin-bottom:16px">
+          <div class="stat"><div class="s-k">Charge</div><div class="s-v">13 j</div></div>
+          <div class="stat"><div class="s-k">TJM</div><div class="s-v">650 €</div></div>
+          <div class="stat hl"><div class="s-k">Budget</div><div class="s-v">8,45 k€</div></div>
+        </div>
+        <table class="table">
+          <thead><tr><th>Lot</th><th class="r">Jours</th><th class="r">Coût</th></tr></thead>
+          <tbody>
+            <tr><td>Cadrage</td><td class="r">2</td><td class="r">1,3 k€</td></tr>
+            <tr><td>Pipeline CI/CD</td><td class="r">4</td><td class="r">2,6 k€</td></tr>
+            <tr><td>Hébergement VPS</td><td class="r">3</td><td class="r">1,95 k€</td></tr>
+            <tr><td>Monitoring</td><td class="r">2</td><td class="r">1,3 k€</td></tr>
+            <tr><td>Déploiement</td><td class="r">2</td><td class="r">1,3 k€</td></tr>
+            <tr class="total"><td>Total</td><td class="r">13</td><td class="r">8,45 k€</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

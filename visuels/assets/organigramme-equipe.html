@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organigramme équipe GreenCity Tech</title>
+  <link rel="stylesheet" href="../base-assets/shared.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    body { background: transparent; }
+    .canvas {
+      position: relative;
+      width: 1600px;
+      height: 900px;
+      overflow: hidden;
+      background: transparent;
+    }
+    .node {
+      position: absolute;
+      z-index: 2;
+      min-width: 240px;
+      padding: 22px 24px;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(15,30,58,.10);
+    }
+    .node .role {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .78;
+    }
+    .node .label {
+      margin-top: 10px;
+      font-family: Montserrat, sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+    .node .desc {
+      margin-top: 8px;
+      font-size: 16px;
+      line-height: 1.5;
+      opacity: .84;
+    }
+    .node-main {
+      left: 1100px;
+      top: 140px;
+      width: 280px;
+      background: linear-gradient(135deg, #0F1E3A, #16315e);
+      color: white;
+    }
+    .node-dev {
+      left: 560px;
+      top: 330px;
+      width: 440px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(15,30,58,.08);
+      color: var(--navy);
+    }
+    .node-ops {
+      left: 1080px;
+      top: 330px;
+      width: 280px;
+      background: linear-gradient(135deg, #1E5A3A, #1FAE9A);
+      color: white;
+    }
+    .node-quality {
+      left: 180px;
+      top: 330px;
+      width: 280px;
+      background: rgba(230,246,239,.95);
+      border: 1px solid rgba(31,174,154,.18);
+      color: var(--forest);
+    }
+    .node-relay {
+      left: 1080px;
+      top: 550px;
+      width: 290px;
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(15,30,58,.08);
+      color: var(--navy);
+    }
+    .node-mgr {
+      left: 180px;
+      top: 550px;
+      width: 290px;
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(15,30,58,.08);
+      color: var(--navy);
+    }
+    svg.connectors {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: visible;
+    }
+  </style>
+</head>
+<body>
+  <section class="canvas">
+    <svg class="connectors" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="orgLine" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1FAE9A"/>
+          <stop offset="100%" stop-color="#0F1E3A"/>
+        </linearGradient>
+      </defs>
+      <path d="M 1240 240 L 1240 292" stroke="url(#orgLine)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M 320 292 L 1250 292" stroke="url(#orgLine)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M 320 292 L 320 330" stroke="url(#orgLine)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M 780 292 L 780 330" stroke="url(#orgLine)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M 1220 292 L 1220 330" stroke="url(#orgLine)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M 320 464 L 320 550" stroke="#1E5A3A" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="8 10"/>
+      <path d="M 1220 464 L 1220 550" stroke="#1FAE9A" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="8 10"/>
+      <circle cx="1240" cy="292" r="8" fill="#F6C24A"/>
+    </svg>
+
+    <article class="node node-main">
+      <div class="role">Pilotage produit</div>
+      <div class="label">Product Owner</div>
+      <div class="desc">Priorise le backlog, arbitre avec la collectivité et protège l’équipe des sollicitations directes.</div>
+    </article>
+
+    <article class="node node-quality">
+      <div class="role">Qualité</div>
+      <div class="label">Référent qualité</div>
+      <div class="desc">Porte la revue de code, la couverture de tests et la cohérence de la recette.</div>
+    </article>
+
+    <article class="node node-dev">
+      <div class="role">Réalisation</div>
+      <div class="label">Équipe de développement</div>
+      <div class="desc">4 développeurs conservés, avec répartition web, mobile, backend et montée en polyvalence.</div>
+    </article>
+
+    <article class="node node-ops">
+      <div class="role">Industrialisation</div>
+      <div class="label">DevOps senior</div>
+      <div class="desc">Pose les fondations CI/CD, déploiement, supervision, sécurité et standardisation des environnements.</div>
+    </article>
+
+    <article class="node node-mgr">
+      <div class="role">Management</div>
+      <div class="label">Management de proximité</div>
+      <div class="desc">Cadre la charge de travail, l’organisation et les conditions de réalisation de l’équipe.</div>
+    </article>
+
+    <article class="node node-relay">
+      <div class="role">Montée en compétence</div>
+      <div class="label">Relais DevOps</div>
+      <div class="desc">Développeur identifié pour relayer les pratiques et éviter une dépendance totale au senior.</div>
+    </article>
+  </section>
+</body>
+</html>

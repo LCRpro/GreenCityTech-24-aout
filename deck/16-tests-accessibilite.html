@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Tests & accessibilité</title><link rel="stylesheet" href="./shared.css">
+<style>
+  .t-row3 { display:grid; grid-template-columns: repeat(3,1fr); gap:14px; margin-bottom:16px; }
+  .t-row3 .card h3 { font-size:24px; margin:2px 0 8px; }
+  .t-row3 .card p { margin:0; font-size:17px; line-height:1.32; }
+  .t-row2 { display:grid; grid-template-columns: 1.25fr .75fr; gap:16px; }
+  .t-row2 .card h3 { font-size:23px; margin:2px 0 8px; }
+  .t-row2 .bullets li { font-size:17px; margin:5px 0; line-height:1.28; }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="stage">
+    <div class="head">
+      <span class="num">11</span>
+      <h2>Tests &amp; accessibilité</h2>
+      <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
+    </div>
+
+    <div class="t-row3">
+      <div class="card">
+        <div class="kicker" style="color:var(--violet-deep)">Tests web</div>
+        <h3>Couverture globale</h3>
+        <p>Unitaires, intégration sur la logique métier et E2E sur les parcours clés.</p>
+      </div>
+      <div class="card tint">
+        <div class="kicker" style="color:var(--violet-deep)">Tests mobiles</div>
+        <h3>Progressifs</h3>
+        <p>Tests unitaires, build de validation si possible, suivi des crashs et recette manuelle avant diffusion.</p>
+      </div>
+      <div class="card indigo">
+        <div class="kicker">Accessibilité</div>
+        <h3>Automatique + humain</h3>
+        <p>Les scans détectent une partie des défauts, mais la compréhension des parcours et la lisibilité doivent être vérifiées humainement.</p>
+      </div>
+    </div>
+
+    <div class="t-row2">
+      <div class="card">
+        <div class="kicker" style="color:var(--violet-deep)">Livraison améliorée</div>
+        <h3>Sécuriser le fonctionnement des applications</h3>
+        <ul class="bullets">
+          <li>Tests unitaires &amp; intégration sur toutes les logiques métiers</li>
+          <li>Tests E2E uniquement sur les parcours les plus critiques et lancement manuel en local</li>
+          <li>Ne pas chercher 100% de couverture inutile</li>
+          <li>Éviter la mise en production de bugs</li>
+          <li>Éviter la mise en production de régressions</li>
+        </ul>
+      </div>
+      <div class="card" style="background:linear-gradient(150deg,var(--magenta),var(--magenta-deep)); color:#fff; border-color:transparent">
+        <div class="kicker">Cadre juridique</div>
+        <h3>Accessibilité importante</h3>
+        <ul class="bullets">
+          <li>Collectivités clientes</li>
+          <li>Conformité au cadre légal</li>
+          <li>Tests automatisés nécessaires, mais pas suffisants</li>
+          <li>Audit manuel RGAA nécessaire</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

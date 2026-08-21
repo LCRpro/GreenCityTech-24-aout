@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Gestion produit & évolutions</title><link rel="stylesheet" href="./shared.css">
+<style>
+  .proc { display:flex; align-items:stretch; gap:8px; margin-bottom:16px; }
+  .proc .pstep { flex:1; background:#fff; border:1px solid var(--line); border-radius:18px; padding:12px 16px; box-shadow:0 10px 24px rgba(30,27,75,.06); display:flex; flex-direction:column; justify-content:center; }
+  .proc .pstep .pk { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .proc .pstep .pt { font-family:"Baloo 2",sans-serif; font-weight:800; font-size:21px; color:var(--indigo); line-height:1.05; margin-top:2px; }
+  .proc .parr { display:flex; align-items:center; color:var(--violet); font-size:24px; font-weight:800; }
+  .gp { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  .gp .col { display:flex; flex-direction:column; gap:14px; }
+  .gp .card { padding:16px 20px; }
+  .gp .card h3 { font-size:23px; margin:2px 0 8px; }
+  .gp .bullets li { font-size:17px; margin:5px 0; line-height:1.28; }
+  .dc h3 { font-size:22px; }
+  .dc .two { display:grid; grid-template-columns:1fr 1fr; gap:2px 18px; }
+  .dc .bullets { margin:0; }
+  .dc .bullets li { font-size:16px; margin:3px 0; }
+  .arb-card p { margin:6px 0 0; font-size:16.5px; line-height:1.32; color:var(--indigo); }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="stage">
+    <div class="head">
+      <span class="num">12</span>
+      <h2>Gestion produit &amp; évolutions</h2>
+      <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
+    </div>
+
+    <div class="proc">
+      <div class="pstep"><div class="pk">Étape 1</div><div class="pt">Retour terrain</div></div>
+      <div class="parr">→</div>
+      <div class="pstep"><div class="pk">Étape 2</div><div class="pt">Cadrage produit</div></div>
+      <div class="parr">→</div>
+      <div class="pstep"><div class="pk">Étape 3</div><div class="pt">Analyse d’impact</div></div>
+      <div class="parr">→</div>
+      <div class="pstep"><div class="pk">Étape 4</div><div class="pt">Arbitrage interne</div></div>
+      <div class="parr">→</div>
+      <div class="pstep"><div class="pk">Étape 5</div><div class="pt">Roadmap, report ou refus</div></div>
+    </div>
+
+    <div class="gp">
+      <div class="col">
+        <div class="card">
+          <div class="kicker" style="color:var(--violet-deep)">Critères de priorisation</div>
+          <h3>Piloter les possibles évolutions</h3>
+          <ul class="bullets">
+            <li>Valeur métier pour plusieurs collectivités</li>
+            <li>Quantifier l’effort nécessaire</li>
+            <li>Prévoir les risques (sécurité, RGPD …)</li>
+            <li>Capacité réelle technique de l’équipe</li>
+            <li>Quantifier le coût financier et en performances</li>
+          </ul>
+        </div>
+        <div class="card arb-card" style="background:linear-gradient(150deg,var(--magenta),var(--magenta-deep)); color:#fff; border-color:transparent">
+          <div class="kicker">Arbitrage</div>
+          <h3 style="margin:2px 0 0">Une bonne idée doit être cadrée</h3>
+          <p style="color:rgba(255,255,255,.92)">Si le besoin est trop spécifique, trop coûteux ou trop risqué, il est préférable de recadrer le besoin, le reporter ou ne pas l’intégrer.</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card tint dc">
+          <div class="kicker" style="color:var(--violet-deep)">Demande client 1</div>
+          <h3>Cartographie en temps réel</h3>
+          <div class="two">
+            <ul class="bullets"><li>Intérêt des collectivités</li><li>Gros impact performances</li></ul>
+            <ul class="bullets"><li>Communication temps réel via WebSocket</li></ul>
+          </div>
+        </div>
+        <div class="card tint dc">
+          <div class="kicker" style="color:var(--violet-deep)">Demande client 2</div>
+          <h3>Photos HD</h3>
+          <div class="two">
+            <ul class="bullets"><li>Signalement renforcé</li><li>Stockage bucket S3</li></ul>
+            <ul class="bullets"><li>Compression</li><li>Attention au RGPD</li></ul>
+          </div>
+        </div>
+        <div class="card tint dc">
+          <div class="kicker" style="color:var(--violet-deep)">Demande client 3</div>
+          <h3>Chatbot citoyen</h3>
+          <div class="two">
+            <ul class="bullets"><li>Cadrage fort nécessaire</li><li>Coûts importants</li></ul>
+            <ul class="bullets"><li>Effet de mode IA</li><li>Attention au RGPD</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

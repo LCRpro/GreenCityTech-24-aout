@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenCity Tech - Base DA Slides</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: "#6D28D9",
+            emerald: "#7C3AED",
+            navy: "#1E1B4B",
+            mint: "#F3E8FF",
+            sun: "#EC4899",
+            foam: "#FAF7FF",
+            ink: "#2A1E41"
+          },
+          fontFamily: {
+            display: ["Montserrat", "ui-sans-serif", "system-ui", "sans-serif"],
+            body: ["Source Sans 3", "ui-sans-serif", "system-ui", "sans-serif"]
+          },
+          boxShadow: {
+            soft: "0 20px 60px rgba(15, 30, 58, 0.12)",
+            panel: "0 16px 40px rgba(17, 34, 68, 0.10)"
+          },
+          backgroundImage: {
+            aurora:
+              "radial-gradient(circle at 15% 20%, rgba(124,58,237,0.18), transparent 28%), radial-gradient(circle at 85% 12%, rgba(236,72,153,0.18), transparent 22%), radial-gradient(circle at 70% 70%, rgba(109,40,217,0.14), transparent 30%), linear-gradient(135deg, #faf7ff 0%, #f1ebfb 45%, #f8f6ff 100%)",
+            mesh:
+              "linear-gradient(to right, rgba(30,27,75,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(30,27,75,0.06) 1px, transparent 1px)",
+            topo:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%237C3AED' stroke-opacity='0.16' stroke-width='1.2'%3E%3Cpath d='M-10 120c28-36 64-54 108-54s84 20 132 20'/%3E%3Cpath d='M-20 154c34-28 76-40 124-32s80 22 136 6'/%3E%3Cpath d='M0 94c24-18 54-28 92-28s72 14 118-8'/%3E%3Cpath d='M30 200c22-30 54-46 96-46s72 14 110-2'/%3E%3C/g%3E%3C/svg%3E\")"
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #6D28D9;
+      --emerald: #7C3AED;
+      --navy: #1E1B4B;
+      --mint: #F3E8FF;
+      --sun: #EC4899;
+      --foam: #FAF7FF;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.09), transparent 18%),
+        #f6f2fd;
+    }
+
+    .brand-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(30, 27, 75, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 27, 75, 0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent);
+      pointer-events: none;
+    }
+
+    .topo-layer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='320' viewBox='0 0 520 320'%3E%3Cg fill='none' stroke='%237C3AED' stroke-opacity='0.14' stroke-width='1.2'%3E%3Cpath d='M-40 210c65-55 129-78 207-72s124 34 201 18 105-18 173-8'/%3E%3Cpath d='M-10 171c45-46 96-67 162-67 74 0 112 32 193 32s124-35 182-51'/%3E%3Cpath d='M50 268c58-45 116-61 188-51s115 39 190 28 103-25 153-52'/%3E%3Cpath d='M41 80c45-26 82-35 138-24 58 11 104 44 183 38 78-6 114-43 166-63'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: .85;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+  </style>
+</head>
+<body class="font-body text-navy antialiased">
+  <div class="relative overflow-hidden brand-shell topo-layer">
+    <header class="relative mx-auto max-w-7xl px-6 pb-14 pt-8 lg:px-10">
+      <div class="mb-12 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="relative h-16 w-16 overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-forest via-emerald to-sun p-[2px] shadow-soft">
+            <div class="flex h-full w-full items-center justify-center rounded-[1.45rem] bg-white">
+              <div class="relative h-10 w-10">
+                <span class="absolute inset-x-1 top-0 h-5 rounded-t-full bg-gradient-to-r from-forest to-emerald"></span>
+                <span class="absolute bottom-0 left-0 h-6 w-6 rounded-bl-full rounded-tr-full bg-navy"></span>
+                <span class="absolute bottom-1 right-0 h-5 w-5 rounded-full bg-sun"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="font-display text-2xl font-extrabold tracking-tight">GreenCity Tech</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-emerald">Base visuelle pour slides et schémas</p>
+          </div>
+        </div>
+        <nav class="flex flex-wrap gap-2 text-sm font-semibold">
+          <a href="#tokens" class="rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-navy transition hover:border-emerald hover:text-emerald">Tokens</a>
+          <a href="#components" class="rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-navy transition hover:border-emerald hover:text-emerald">Composants</a>
+          <a href="#slides" class="rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-navy transition hover:border-emerald hover:text-emerald">Slides</a>
+          <a href="#schema" class="rounded-full border border-navy/10 bg-white/80 px-4 py-2 text-navy transition hover:border-emerald hover:text-emerald">Schémas</a>
+        </nav>
+      </div>
+
+      <section class="grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
+        <div class="rounded-[2rem] border border-white/70 bg-white/75 p-8 shadow-soft backdrop-blur lg:p-12">
+          <div class="mb-5 inline-flex items-center gap-3 rounded-full border border-emerald/15 bg-mint px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-forest">
+            Direction artistique retenue
+          </div>
+          <h1 class="max-w-4xl font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-navy lg:text-7xl">
+            Moderne, institutionnelle, lisible, urbaine.
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-navy/78 lg:text-xl">
+            Cette base reprend la palette et le ton de la charte : confiance publique, technologie maîtrisée,
+            ville connectée et écologie concrète. L’objectif est d’avoir un socle unique pour les slides,
+            les schémas HTML et les tableaux de soutenance.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="rounded-full bg-forest px-4 py-2 text-sm font-semibold text-white">Institutionnel</span>
+            <span class="rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white">Civic-tech</span>
+            <span class="rounded-full bg-sun px-4 py-2 text-sm font-semibold text-navy">Accessible</span>
+            <span class="rounded-full border border-navy/10 bg-white px-4 py-2 text-sm font-semibold text-navy">Data + terrain</span>
+          </div>
+        </div>
+
+        <div class="grid gap-5">
+          <div class="rounded-[2rem] border border-white/70 bg-gradient-to-br from-navy via-navy to-forest p-8 text-white shadow-soft">
+            <p class="text-xs font-bold uppercase tracking-[0.28em] text-white/70">Tagline</p>
+            <p class="mt-5 font-display text-3xl font-bold leading-tight">
+              Signalez. Agissons. Améliorons nos villes.
+            </p>
+            <div class="mt-8 h-px bg-white/15"></div>
+            <div class="mt-6 grid grid-cols-2 gap-3 text-sm font-semibold text-white/85">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">Signaler</div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">Documenter</div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">Collaborer</div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">Améliorer</div>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-panel backdrop-blur">
+            <p class="text-xs font-bold uppercase tracking-[0.28em] text-forest">Principe de DA</p>
+            <ul class="mt-4 space-y-3 text-sm leading-7 text-navy/80">
+              <li><span class="font-semibold text-navy">Contraste fort</span> pour les titres, KPI et schémas.</li>
+              <li><span class="font-semibold text-navy">Verts et turquoise</span> pour l’axe citoyen, terrain et écologie.</li>
+              <li><span class="font-semibold text-navy">Bleu profond</span> pour la rigueur, la donnée et le cadre institutionnel.</li>
+              <li><span class="font-semibold text-navy">Jaune solaire</span> en accent rare pour attirer l’œil.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </header>
+  </div>
+
+  <main class="mx-auto max-w-7xl space-y-10 px-6 py-10 lg:px-10">
+    <section id="tokens" class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <div class="rounded-[2rem] border border-navy/8 bg-white p-8 shadow-panel">
+        <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest">Palette de marque</p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-[1.6rem] border border-navy/8 p-4">
+            <div class="h-24 rounded-[1.2rem] bg-forest"></div>
+            <p class="mt-4 font-display text-lg font-bold">Violet</p>
+            <p class="text-sm text-navy/70">#6D28D9</p>
+          </div>
+          <div class="rounded-[1.6rem] border border-navy/8 p-4">
+            <div class="h-24 rounded-[1.2rem] bg-emerald"></div>
+            <p class="mt-4 font-display text-lg font-bold">Violet vif</p>
+            <p class="text-sm text-navy/70">#7C3AED</p>
+          </div>
+          <div class="rounded-[1.6rem] border border-navy/8 p-4">
+            <div class="h-24 rounded-[1.2rem] bg-navy"></div>
+            <p class="mt-4 font-display text-lg font-bold">Indigo Nuit</p>
+            <p class="text-sm text-navy/70">#1E1B4B</p>
+          </div>
+          <div class="rounded-[1.6rem] border border-navy/8 p-4">
+            <div class="h-24 rounded-[1.2rem] bg-mint"></div>
+            <p class="mt-4 font-display text-lg font-bold">Lilas Clair</p>
+            <p class="text-sm text-navy/70">#F3E8FF</p>
+          </div>
+          <div class="rounded-[1.6rem] border border-navy/8 p-4 sm:col-span-2">
+            <div class="h-24 rounded-[1.2rem] bg-sun"></div>
+            <p class="mt-4 font-display text-lg font-bold">Magenta</p>
+            <p class="text-sm text-navy/70">#EC4899</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-[2rem] border border-navy/8 bg-white p-8 shadow-panel">
+        <div class="grid gap-8 lg:grid-cols-2">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest">Typographies</p>
+            <div class="mt-5 rounded-[1.6rem] bg-foam p-5">
+              <p class="font-display text-5xl font-extrabold text-navy">Aa</p>
+              <p class="mt-4 font-display text-2xl font-bold text-navy">Montserrat</p>
+              <p class="mt-1 text-sm text-navy/65">Titres, intertitres, chiffres clés, tuiles structurantes.</p>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest opacity-0">Typographies</p>
+            <div class="mt-5 rounded-[1.6rem] bg-foam p-5">
+              <p class="font-body text-5xl font-light text-navy">Aa</p>
+              <p class="mt-4 text-2xl font-semibold text-navy">Source Sans 3</p>
+              <p class="mt-1 text-sm text-navy/65">Texte courant, légendes, tableaux, contenu dense.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 rounded-[1.6rem] border border-dashed border-emerald/25 bg-gradient-to-r from-mint to-white p-6">
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest">Règles de composition</p>
+          <div class="mt-4 grid gap-4 text-sm leading-7 text-navy/78 md:grid-cols-2">
+            <p>Titres courts, massifs et très contrastés. Une slide = une idée directrice, pas un paragraphe.</p>
+            <p>Fonds clairs, formes organiques, lignes cartographiques et maillage de données comme textures secondaires.</p>
+            <p>Le jaune ne sert pas de couleur dominante. Il doit signaler une alerte, un focus ou un chiffre important.</p>
+            <p>Les diagrammes doivent garder des nœuds arrondis, des traits fins et des catégories cohérentes par couleur.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="components" class="rounded-[2rem] border border-navy/8 bg-white p-8 shadow-panel">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest">Bibliothèque de composants</p>
+          <h2 class="mt-2 font-display text-4xl font-extrabold tracking-tight text-navy">Briques réutilisables</h2>
+        </div>
+        <p class="max-w-xl text-sm leading-7 text-navy/70">
+          Ces composants servent de base commune aux slides, schémas et tableaux HTML. L’objectif est d’éviter
+          les rendus hétérogènes quand on produira les assets un par un.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-5 xl:grid-cols-3">
+        <article class="rounded-[1.7rem] border border-navy/8 bg-gradient-to-br from-white to-mint p-6">
+          <span class="inline-flex rounded-full bg-forest px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-white">Carte forte</span>
+          <h3 class="mt-5 font-display text-2xl font-bold text-navy">Titre de bloc</h3>
+          <p class="mt-3 text-sm leading-7 text-navy/76">Pour une idée principale, un cadrage ou une explication courte. Toujours avec beaucoup d’air et un contraste net.</p>
+        </article>
+
+        <article class="rounded-[1.7rem] border border-navy/8 bg-navy p-6 text-white">
+          <span class="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-white/75">Bloc data</span>
+          <p class="mt-5 text-sm text-white/70">Disponibilité plateforme</p>
+          <p class="mt-1 font-display text-5xl font-extrabold">99,2%</p>
+          <div class="mt-6 h-2 rounded-full bg-white/10">
+            <div class="h-2 w-[82%] rounded-full bg-emerald"></div>
+          </div>
+        </article>
+
+        <article class="rounded-[1.7rem] border border-sun/40 bg-sun/12 p-6">
+          <span class="inline-flex rounded-full bg-sun px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-navy">Alerte / focus</span>
+          <p class="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-navy/65">Point d’attention</p>
+          <p class="mt-2 text-base leading-7 text-navy/82">Le jaune sert d’accent ponctuel. Il ne doit pas noyer la hiérarchie visuelle.</p>
+        </article>
+      </div>
+
+      <div class="mt-8 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+        <div class="rounded-[1.8rem] border border-navy/8 bg-foam p-6">
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest">Tags et statuts</p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <span class="rounded-full bg-forest px-4 py-2 text-sm font-semibold text-white">Production</span>
+            <span class="rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white">Préproduction</span>
+            <span class="rounded-full bg-navy px-4 py-2 text-sm font-semibold text-white">Architecture</span>
+            <span class="rounded-full bg-mint px-4 py-2 text-sm font-semibold text-forest">Qualité</span>
+            <span class="rounded-full bg-sun px-4 py-2 text-sm font-semibold text-navy">Sécurité</span>
+            <span class="rounded-full border border-navy/10 bg-white px-4 py-2 text-sm font-semibold text-navy">À arbitrer</span>
+          </div>
+        </div>
+
+        <div class="rounded-[1.8rem] border border-navy/8 bg-white p-6">
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest">Connecteurs visuels</p>
+          <div class="mt-5 flex items-center justify-between gap-4">
+            <div class="rounded-2xl bg-mint px-4 py-3 text-sm font-semibold text-forest">Entrée</div>
+            <div class="h-[2px] flex-1 bg-gradient-to-r from-emerald to-navy"></div>
+            <div class="rounded-2xl bg-navy px-4 py-3 text-sm font-semibold text-white">Traitement</div>
+            <div class="h-[2px] flex-1 bg-gradient-to-r from-navy to-sun"></div>
+            <div class="rounded-2xl bg-sun px-4 py-3 text-sm font-semibold text-navy">Sortie</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="slides" class="space-y-6">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest">Mockups de slides</p>
+          <h2 class="mt-2 font-display text-4xl font-extrabold tracking-tight text-navy">Gabarits de présentation</h2>
+        </div>
+        <p class="max-w-2xl text-sm leading-7 text-navy/70">
+          Ces mockups servent de référence. Ils ne sont pas là pour être utilisés tels quels à chaque fois,
+          mais pour fixer un rythme visuel cohérent entre contexte, architecture, processus et KPI.
+        </p>
+      </div>
+
+      <div class="grid gap-6">
+        <section class="overflow-hidden rounded-[2.2rem] border border-navy/8 bg-white shadow-panel">
+          <div class="relative grid min-h-[34rem] gap-8 overflow-hidden lg:grid-cols-[1.12fr_0.88fr]">
+            <div class="absolute inset-0 bg-aurora"></div>
+            <div class="relative p-8 lg:p-12">
+              <div class="inline-flex rounded-full border border-forest/15 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-forest">
+                Slide d’ouverture
+              </div>
+              <h3 class="mt-8 max-w-3xl font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-navy lg:text-6xl">
+                Transformer un prototype fragile en plateforme civic-tech fiable.
+              </h3>
+              <p class="mt-6 max-w-2xl text-lg leading-8 text-navy/78">
+                Une stratégie progressive, adaptée à une petite équipe, pour industrialiser GreenCity Tech sans surdimensionner l’organisation.
+              </p>
+              <div class="mt-10 flex flex-wrap gap-3">
+                <span class="rounded-full bg-navy px-4 py-2 text-sm font-semibold text-white">DevOps</span>
+                <span class="rounded-full bg-emerald px-4 py-2 text-sm font-semibold text-white">Qualité</span>
+                <span class="rounded-full bg-forest px-4 py-2 text-sm font-semibold text-white">Collectivités</span>
+                <span class="rounded-full bg-sun px-4 py-2 text-sm font-semibold text-navy">Inclusion</span>
+              </div>
+            </div>
+            <div class="relative flex items-end justify-end p-8 lg:p-12">
+              <div class="w-full max-w-md rounded-[2rem] border border-white/60 bg-white/75 p-6 shadow-soft backdrop-blur">
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="rounded-[1.5rem] bg-navy p-5 text-white">
+                    <p class="text-xs uppercase tracking-[0.2em] text-white/65">Déploiement</p>
+                    <p class="mt-3 font-display text-3xl font-bold">CI/CD</p>
+                  </div>
+                  <div class="rounded-[1.5rem] bg-white p-5 shadow-sm">
+                    <p class="text-xs uppercase tracking-[0.2em] text-navy/55">Tests</p>
+                    <p class="mt-3 font-display text-3xl font-bold text-navy">Jest + Cypress</p>
+                  </div>
+                  <div class="rounded-[1.5rem] bg-white p-5 shadow-sm">
+                    <p class="text-xs uppercase tracking-[0.2em] text-navy/55">Infra</p>
+                    <p class="mt-3 font-display text-3xl font-bold text-navy">VPS + Docker</p>
+                  </div>
+                  <div class="rounded-[1.5rem] bg-forest p-5 text-white">
+                    <p class="text-xs uppercase tracking-[0.2em] text-white/65">Pilotage</p>
+                    <p class="mt-3 font-display text-3xl font-bold">5 parties</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid gap-6 xl:grid-cols-2">
+          <article class="overflow-hidden rounded-[2rem] border border-navy/8 bg-white shadow-panel">
+            <div class="border-b border-navy/8 px-8 py-5">
+              <p class="text-xs font-bold uppercase tracking-[0.28em] text-forest">Slide architecture</p>
+            </div>
+            <div class="grid gap-5 p-8">
+              <div class="grid gap-4 md:grid-cols-3">
+                <div class="rounded-[1.5rem] bg-gradient-to-br from-navy to-[#16315e] p-5 text-white">
+                  <p class="text-xs uppercase tracking-[0.2em] text-white/60">Canal 01</p>
+                  <p class="mt-3 font-display text-2xl font-bold">Mobile</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-gradient-to-br from-forest to-emerald p-5 text-white">
+                  <p class="text-xs uppercase tracking-[0.2em] text-white/60">Canal 02</p>
+                  <p class="mt-3 font-display text-2xl font-bold">Web citoyen</p>
+                </div>
+                <div class="rounded-[1.5rem] border border-navy/8 bg-white p-5">
+                  <p class="text-xs uppercase tracking-[0.2em] text-navy/55">Canal 03</p>
+                  <p class="mt-3 font-display text-2xl font-bold text-navy">Admin</p>
+                </div>
+              </div>
+              <div class="rounded-[1.6rem] bg-foam p-6">
+                <div class="grid items-center gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
+                  <div class="rounded-2xl bg-white p-4 text-center font-semibold text-navy shadow-sm">API Backend</div>
+                  <div class="text-center text-xl text-emerald">→</div>
+                  <div class="rounded-2xl bg-white p-4 text-center font-semibold text-navy shadow-sm">Base de données</div>
+                  <div class="text-center text-xl text-emerald">→</div>
+                  <div class="rounded-2xl bg-white p-4 text-center font-semibold text-navy shadow-sm">Stockage photos</div>
+                </div>
+              </div>
+              <div class="grid gap-4 md:grid-cols-3">
+                <div class="rounded-[1.5rem] bg-mint p-5">
+                  <p class="text-xs uppercase tracking-[0.2em] text-forest/70">Déploiement</p>
+                  <p class="mt-2 text-lg font-bold text-forest">Docker Compose</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-white p-5 shadow-sm">
+                  <p class="text-xs uppercase tracking-[0.2em] text-navy/55">Supervision</p>
+                  <p class="mt-2 text-lg font-bold text-navy">Netdata + Sentry</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-sun/18 p-5">
+                  <p class="text-xs uppercase tracking-[0.2em] text-navy/60">Sécurité</p>
+                  <p class="mt-2 text-lg font-bold text-navy">Secrets + scans</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="overflow-hidden rounded-[2rem] border border-navy/8 bg-white shadow-panel">
+            <div class="border-b border-navy/8 px-8 py-5">
+              <p class="text-xs font-bold uppercase tracking-[0.28em] text-forest">Slide KPI</p>
+            </div>
+            <div class="grid gap-5 p-8">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-[1.5rem] bg-navy p-6 text-white">
+                  <p class="text-xs uppercase tracking-[0.2em] text-white/60">Fréquence de déploiement</p>
+                  <p class="mt-3 font-display text-5xl font-extrabold">2 / sem.</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-forest p-6 text-white">
+                  <p class="text-xs uppercase tracking-[0.2em] text-white/60">Disponibilité</p>
+                  <p class="mt-3 font-display text-5xl font-extrabold">99,2%</p>
+                </div>
+              </div>
+              <div class="rounded-[1.6rem] border border-navy/8 bg-foam p-6">
+                <div class="mb-4 flex items-center justify-between">
+                  <p class="font-semibold text-navy">Taux d’échec des déploiements</p>
+                  <p class="font-display text-2xl font-bold text-navy">8%</p>
+                </div>
+                <div class="h-3 rounded-full bg-white">
+                  <div class="h-3 w-[24%] rounded-full bg-gradient-to-r from-emerald to-forest"></div>
+                </div>
+              </div>
+              <div class="rounded-[1.6rem] border border-navy/8 bg-white p-6">
+                <p class="text-sm font-semibold text-navy">Lecture recommandée</p>
+                <p class="mt-2 text-sm leading-7 text-navy/72">
+                  Peu d’indicateurs, mais suivis régulièrement. Les slides KPI doivent être lisibles en moins de 5 secondes.
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </section>
+
+    <section id="schema" class="rounded-[2rem] border border-navy/8 bg-white p-8 shadow-panel">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-forest">Base pour schémas HTML</p>
+          <h2 class="mt-2 font-display text-4xl font-extrabold tracking-tight text-navy">Style diagrammes et process</h2>
+        </div>
+        <p class="max-w-2xl text-sm leading-7 text-navy/70">
+          Cette zone fixe une grammaire visuelle simple à réutiliser dans les organigrammes,
+          pipelines, RACI stylés, cartes d’architecture et matrices de priorisation.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+        <div class="rounded-[1.8rem] bg-foam p-6">
+          <div class="grid gap-5 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-center">
+            <div class="rounded-[1.4rem] border border-forest/15 bg-white p-5 shadow-sm">
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-forest">Entrée</p>
+              <p class="mt-2 font-display text-2xl font-bold text-navy">Demande client</p>
+            </div>
+            <div class="hidden justify-center text-2xl text-emerald md:flex">→</div>
+            <div class="rounded-[1.4rem] border border-navy/8 bg-navy p-5 text-white shadow-sm">
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-white/60">Traitement</p>
+              <p class="mt-2 font-display text-2xl font-bold">Analyse d’impact</p>
+            </div>
+            <div class="hidden justify-center text-2xl text-sun md:flex">→</div>
+            <div class="rounded-[1.4rem] border border-sun/40 bg-white p-5 shadow-sm">
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-sun">Décision</p>
+              <p class="mt-2 font-display text-2xl font-bold text-navy">Go / report / refus</p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-[1.2rem] bg-white p-4 shadow-sm">
+              <p class="text-xs uppercase tracking-[0.18em] text-emerald">Couleur A</p>
+              <p class="mt-2 font-semibold text-navy">Opérationnel / flux</p>
+            </div>
+            <div class="rounded-[1.2rem] bg-white p-4 shadow-sm">
+              <p class="text-xs uppercase tracking-[0.18em] text-navy">Couleur B</p>
+              <p class="mt-2 font-semibold text-navy">Système / structure</p>
+            </div>
+            <div class="rounded-[1.2rem] bg-white p-4 shadow-sm">
+              <p class="text-xs uppercase tracking-[0.18em] text-sun">Couleur C</p>
+              <p class="mt-2 font-semibold text-navy">Décision / vigilance</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-5">
+          <div class="rounded-[1.8rem] bg-gradient-to-br from-forest to-emerald p-6 text-white">
+            <p class="text-xs font-bold uppercase tracking-[0.24em] text-white/70">Textures à reprendre</p>
+            <p class="mt-4 font-display text-2xl font-bold">Lignes topographiques</p>
+            <p class="mt-2 text-sm leading-7 text-white/80">Pour les fonds de couverture, intercalaires et slides d’ouverture de partie.</p>
+          </div>
+          <div class="rounded-[1.8rem] bg-gradient-to-br from-white to-mint p-6">
+            <p class="text-xs font-bold uppercase tracking-[0.24em] text-forest">Trame réseau</p>
+            <p class="mt-4 font-display text-2xl font-bold text-navy">Nœuds, liaisons, points d’intérêt</p>
+            <p class="mt-2 text-sm leading-7 text-navy/75">Pour les schémas DevOps, architectures applicatives et flux de données.</p>
+          </div>
+          <div class="rounded-[1.8rem] border border-sun/40 bg-sun/12 p-6">
+            <p class="text-xs font-bold uppercase tracking-[0.24em] text-navy">Accent</p>
+            <p class="mt-4 font-display text-2xl font-bold text-navy">Jaune limité, jamais structurel</p>
+            <p class="mt-2 text-sm leading-7 text-navy/75">À réserver aux alertes, chiffres saillants et décisions. Pas aux fonds de blocs principaux.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rounded-[2rem] border border-navy/8 bg-navy px-8 py-10 text-white shadow-panel">
+      <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-emerald">Usage recommandé</p>
+          <h2 class="mt-3 font-display text-4xl font-extrabold tracking-tight">Base commune pour toute la production HTML</h2>
+          <p class="mt-4 max-w-3xl text-base leading-8 text-white/72">
+            Utiliser cette page comme référence visuelle. Les prochains livrables peuvent reprendre directement
+            les tokens couleur, la hiérarchie typographique, les formes de cartes et la logique des schémas.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">Slides</span>
+          <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">Schémas</span>
+          <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">Tableaux</span>
+          <span class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">KPI</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

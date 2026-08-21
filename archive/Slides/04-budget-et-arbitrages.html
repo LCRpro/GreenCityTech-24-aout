@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Budget et arbitrages</title><link rel="stylesheet" href="./shared.css"></head>
+<body><section class="slide"><div class="content">
+  <div class="eyebrow">Budget</div>
+  <h1 class="title sm">Lecture budgétaire et arbitrages</h1>
+  <div class="grid-4" style="margin-top:26px">
+    <div class="metric"><div class="card-kicker">Partie 1</div><div class="metric-value">8-15k€</div><div class="card-text">Organisation, gouvernance, structuration des rôles.</div></div>
+    <div class="metric"><div class="card-kicker">Partie 2</div><div class="metric-value">18-35k€</div><div class="card-text">CI/CD, conteneurs, environnements, supervision.</div></div>
+    <div class="metric"><div class="card-kicker">Partie 3</div><div class="metric-value">10-20k€</div><div class="card-text">Qualité, sécurité, conformité, stratégie de tests.</div></div>
+    <div class="metric sun"><div class="card-kicker">Projet</div><div class="metric-value">43-85k€</div><div class="card-text">Transformation initiale sur 3 à 6 mois, hors grosses évolutions fonctionnelles.</div></div>
+  </div>
+  <div class="grid-2" style="margin-top:30px">
+    <div class="card">
+      <div class="card-kicker">Arbitrages retenus</div>
+      <ul class="bullets">
+        <li>Pas d’équipe DevOps complète au départ</li>
+        <li>Pas de QA dédié au démarrage</li>
+        <li>VPS + Docker plutôt qu’une plateforme plus lourde</li>
+        <li>Outillage standard et largement connu</li>
+      </ul>
+    </div>
+    <div class="card soft-green">
+      <div class="card-kicker">Idée forte</div>
+      <div class="card-title">Le bon compromis, pas le coût minimal absolu</div>
+      <p class="card-text">On cherche à réduire les incidents, améliorer la qualité et industrialiser la livraison sans surdimensionner l’organisation ni l’infrastructure.</p>
+      <table class="table" style="margin-top:18px">
+        <thead><tr><th>Récurrent</th><th>Ordre de grandeur</th></tr></thead>
+        <tbody>
+          <tr><td>VPS, sauvegardes, registre</td><td>300 à 1 000 €/mois</td></tr>
+          <tr><td>Supervision, logs, outils complémentaires</td><td>100 à 500 €/mois</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div></section></body></html>

@@ -1,0 +1,111 @@
+# Cue-cards — GreenCity Tech (Liam Cariou)
+
+> Antisèche : 3-5 puces par slide, juste les points à ne pas oublier.
+> **Fil rouge** : prototype fragile → plateforme fiable, industrialisée, sécurisée, observable, évolutive — sans surdimensionner l'équipe.
+> **Mantra de fin** : « livrer mieux, pas seulement plus vite ».
+
+---
+
+**1 · Couverture**
+- Se présenter : Liam Cariou, Master Lead Dev Full Stack, NWS.
+- Sujet : organisation & pilotage DevOps de GreenCity Tech.
+- Angle : prototype → plateforme, progressif & réaliste.
+
+**2 · Intro (intercalaire)** → « le contexte et l'objectif ».
+
+**3 · Contexte**
+- App de signalement citoyen (mobile + web + API), faite dans l'urgence.
+- Manques : pas d'auto, déploiements manuels, pas de tests/monitoring/orga.
+- Mon rôle : consultant DevOps → industrialiser, pas tout réécrire.
+- 3 objectifs : **mieux livrer / mieux exploiter / mieux piloter**.
+
+**4 · Organisation & méthode (intercalaire)** → « la fondation : équipe + méthode ».
+
+**5 · Organisation d'équipe**
+- Pilotage : PO (vision/arbitrage) + DevOps senior (CI/CD, envs, supervision).
+- Dev : **garder les 4 devs** du prototype + Lead Developer.
+- Arbitrage assumé : équipe resserrée, coûts maîtrisés, montée en compétence.
+
+**6 · Méthode & rituels**
+- Agile pragmatique : sprints 2 sem., backlog PO, Kanban incidents.
+- « Structurer sans alourdir » (équipe petite, socle fragile).
+- Rituels : point dev /2j, suivi hebdo, démo + rétro, pilotage mensuel.
+
+**7 · Arbitrages & budget**
+- Coût global = difficile à estimer, évoluera avec les collectivités.
+- Besoin DevOps chiffrable : **~13 j · TJM 650 € · ~8,45 k€**.
+- Infra simple & peu coûteuse, on capitalise sur l'existant.
+
+**8 · Mise en œuvre DevOps (intercalaire)** → « place au concret technique ».
+
+**9 · Versioning & environnements**
+- `main` (prod, via merge) ← `develop` (intégration) ← `feature/hotfix/doc`.
+- 3 envs : **prod** (déploiement manuel), **préprod** (recette client), **dev** (auto).
+- Bases isolées par environnement.
+
+**10 · Architecture technique**
+- Portail web + app mobile (citoyens), interface admin (mairie), API partenaires.
+- BDD métier isolée + stockage S3 + **Docker partout** (sauf mobile).
+- Images versionnées → rollback facile.
+
+**11 · Supervision & logs**
+- Niveaux distincts : **Netdata** (serveurs, sur VPS séparé), **UptimeRobot** (externe), **Sentry** (erreurs appli), **logs structurés**.
+- Alertes temps réel : dispo, temps de réponse, erreurs, charge.
+
+**12 · Architecture déploiement**
+- GitHub → registry → **VPS Production** (Docker : front, back/API, BDD, Traefik, Netdata child).
+- Bucket S3 + backup BDD ; **VPS Monitoring** dédié ; UptimeRobot externe.
+- Pointillés = flux CI/CD & monitoring · pleines = échanges internes.
+
+**13 · Pipeline CI/CD**
+- Stages, du + rapide au + coûteux (échouer vite).
+- S1 contrôles (lint, types, tests, audit deps, Trivy, a11y) · S2 build · S3 E2E · S4 déploiement.
+- **Prod = déclenchement MANUEL** (garde-fou) + smoke test. Secrets = GitHub Secrets.
+
+**14 · Qualité/conformité/sécurité (intercalaire)** → « livrer bien, pas juste vite ».
+
+**15 · Qualité, sécurité & conformité**
+- **Definition of Done** : relu, testé, documenté, sécurisé, recette OK, déployable, revue Lead.
+- Sécu intégrée : audit deps, Trivy, secrets, OWASP, revues, veille.
+- Conformité collectivités : **RGPD**, **RGAA**, stores mobile.
+
+**16 · Tests & accessibilité**
+- Unit + intégration sur la logique métier ; E2E **seulement parcours critiques**.
+- Pas de 100 % inutile → éviter bugs & régressions en prod.
+- A11y : scans auto **+ audit humain RGAA** (obligation légale).
+
+**17 · Gestion produit / relation client (intercalaire)** → « la plateforme vit ».
+
+**18 · Gestion produit & évolutions**
+- Process : retour terrain → cadrage → analyse d'impact → arbitrage → roadmap/report/refus.
+- Priorisation : valeur multi-collectivités, effort, risques, capacité, coût.
+- Exemples : carto temps réel (WebSocket), photos HD (RGPD), chatbot (effet de mode).
+- « Une bonne idée doit être **cadrée** ».
+
+**19 · Suivi, démonstrations & satisfaction**
+- **Point d'entrée unique = le PO** ; devs non sollicités ; décisions tracées.
+- Points réguliers, démo par cycle, COPIL mensuel.
+- Préprod = validation avant livraison. Indicateurs simples (satisf, délais, roadmap, incidents, budget).
+
+**20 · Inclusion et management (intercalaire)** → « l'humain, pour durer ».
+
+**21 · Inclusion & management**
+- Charge cognitive : réunions courtes/préparées, écrit, async, canaux clairs (via PO).
+- Handicap : matériel adapté, outils accessibles/configurables.
+- Efficacité collective : suivi moral/motivation/vélocité, lecture **collective**.
+- Clé : l'inclusion **améliore aussi l'organisation**.
+
+**22 · Conclusion**
+- Prototype → plateforme multi-collectivités fiable/lisible/soutenable.
+- **Mieux livrer** (équipe, versioning, CI/CD) · **Mieux exploiter** (envs, supervision, sécu) · **Mieux piloter** (PO, arbitrages, roadmap).
+- Progressif, défendable, réaliste. → « livrer **mieux** ».
+
+**23 · Merci** → remercier + ouvrir les questions.
+
+---
+
+### Réflexes Q&A (voir ../redaction/questions_sensibles_et_reponses.md)
+- **Pas de QA dédié ?** → trop tôt vu la taille ; qualité portée par DoD, revues, tests auto, recette. QA possible plus tard.
+- **Pas de Kubernetes / cloud managé ?** → complexité prématurée ; VPS + Docker = sobre, économique, maîtrisé. Évolution possible si la charge l'exige.
+- **Garder les 4 devs ?** → ils connaissent l'existant ; on structure le fonctionnement, on ne reconstruit pas l'équipe.
+- **Prod manuelle ?** → choix volontaire : garde-fou sur l'environnement sensible.
