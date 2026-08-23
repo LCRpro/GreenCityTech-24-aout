@@ -160,6 +160,18 @@ Réponse défendable :
 
 Oui, un processus clair, aussi bien côté exploitation que côté budget. Côté opérationnel : détection par alerte, qualification et priorisation, résolution en astreinte, communication au PO et au client, puis post-mortem (REX) pour un correctif durable. Côté budgétaire : le dépassement est traité comme un incident, avec analyse de cause et solutions correctives documentées. L'idée est que rien ne reste sans réponse ni sans traçabilité.
 
+### Que se passe-t-il si vous n'avez pas assez de collectivités clientes ?
+
+Réponse défendable :
+
+C'est le principal risque business, et il est anticipé. D'abord, tout est dimensionné **sobrement au démarrage** — équipe resserrée, infrastructure peu coûteuse — donc le point mort est bas et on ne creuse pas. Ensuite, la plateforme est **multi-collectivités** : un même socle sert plusieurs clients, donc chaque nouvelle collectivité coûte très peu en marginal et quelques clients suffisent à amortir. Enfin, on pose des **jalons de décision** (go / no-go) : si le nombre de collectivités reste sous un seuil, on réduit la voilure — phase plus courte, évolutions repoussées, effectifs ajustés — plutôt que de continuer à dépenser. Ce risque est suivi avec la direction financière, en confrontant le prévisionnel de revenus au budget.
+
+### Et si le budget est dépassé, comment le gérez-vous ?
+
+Réponse défendable :
+
+Un dépassement n'est jamais une surprise, parce qu'il est détecté tôt par le tableau de bord et les seuils d'alerte. Dès qu'un poste dérive, j'analyse la cause — technique, périmètre ou charge — puis j'active des leviers correctifs : re-prioriser le backlog en repoussant le non-essentiel, réallouer entre postes, ajuster le périmètre en protégeant le « must have », ou arbitrer avec le PO et la direction. Si le dépassement est ponctuel, on le résorbe ; s'il est structurel, on révise le plan — durée, effectifs, roadmap — avec la direction plutôt que de le subir. Tout passe par un reporting mensuel au contrôle de gestion, avec alerte immédiate à la direction financière au-delà du seuil rouge.
+
 ---
 
 ## 9. Tests en situation et conformité produit

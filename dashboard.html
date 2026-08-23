@@ -424,6 +424,8 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 <li><strong>Suivi budgétaire concret ?</strong> → tableau de bord prévu/consommé par lot, seuils d&#39;écart (5/10 %), reporting mensuel au contrôle de gestion, alerte direction financière au rouge.</li>
 <li><strong>Plan d&#39;action en cas d&#39;incident ?</strong> → détection (alerte) → priorité → résolution (astreinte) → communication → post-mortem. Côté budget : analyse de cause → re-priorisation / réallocation / arbitrage.</li>
 <li><strong>Tests « en situation » ?</strong> → recette préprod iso-prod, tests de charge/perf, devices réels ; conformité stores (pre-launch report, TestFlight, guidelines) avant publication.</li>
+<li><strong>Pas assez de collectivités ?</strong> → dimensionné sobre (point mort bas) · plateforme <strong>multi-collectivités</strong> (coût marginal faible) · <strong>jalons go/no-go</strong> pour réduire la voilure · suivi revenus vs budget avec la direction financière.</li>
+<li><strong>Budget dépassé ?</strong> → détecté tôt (seuils) → analyse cause → <strong>re-prioriser / réallouer / ajuster le périmètre</strong> (protéger le « must have ») / arbitrer ; si structurel → réviser le plan avec la direction.</li>
 </ul>
 </article><article class="doc" id="doc-3" hidden><div class="doc-meta">redaction/synthese_orale_greencity_tech.md</div><h1>Synthèse orale — Présentation GreenCity Tech</h1>
 <h2>1. Objectif de ce document</h2>
@@ -1106,6 +1108,12 @@ Demandes client maîtrisées
 <h3>Avez-vous un plan d&#39;action en cas d&#39;incident ?</h3>
 <p>Réponse défendable :</p>
 <p>Oui, un processus clair, aussi bien côté exploitation que côté budget. Côté opérationnel : détection par alerte, qualification et priorisation, résolution en astreinte, communication au PO et au client, puis post-mortem (REX) pour un correctif durable. Côté budgétaire : le dépassement est traité comme un incident, avec analyse de cause et solutions correctives documentées. L&#39;idée est que rien ne reste sans réponse ni sans traçabilité.</p>
+<h3>Que se passe-t-il si vous n&#39;avez pas assez de collectivités clientes ?</h3>
+<p>Réponse défendable :</p>
+<p>C&#39;est le principal risque business, et il est anticipé. D&#39;abord, tout est dimensionné <strong>sobrement au démarrage</strong> — équipe resserrée, infrastructure peu coûteuse — donc le point mort est bas et on ne creuse pas. Ensuite, la plateforme est <strong>multi-collectivités</strong> : un même socle sert plusieurs clients, donc chaque nouvelle collectivité coûte très peu en marginal et quelques clients suffisent à amortir. Enfin, on pose des <strong>jalons de décision</strong> (go / no-go) : si le nombre de collectivités reste sous un seuil, on réduit la voilure — phase plus courte, évolutions repoussées, effectifs ajustés — plutôt que de continuer à dépenser. Ce risque est suivi avec la direction financière, en confrontant le prévisionnel de revenus au budget.</p>
+<h3>Et si le budget est dépassé, comment le gérez-vous ?</h3>
+<p>Réponse défendable :</p>
+<p>Un dépassement n&#39;est jamais une surprise, parce qu&#39;il est détecté tôt par le tableau de bord et les seuils d&#39;alerte. Dès qu&#39;un poste dérive, j&#39;analyse la cause — technique, périmètre ou charge — puis j&#39;active des leviers correctifs : re-prioriser le backlog en repoussant le non-essentiel, réallouer entre postes, ajuster le périmètre en protégeant le « must have », ou arbitrer avec le PO et la direction. Si le dépassement est ponctuel, on le résorbe ; s&#39;il est structurel, on révise le plan — durée, effectifs, roadmap — avec la direction plutôt que de le subir. Tout passe par un reporting mensuel au contrôle de gestion, avec alerte immédiate à la direction financière au-delà du seuil rouge.</p>
 <hr>
 <h2>9. Tests en situation et conformité produit</h2>
 <h3>Qu&#39;entendez-vous par « tests en situation » ?</h3>
