@@ -117,7 +117,7 @@
 - **Pas de Kubernetes / cloud managé ?** → complexité prématurée ; VPS + Docker = sobre, économique, maîtrisé. Évolution possible si la charge l'exige.
 - **Garder les 4 devs ?** → ils connaissent l'existant ; on structure le fonctionnement, on ne reconstruit pas l'équipe.
 - **Prod manuelle ?** → choix volontaire : garde-fou sur l'environnement sensible.
-- **Suivi budgétaire concret ?** → tableau de bord prévu/consommé par lot, seuils d'écart (5/10 %), reporting mensuel au contrôle de gestion, alerte direction financière au rouge.
+- **Suivi budgétaire concret ?** → tableau de bord prévu/consommé par poste, seuils d'écart (5/10 %), reporting mensuel au contrôle de gestion, alerte direction financière au rouge.
 - **Plan d'action en cas d'incident ?** → détection (alerte) → priorité → résolution (astreinte) → communication → post-mortem. Côté budget : analyse de cause → re-priorisation / réallocation / arbitrage.
 - **Tests « en situation » ?** → recette préprod iso-prod, tests de charge/perf, devices réels ; conformité stores (pre-launch report, TestFlight, guidelines) avant publication.
 - **Pas assez de collectivités ?** → dimensionné sobre (point mort bas) · plateforme **multi-collectivités** (coût marginal faible) · **jalons go/no-go** pour réduire la voilure · suivi revenus vs budget avec la direction financière.

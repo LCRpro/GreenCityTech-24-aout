@@ -68,6 +68,6 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 1. **Te réapproprier le contenu** : relis `redaction/synthese_orale…` (le fil rouge) puis les 5 parties.
 2. **T'entraîner à l'oral** avec `redaction/notes-orales-script.md` (chrono ~18 min) puis les cue-cards.
 3. **Anticiper les questions du jury** avec `redaction/questions_sensibles_et_reponses.md`.
-4. **Vérifier les chiffres** que tu avances (budget DevOps ~13 j / ~8,45 k€ sur le slide 7) pour être à l'aise si on te challenge.
+4. **Vérifier les chiffres** que tu avances (budget projet ~120 k€ / ~4 mois · coûts/j par profil : dev 225 € / PO 250 € / DevOps 300 €, slides 7-8) pour être à l'aise si on te challenge.
 
 > 💡 Fil rouge à garder en tête : *faire passer GreenCity Tech d'un prototype fragile à une plateforme fiable, industrialisée, sécurisée, observable et évolutive — sans surdimensionner l'équipe ni négliger l'humain.* En un mot : **livrer mieux, pas seulement plus vite.**
