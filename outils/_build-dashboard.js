@@ -58,8 +58,9 @@ for (const g of GROUPS) {
     if (firstId === null) firstId = id;
     const md = fs.readFileSync(abs, "utf8");
     const html = marked.parse(md);
+    const cls = rel.includes("notes-orales-script") ? "doc script-doc" : "doc";
     nav += `<button class="nav-item" data-id="${id}" title="${esc(rel)}">${esc(title)}</button>`;
-    articles += `<article class="doc" id="${id}" hidden><div class="doc-meta">${esc(rel)}</div>${html}</article>`;
+    articles += `<article class="${cls}" id="${id}" hidden><div class="doc-meta">${esc(rel)}</div>${html}</article>`;
   }
 }
 
@@ -72,6 +73,7 @@ const page = `<!DOCTYPE html>
 <link rel="icon" type="image/png" href="slides/logo-greencity-mark.png">
 <script>try{var t=localStorage.getItem('gct_theme')||((window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap");
 :root{
   --violet:#7C3AED;--violet-deep:#6D28D9;--violet-soft:#A78BFA;--magenta:#EC4899;--indigo:#1E1B4B;
   --bg:#efe9fb;--text:#1E1B4B;--sidebar:#FAF7FF;--panel:#ffffff;
@@ -123,8 +125,13 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   cursor:pointer;font-size:14.5px;font-weight:600;color:var(--text);}
 .nav-item:hover{background:var(--navhover);}
 .nav-item.active{background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#fff;}
-.content{padding:34px 46px;max-width:900px;margin:0 auto;width:100%;font-size:var(--fs,17px);line-height:1.7;}
+.content{padding:34px 46px;max-width:880px;margin:0 auto;width:100%;font-family:"Source Sans 3","Segoe UI",sans-serif;font-size:var(--fs,18px);line-height:1.75;}
 .doc-meta{font-size:12px;color:var(--muted);font-family:monospace;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.content h1,.content h2,.content h3{font-family:"Baloo 2","Segoe UI",sans-serif;letter-spacing:-.01em;}
+/* script oral : plus grand & aéré, bien lisible sur scène */
+.script-doc{font-size:1.1em;line-height:1.9;}
+.script-doc p{margin:.2em 0 .95em;}
+.script-doc h2{margin-top:1.9em;}
 .content h1{font-size:1.9em;color:var(--h1);border-bottom:3px solid var(--violet);padding-bottom:.2em;margin-top:0;}
 .content h2{font-size:1.45em;color:var(--h2);margin-top:1.6em;}
 .content h3{font-size:1.2em;color:var(--h1);margin-top:1.3em;}
@@ -152,14 +159,11 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   .overlay.show{opacity:1;pointer-events:auto;}
   .content{padding:22px 18px;}
   .topbar .sub{display:none;}
-  .btn.ghost,.fs-ctl{display:none;}
-  .btn{padding:9px 14px;font-size:14px;}
+  .btn.primary,.btn.ghost{display:none;} /* mobile : on masque présentation + PDF, on garde A−/A+ */
 }
 @media (max-width:520px){
   .topbar{gap:8px;padding:10px 12px;}
   .topbar .brand .name{font-size:16px;}
-  .btn.primary .lbl{display:none;}
-  .btn.primary{padding:0;width:40px;height:40px;justify-content:center;border-radius:12px;}
 }
 @media print{.topbar,.sidebar,.overlay{display:none!important;}.layout{grid-template-columns:1fr;}.doc[hidden]{display:block!important;}}
 </style>
@@ -215,7 +219,7 @@ function setTheme(t){
 setTheme(document.documentElement.getAttribute('data-theme')||'light');
 document.getElementById('themeBtn').onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
 // taille de texte
-let fs=parseInt((()=>{try{return localStorage.getItem('gct_fs')}catch(e){return null}})()||'17',10);
+let fs=parseInt((()=>{try{return localStorage.getItem('gct_fs')}catch(e){return null}})()||'18',10);
 function applyFs(){document.getElementById('content').style.setProperty('--fs',fs+'px');try{localStorage.setItem('gct_fs',fs)}catch(e){}}
 document.getElementById('fsPlus').onclick=()=>{fs=Math.min(26,fs+1);applyFs();};
 document.getElementById('fsMinus').onclick=()=>{fs=Math.max(13,fs-1);applyFs();};
