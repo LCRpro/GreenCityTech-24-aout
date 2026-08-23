@@ -125,7 +125,7 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   cursor:pointer;font-size:14.5px;font-weight:600;color:var(--text);}
 .nav-item:hover{background:var(--navhover);}
 .nav-item.active{background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#fff;}
-.content{padding:34px 46px;max-width:760px;margin:0 auto;width:100%;font-family:"Source Sans 3","Segoe UI",sans-serif;font-size:var(--fs,18px);line-height:1.8;}
+.content{padding:34px 46px 100px;max-width:760px;margin:0 auto;width:100%;font-family:"Source Sans 3","Segoe UI",sans-serif;font-size:var(--fs,18px);line-height:1.8;}
 .doc-meta{font-size:12px;color:var(--muted);font-family:monospace;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
 .content h1,.content h2,.content h3{font-family:"Baloo 2","Segoe UI",sans-serif;letter-spacing:-.01em;}
 /* script oral : corps lisible & aéré, titres discrets */
@@ -157,7 +157,7 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   .overlay{display:block;position:fixed;inset:66px 0 0 0;background:rgba(0,0,0,.5);z-index:55;
     opacity:0;pointer-events:none;transition:opacity .25s;}
   .overlay.show{opacity:1;pointer-events:auto;}
-  .content{padding:22px 18px;}
+  .content{padding:22px 18px 100px;}
   .topbar .sub{display:none;}
   .btn.primary,.btn.ghost{display:none;} /* mobile : on masque présentation + PDF, on garde A−/A+ */
 }
@@ -165,7 +165,17 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   .topbar{gap:8px;padding:10px 12px;}
   .topbar .brand .name{font-size:16px;}
 }
-@media print{.topbar,.sidebar,.overlay{display:none!important;}.layout{grid-template-columns:1fr;}.doc[hidden]{display:block!important;}}
+/* ---------- Télécommande de la présentation ---------- */
+.remote{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;display:flex;align-items:center;gap:8px;
+  background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:8px 10px;box-shadow:0 12px 34px var(--shadow);}
+.remote .rbtn{width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;font-size:17px;font-weight:800;flex:none;
+  background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#fff;display:flex;align-items:center;justify-content:center;}
+.remote .rbtn:active{transform:translateY(1px);}
+.remote .rinfo{display:flex;flex-direction:column;align-items:center;min-width:150px;line-height:1.15;padding:0 4px;}
+.remote .rpos{font-family:"Baloo 2","Segoe UI",sans-serif;font-weight:800;font-size:15px;color:var(--text);}
+.remote .rtitle{font-size:11.5px;color:var(--muted);max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@media (max-width:520px){.remote{gap:6px;}.remote .rinfo{min-width:92px;}.remote .rtitle{max-width:120px;}.remote .rbtn{width:44px;height:44px;}}
+@media print{.topbar,.sidebar,.overlay,.remote{display:none!important;}.layout{grid-template-columns:1fr;}.doc[hidden]{display:block!important;}}
 </style>
 </head>
 <body>
@@ -187,6 +197,11 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   <main class="content" id="content">
     ${articles}
   </main>
+</div>
+<div class="remote" id="remote" title="Télécommande de la présentation">
+  <button class="rbtn" id="rprev" aria-label="Slide précédente">◀</button>
+  <div class="rinfo"><span class="rpos" id="rpos">— / —</span><span class="rtitle" id="rtitle">présentation non ouverte</span></div>
+  <button class="rbtn" id="rnext" aria-label="Slide suivante">▶</button>
 </div>
 <script>
 const items=[...document.querySelectorAll('.nav-item')];
@@ -224,6 +239,15 @@ function applyFs(){document.getElementById('content').style.setProperty('--fs',f
 document.getElementById('fsPlus').onclick=()=>{fs=Math.min(26,fs+1);applyFs();};
 document.getElementById('fsMinus').onclick=()=>{fs=Math.max(13,fs-1);applyFs();};
 applyFs();
+// Télécommande de la présentation (BroadcastChannel, même origine)
+const present=("BroadcastChannel" in window)?new BroadcastChannel("gct-present"):null;
+const rpos=document.getElementById("rpos"), rtitle=document.getElementById("rtitle");
+if(present){
+  present.onmessage=(e)=>{const d=e.data||{}; if(d.type==="state"){rpos.textContent=(d.i+1)+" / "+d.n; rtitle.textContent=d.title||"";}};
+  present.postMessage({action:"ping"});
+}else{ rtitle.textContent="navigateur non compatible"; }
+document.getElementById("rprev").onclick=()=>{ if(present) present.postMessage({action:"prev"}); };
+document.getElementById("rnext").onclick=()=>{ if(present) present.postMessage({action:"next"}); };
 // doc initial (dernier ouvert ou premier)
 let start='${firstId}';
 try{const s=localStorage.getItem('gct_lastdoc'); if(s&&document.getElementById(s))start=s;}catch(e){}

@@ -94,6 +94,16 @@ const frames = SLIDES.map(([src], i) => {
 let cur = 0;
 const N = SLIDES.length;
 
+// Télécommande depuis le dashboard (même origine)
+const bc = ("BroadcastChannel" in window) ? new BroadcastChannel("gct-present") : null;
+if(bc) bc.onmessage = (e)=>{
+  const d = e.data || {};
+  if(d.action==="next") go(cur+1);
+  else if(d.action==="prev") go(cur-1);
+  else if(d.action==="goto" && typeof d.i==="number") go(d.i);
+  else if(d.action==="ping") bc.postMessage({type:"state", i:cur, n:N, title:SLIDES[cur][1]});
+};
+
 function ensureLoaded(i){
   if(i>=0 && i<N && !frames[i].src) frames[i].src = SLIDES[i][0];
 }
@@ -106,6 +116,7 @@ function go(i){
   document.getElementById("counter").textContent = (i+1)+" / "+N;
   document.getElementById("title").textContent = SLIDES[i][1];
   document.getElementById("bar").style.width = ((i+1)/N*100)+"%";
+  if(bc) bc.postMessage({type:"state", i:cur, n:N, title:SLIDES[cur][1]});
 }
 
 function fit(){
