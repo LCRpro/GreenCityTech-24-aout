@@ -34,7 +34,7 @@ Pourquoi ce choix ? Parce que l'équipe est restreinte et le socle encore fragil
 Concrètement : un point dev tous les 2 jours pour lever les blocages, un suivi hebdo, une démo client et une rétro en fin de sprint, et un pilotage mensuel avec les collectivités. Résultat : des décisions plus rapides, moins de flou, une meilleure coordination et des livraisons plus fiables.
 
 ## Slide 7 — Arbitrages & budget  ⏱️ ~55 s
-Sur le budget, je raisonne au niveau du **projet**, en ordres de grandeur assumés. La phase de structuration, c'est de l'ordre de **30 k€ par mois**, soit environ **120 k€ sur ~4 mois**. Le poste **RH — l'équipe — pèse à lui seul ~95 %** ; l'infrastructure et les outils sont volontairement sobres, quelques centaines d'euros par mois.
+Sur le budget, je raisonne au niveau du **projet**, en ordres de grandeur assumés. La phase de structuration, c'est de l'ordre de **30 k€ par mois**, soit environ **120 k€ sur ~4 mois**. Le poste **RH — l'équipe — pèse à lui seul ~95 %**, soit un **coût journalier moyen d'environ 240 € par personne** ; l'infrastructure et les outils sont volontairement sobres, quelques centaines d'euros par mois.
 Ma prestation DevOps de cadrage — 13 jours, ~8,45 k€ — est une **ligne à l'intérieur de ce budget**, pas le budget total.
 Les arbitrages sont ciblés : on capitalise sur l'équipe existante, on renforce la gestion de projet et le DevOps senior, on reste sur une infra simple. Ces montants sont des ordres de grandeur, à affiner avec le contrôle de gestion.
 
