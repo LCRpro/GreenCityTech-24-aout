@@ -7,17 +7,21 @@
   .row4 .card h3 { font-size:24px; margin:2px 0 8px; }
   .row4 .card p { margin:0; font-size:17px; line-height:1.3; }
   .row4 .brandmark { margin-top:auto; padding-top:12px; font-family:"Baloo 2",sans-serif; font-weight:800; font-size:18px; letter-spacing:.04em; opacity:.85; }
-  .sup-row { display:grid; grid-template-columns: 1.2fr .8fr; gap:16px; }
-  .sup-row .card h3 { font-size:23px; margin:2px 0 8px; }
-  .sup-row .bullets li { font-size:17px; margin:4px 0; line-height:1.28; }
-  .sub-bullets { margin:6px 0 0 4px; }
+  .sup-row { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; }
+  .sup-row .card h3 { font-size:21px; margin:2px 0 8px; }
+  .sup-row .bullets { margin:0; padding-left:20px; }
+  .sup-row .bullets li { font-size:16px; margin:4px 0; line-height:1.26; }
+  .steps { list-style:none; margin:0; padding:0; }
+  .steps li { display:flex; align-items:flex-start; gap:9px; font-size:16px; margin:6px 0; line-height:1.2; }
+  .steps .n { flex:none; width:22px; height:22px; border-radius:50%; background:rgba(255,255,255,.2); color:#fff;
+    font-family:"Baloo 2",sans-serif; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; }
 </style>
 </head>
 <body>
 <section class="slide">
   <div class="stage">
     <div class="head">
-      <span class="num">7</span>
+      <span class="num">8</span>
       <h2>Supervision, observabilité &amp; logs</h2>
       <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
     </div>
@@ -51,24 +55,33 @@
     <div class="sup-row">
       <div class="card">
         <div class="kicker" style="color:var(--violet-deep)">Cadre retenu</div>
-        <h3>Une supervision globale et réaliste à cette échelle</h3>
+        <h3>Supervision globale &amp; réaliste</h3>
         <ul class="bullets">
-          <li>Netdata offre une vue globale de la santé du serveur, il doit être hébergé sur un autre VPS afin de ne pas tomber avec.</li>
-          <li>UptimeRobot permet de détecter une application qui ne répond pas au client.</li>
-          <li>Sentry et les logs permettent de retracer les erreurs applicatives et pouvoir les résoudre.</li>
-          <li>Tout cela est accompagné d’alertes afin de suivre en temps réel.</li>
+          <li>Netdata sur un VPS séparé (ne tombe pas avec les apps)</li>
+          <li>UptimeRobot pour la disponibilité vue client</li>
+          <li>Sentry + logs pour retracer les erreurs</li>
+          <li>Alertes en temps réel</li>
         </ul>
       </div>
       <div class="card" style="background:linear-gradient(150deg,var(--magenta),var(--magenta-deep)); color:#fff; border-color:transparent">
-        <div class="kicker">Supervision</div>
-        <h3>Indicateurs suivis</h3>
-        <p style="margin:0 0 6px; font-size:18px; font-weight:600">Anomalies détectées via :</p>
-        <ul class="bullets sub-bullets">
+        <div class="kicker">Indicateurs suivis</div>
+        <h3>Anomalies détectées via</h3>
+        <ul class="bullets">
           <li>Disponibilité des services</li>
           <li>Temps de réponse</li>
           <li>Taux d’erreurs applicatives</li>
-          <li>Charge serveur (CPU/RAM/Disque)</li>
-          <li>Volume de requêtes</li>
+          <li>Charge serveur (CPU/RAM/disque)</li>
+        </ul>
+      </div>
+      <div class="card indigo">
+        <div class="kicker">Gestion des incidents</div>
+        <h3>Un processus clair</h3>
+        <ul class="steps">
+          <li><span class="n">1</span> Détection — alerte automatique</li>
+          <li><span class="n">2</span> Qualification &amp; priorité</li>
+          <li><span class="n">3</span> Résolution (astreinte)</li>
+          <li><span class="n">4</span> Communication PO / client</li>
+          <li><span class="n">5</span> Post-mortem (REX) &amp; correctif</li>
         </ul>
       </div>
     </div>

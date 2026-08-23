@@ -137,3 +137,41 @@ Parce qu'il permet de réduire rapidement des coûts cachés très réels : erre
 Réponse défendable :
 
 L'objectif n'est pas le coût minimum absolu, mais le meilleur compromis entre coût, fiabilité, qualité, risque et montée en maturité. Une solution trop pauvre aujourd'hui coûterait souvent plus cher demain en incidents, régressions ou dette technique.
+
+---
+
+## 8. Suivi budgétaire, écarts et incidents
+
+### Comment suivez-vous concrètement le budget dans le temps ?
+
+Réponse défendable :
+
+Au-delà de l'estimation initiale, je mets en place un tableau de bord budgétaire alimenté en continu : pour chaque lot, le prévu, le consommé et le reste à faire, plus un total à date. Ces données sont produites régulièrement et communiquées au contrôle de gestion. On passe ainsi d'une estimation figée à un pilotage vivant.
+
+### Comment analysez-vous les écarts et que faites-vous en cas de dépassement ?
+
+Réponse défendable :
+
+Je compare en continu le réel au prévu et je calcule l'écart en pourcentage, avec des seuils d'alerte : sous 5 % c'est sous contrôle, entre 5 et 10 % je passe en vigilance et j'analyse la cause, au-delà de 10 % c'est une alerte. En cas d'écart, l'action corrective est cadrée : analyse de cause, re-priorisation du backlog, réallocation, arbitrage avec le Product Owner et la direction — et si on passe au rouge, alerte immédiate à la direction financière. L'objectif est de réagir tôt, pas de constater trop tard.
+
+### Avez-vous un plan d'action en cas d'incident ?
+
+Réponse défendable :
+
+Oui, un processus clair, aussi bien côté exploitation que côté budget. Côté opérationnel : détection par alerte, qualification et priorisation, résolution en astreinte, communication au PO et au client, puis post-mortem (REX) pour un correctif durable. Côté budgétaire : le dépassement est traité comme un incident, avec analyse de cause et solutions correctives documentées. L'idée est que rien ne reste sans réponse ni sans traçabilité.
+
+---
+
+## 9. Tests en situation et conformité produit
+
+### Qu'entendez-vous par « tests en situation » ?
+
+Réponse défendable :
+
+Ce sont des tests dans des conditions proches du réel, pas seulement en local : une recette scénarisée en préproduction iso-prod, des tests de charge et de performance sous trafic simulé, et des tests sur devices réels avec des jeux de données réalistes, menés avant chaque release. C'est ce qui permet de valider le rendu final à un niveau de qualité constant, au-delà des tests unitaires.
+
+### Comment garantissez-vous la conformité aux canaux de distribution ?
+
+Réponse défendable :
+
+Côté mobile, on s'appuie sur les mécanismes des stores : pre-launch report de la Play Console, bêta via TestFlight, respect des guidelines techniques Apple et Google, gestion des signatures et certificats. Côté web, on vérifie la performance, la sécurité et le RGAA, avec une checklist de conformité avant chaque publication. L'objectif est de publier sans blocage et de rester conforme aux exigences de chaque canal.

@@ -57,8 +57,8 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 
 - ✅ **Les 5 parties rédigées** en détail → `redaction/partie_1..5_*.md`
 - ✅ **11 livrables** écrits → `livrables/` (note de cadrage, schéma archi, pipeline CI/CD, stratégie déploiement/rollback, outillage, plan qualité/tests, indicateurs, gestion produit, plan de suivi, inclusion, budget)
-- ✅ **La présentation finale** (23 slides) → `deck/` + export `deck/GreenCityTech-LiamCariou.pdf`
-- ✅ **Notes orales** prêtes → `deck/notes-orales-script.md` (script) + `deck/notes-orales-cue-cards.md` (antisèche + Q&A jury)
+- ✅ **La présentation finale** (24 slides) → `slides/` + export `slides/GreenCityTech-LiamCariou.pdf`
+- ✅ **Notes orales** prêtes → `redaction/notes-orales-script.md` (script) + `redaction/notes-orales-cue-cards.md` (antisèche + Q&A jury)
 - ✅ **Synthèse orale & Q&A** → `redaction/synthese_orale_greencity_tech.md`, `redaction/questions_sensibles_et_reponses.md`
 
 **Le deck couvre les 5 parties :** Intro (1-3) · Partie 1 = Organisation (4-7) · Partie 2 = Technique (8-13) · Partie 3 = Qualité (14-16) · Partie 4 = Client (17-19) · Partie 5 = Inclusion (20-21) · Conclusion (22-23).
@@ -66,7 +66,7 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 ## 6. Ce qu'il te reste à faire
 
 1. **Te réapproprier le contenu** : relis `redaction/synthese_orale…` (le fil rouge) puis les 5 parties.
-2. **T'entraîner à l'oral** avec `deck/notes-orales-script.md` (chrono ~18 min) puis les cue-cards.
+2. **T'entraîner à l'oral** avec `redaction/notes-orales-script.md` (chrono ~18 min) puis les cue-cards.
 3. **Anticiper les questions du jury** avec `redaction/questions_sensibles_et_reponses.md`.
 4. **Vérifier les chiffres** que tu avances (budget DevOps ~13 j / ~8,45 k€ sur le slide 7) pour être à l'aise si on te challenge.
 

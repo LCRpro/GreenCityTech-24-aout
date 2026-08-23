@@ -35,72 +35,80 @@
 - Coût global = difficile à estimer, évoluera avec les collectivités.
 - Besoin DevOps chiffrable : **~13 j · TJM 650 € · ~8,45 k€**.
 - Infra simple & peu coûteuse, on capitalise sur l'existant.
+- (Estimation seulement → le **pilotage** vient juste après, slide 8.)
 
-**8 · Mise en œuvre DevOps (intercalaire)** → « place au concret technique ».
+**8 · Suivi budgétaire & maîtrise des écarts**
+- Tableau de bord : **prévu / consommé / reste**, par lot, alimenté en continu.
+- Analyse des écarts + **seuils** : 🟢 < 5 % · 🟠 5-10 % (analyse cause) · 🔴 > 10 % (alerte).
+- Plan d'action : re-priorisation, réallocation, arbitrage → **reporting mensuel contrôle de gestion + alerte direction financière** au rouge.
 
-**9 · Versioning & environnements**
+**9 · Mise en œuvre DevOps (intercalaire)** → « place au concret technique ».
+
+**10 · Versioning & environnements**
 - `main` (prod, via merge) ← `develop` (intégration) ← `feature/hotfix/doc`.
 - 3 envs : **prod** (déploiement manuel), **préprod** (recette client), **dev** (auto).
 - Bases isolées par environnement.
 
-**10 · Architecture technique**
+**11 · Architecture technique**
 - Portail web + app mobile (citoyens), interface admin (mairie), API partenaires.
 - BDD métier isolée + stockage S3 + **Docker partout** (sauf mobile).
 - Images versionnées → rollback facile.
 
-**11 · Supervision & logs**
+**12 · Supervision & logs**
 - Niveaux distincts : **Netdata** (serveurs, sur VPS séparé), **UptimeRobot** (externe), **Sentry** (erreurs appli), **logs structurés**.
 - Alertes temps réel : dispo, temps de réponse, erreurs, charge.
+- **Gestion d'incident** : détection → priorité → résolution (astreinte) → communication → **post-mortem (REX)**.
 
-**12 · Architecture déploiement**
+**13 · Architecture déploiement**
 - GitHub → registry → **VPS Production** (Docker : front, back/API, BDD, Traefik, Netdata child).
 - Bucket S3 + backup BDD ; **VPS Monitoring** dédié ; UptimeRobot externe.
 - Pointillés = flux CI/CD & monitoring · pleines = échanges internes.
 
-**13 · Pipeline CI/CD**
+**14 · Pipeline CI/CD**
 - Stages, du + rapide au + coûteux (échouer vite).
 - S1 contrôles (lint, types, tests, audit deps, Trivy, a11y) · S2 build · S3 E2E · S4 déploiement.
 - **Prod = déclenchement MANUEL** (garde-fou) + smoke test. Secrets = GitHub Secrets.
 
-**14 · Qualité/conformité/sécurité (intercalaire)** → « livrer bien, pas juste vite ».
+**15 · Qualité/conformité/sécurité (intercalaire)** → « livrer bien, pas juste vite ».
 
-**15 · Qualité, sécurité & conformité**
+**16 · Qualité, sécurité & conformité**
 - **Definition of Done** : relu, testé, documenté, sécurisé, recette OK, déployable, revue Lead.
 - Sécu intégrée : audit deps, Trivy, secrets, OWASP, revues, veille.
 - Conformité collectivités : **RGPD**, **RGAA**, stores mobile.
 
-**16 · Tests & accessibilité**
-- Unit + intégration sur la logique métier ; E2E **seulement parcours critiques**.
-- Pas de 100 % inutile → éviter bugs & régressions en prod.
-- A11y : scans auto **+ audit humain RGAA** (obligation légale).
+**17 · Tests & conformité produit**
+- Unit + intégration (logique métier) ; E2E **parcours critiques** ; pas de 100 % inutile.
+- **Tests en situation** : recette préprod iso-prod, **charge/perf**, **devices réels**, avant chaque release.
+- **Conformité stores** : pre-launch report Play Console, TestFlight, guidelines Apple/Google, signatures ; Web : perf/sécu/**RGAA** + checklist.
+- A11y : scans auto **+ audit humain RGAA** (obligation collectivités).
 
-**17 · Gestion produit / relation client (intercalaire)** → « la plateforme vit ».
+**18 · Gestion produit / relation client (intercalaire)** → « la plateforme vit ».
 
-**18 · Gestion produit & évolutions**
+**19 · Gestion produit & évolutions**
 - Process : retour terrain → cadrage → analyse d'impact → arbitrage → roadmap/report/refus.
 - Priorisation : valeur multi-collectivités, effort, risques, capacité, coût.
 - Exemples : carto temps réel (WebSocket), photos HD (RGPD), chatbot (effet de mode).
 - « Une bonne idée doit être **cadrée** ».
 
-**19 · Suivi, démonstrations & satisfaction**
+**20 · Suivi, démonstrations & satisfaction**
 - **Point d'entrée unique = le PO** ; devs non sollicités ; décisions tracées.
 - Points réguliers, démo par cycle, COPIL mensuel.
 - Préprod = validation avant livraison. Indicateurs simples (satisf, délais, roadmap, incidents, budget).
 
-**20 · Inclusion et management (intercalaire)** → « l'humain, pour durer ».
+**21 · Inclusion et management (intercalaire)** → « l'humain, pour durer ».
 
-**21 · Inclusion & management**
+**22 · Inclusion & management**
 - Charge cognitive : réunions courtes/préparées, écrit, async, canaux clairs (via PO).
 - Handicap : matériel adapté, outils accessibles/configurables.
 - Efficacité collective : suivi moral/motivation/vélocité, lecture **collective**.
 - Clé : l'inclusion **améliore aussi l'organisation**.
 
-**22 · Conclusion**
+**23 · Conclusion**
 - Prototype → plateforme multi-collectivités fiable/lisible/soutenable.
 - **Mieux livrer** (équipe, versioning, CI/CD) · **Mieux exploiter** (envs, supervision, sécu) · **Mieux piloter** (PO, arbitrages, roadmap).
 - Progressif, défendable, réaliste. → « livrer **mieux** ».
 
-**23 · Merci** → remercier + ouvrir les questions.
+**24 · Merci** → remercier + ouvrir les questions.
 
 ---
 
@@ -109,3 +117,6 @@
 - **Pas de Kubernetes / cloud managé ?** → complexité prématurée ; VPS + Docker = sobre, économique, maîtrisé. Évolution possible si la charge l'exige.
 - **Garder les 4 devs ?** → ils connaissent l'existant ; on structure le fonctionnement, on ne reconstruit pas l'équipe.
 - **Prod manuelle ?** → choix volontaire : garde-fou sur l'environnement sensible.
+- **Suivi budgétaire concret ?** → tableau de bord prévu/consommé par lot, seuils d'écart (5/10 %), reporting mensuel au contrôle de gestion, alerte direction financière au rouge.
+- **Plan d'action en cas d'incident ?** → détection (alerte) → priorité → résolution (astreinte) → communication → post-mortem. Côté budget : analyse de cause → re-priorisation / réallocation / arbitrage.
+- **Tests « en situation » ?** → recette préprod iso-prod, tests de charge/perf, devices réels ; conformité stores (pre-launch report, TestFlight, guidelines) avant publication.

@@ -6,6 +6,7 @@ const fs = require("fs");
 const ORDER = [
   "01-couverture", "02-intro", "03-contexte", "04-organisation-methode",
   "05-organisation-equipe", "06-methode-rituels", "07-arbitrages-budget",
+  "07b-suivi-budgetaire",
   "08-intercalaire-mise-en-oeuvre", "09-versioning-environnements",
   "10-architecture-technique", "11-supervision-logs", "12-architecture-deploiement",
   "13-pipeline-cicd", "14-intercalaire-qualite", "15-qualite-securite-conformite",

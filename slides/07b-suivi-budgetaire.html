@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Suivi budgétaire & écarts</title><link rel="stylesheet" href="./shared.css">
+<style>
+  .sb-row { display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; }
+  .sb-left .kicker { color:var(--violet-deep); }
+  .sb-left h3 { font-family:"Baloo 2",sans-serif; font-weight:800; font-size:23px; margin:3px 0 12px; color:var(--indigo); }
+  .sb-left .stat { padding:11px 12px; }
+  .sb-left .s-v { font-size:25px; }
+  .sb-left .table th { padding:8px 14px; font-size:13px; }
+  .sb-left .table td { padding:7px 14px; font-size:16px; }
+  .ec { display:inline-block; padding:2px 10px; border-radius:999px; font-weight:800; font-size:13px; }
+  .ec.ok { background:rgba(16,185,129,.15); color:#059669; }
+  .ec.warn { background:rgba(245,158,11,.16); color:#B45309; }
+  .ec.bad { background:rgba(236,72,153,.16); color:var(--magenta-deep); }
+  .sb-right { display:flex; flex-direction:column; gap:14px; }
+  .sb-right .card { padding:16px 20px; }
+  .sb-right h3 { font-family:"Baloo 2",sans-serif; font-weight:800; font-size:21px; margin:2px 0 10px; }
+  .seuils { display:flex; flex-direction:column; gap:8px; }
+  .seuil { display:flex; align-items:center; gap:10px; font-size:16px; }
+  .dot { width:14px; height:14px; border-radius:50%; flex:none; }
+  .sb-right .bullets li { font-size:16px; margin:5px 0; line-height:1.3; }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="stage">
+    <div class="head">
+      <span class="num">5</span>
+      <h2>Suivi budgétaire &amp; maîtrise des écarts</h2>
+      <img class="logo sm head-logo" src="./logo-greencity-mark.png" alt="GreenCity Tech">
+    </div>
+
+    <div class="objective">
+      <div class="k">Objectif</div>
+      <div class="v">Piloter le budget en continu, détecter les écarts tôt et déclencher les actions correctives</div>
+    </div>
+
+    <div class="sb-row">
+      <div class="card sb-left">
+        <div class="kicker">Production continue des données</div>
+        <h3>Tableau de bord budgétaire</h3>
+        <div class="stats" style="margin-bottom:14px">
+          <div class="stat"><div class="s-k">Prévu</div><div class="s-v">8,45 k€</div></div>
+          <div class="stat"><div class="s-k">Consommé</div><div class="s-v">6,15 k€</div></div>
+          <div class="stat hl"><div class="s-k">Reste</div><div class="s-v">2,30 k€</div></div>
+        </div>
+        <table class="table">
+          <thead><tr><th>Lot</th><th class="r">Prévu</th><th class="r">Réel</th><th class="r">Écart</th></tr></thead>
+          <tbody>
+            <tr><td>Cadrage</td><td class="r">1,3</td><td class="r">1,3</td><td class="r"><span class="ec ok">0 %</span></td></tr>
+            <tr><td>Pipeline CI/CD</td><td class="r">2,6</td><td class="r">3,1</td><td class="r"><span class="ec bad">+19 %</span></td></tr>
+            <tr><td>Hébergement VPS</td><td class="r">1,95</td><td class="r">1,75</td><td class="r"><span class="ec ok">−10 %</span></td></tr>
+            <tr class="total"><td>Total à date</td><td class="r">5,85</td><td class="r">6,15</td><td class="r"><span class="ec warn">+5 %</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sb-right">
+        <div class="card tint">
+          <div class="kicker" style="color:var(--violet-deep)">Analyse des écarts</div>
+          <h3 style="color:var(--indigo)">Seuils d'alerte</h3>
+          <div class="seuils">
+            <div class="seuil"><span class="dot" style="background:#10B981"></span> Écart &lt; 5 % — sous contrôle</div>
+            <div class="seuil"><span class="dot" style="background:#F59E0B"></span> 5 – 10 % — vigilance, analyse de cause</div>
+            <div class="seuil"><span class="dot" style="background:var(--magenta)"></span> &gt; 10 % — alerte &amp; action immédiate</div>
+          </div>
+        </div>
+        <div class="card indigo">
+          <div class="kicker">Plan d'action (écart / incident)</div>
+          <h3>Réagir vite</h3>
+          <ul class="bullets">
+            <li>Analyse de cause (technique, périmètre, charge)</li>
+            <li>Re-priorisation du backlog &amp; réallocation</li>
+            <li>Arbitrage avec le PO et la direction</li>
+            <li>Reporting mensuel au contrôle de gestion + alerte à la direction financière si seuil rouge</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

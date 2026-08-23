@@ -1,6 +1,6 @@
 # Script oral — GreenCity Tech (Liam Cariou)
 
-> Présentation ~20 min · calée sur le deck de 23 slides · à dire au mot près ou à adapter.
+> Présentation ~20 min · calée sur le deck de 24 slides · à dire au mot près ou à adapter.
 > **Fil rouge** : faire passer GreenCity Tech d'un *prototype fragile* à une *plateforme fiable, industrialisée, sécurisée, observable et capable d'évoluer avec les collectivités — sans surdimensionner l'équipe ni négliger l'humain.*
 > Posture : consultant DevOps **pragmatique** (pas de sur-ingénierie, chaque choix est assumé et défendable).
 
@@ -38,91 +38,97 @@ Sur le budget, je suis transparent : le coût global du projet est **difficile �
 Ce que je peux chiffrer, c'est le **besoin DevOps** de démarrage : environ **13 jours** de charge, à un TJM de 650 €, soit à peu près **8,45 k€** — répartis entre cadrage, pipeline CI/CD, hébergement VPS, monitoring et déploiement.
 Les arbitrages sont ciblés : on capitalise sur l'équipe existante, on renforce la gestion de projet et le DevOps, et on part sur une **infrastructure simple et peu coûteuse**. On dimensionne pour le démarrage, pas pour un pic hypothétique.
 
-## Slide 8 — 03 · Mise en œuvre DevOps (intercalaire)  ⏱️ ~5 s
+## Slide 8 — Suivi budgétaire & maîtrise des écarts  ⏱️ ~50 s
+Au-delà de l'estimation, l'essentiel c'est de **piloter le budget dans le temps**. Je mets en place un **tableau de bord budgétaire** alimenté en continu : prévu, consommé, reste à faire, par lot.
+J'y suis les **écarts** entre le prévu et le réel, avec des **seuils d'alerte** : sous 5 %, c'est sous contrôle ; entre 5 et 10 %, je surveille et j'analyse la cause ; au-delà de 10 %, c'est une alerte qui déclenche une action immédiate.
+En cas d'écart ou d'incident budgétaire, le **plan d'action** est clair : analyse de cause, re-priorisation du backlog, réallocation, arbitrage avec le PO et la direction — avec un **reporting mensuel au contrôle de gestion** et une alerte immédiate à la **direction financière** si on passe au rouge. L'idée : rester **maître** du budget, pas seulement l'estimer.
+
+## Slide 9 — 03 · Mise en œuvre DevOps (intercalaire)  ⏱️ ~5 s
 Passons au concret : comment on met en œuvre cette chaîne DevOps, techniquement.
 
-## Slide 9 — Versioning & environnements  ⏱️ ~55 s
+## Slide 10 — Versioning & environnements  ⏱️ ~55 s
 Côté **versioning**, une structure simple et lisible : une branche `main` de production, alimentée uniquement par des merges depuis `develop` ; `develop` pour l'intégration des nouvelles fonctionnalités ; et des branches courtes `feature/*`, `hotfix/*`, `doc/*`, chacune avec un seul but.
 Côté **environnements**, trois environnements séparés avec leurs propres règles : **production**, sensible, où le déploiement n'est déclenché que **manuellement** ; **préproduction**, la version candidate, accessible aux clients pour la démo et la recette ; et **dev**, interne, en déploiement automatisé. Chaque environnement a sa propre base isolée.
 
-## Slide 10 — Architecture technique  ⏱️ ~50 s
+## Slide 11 — Architecture technique  ⏱️ ~50 s
 L'architecture reste cohérente avec le produit : un **portail web citoyen** et une **app mobile** pour l'usage terrain, une **interface admin** pour le suivi municipal et le traitement des incidents, et une **API partenaires** pour les échanges externes et les extensions futures.
 En dessous : une **base de données métier** commune mais isolée par environnement, un **stockage S3** pour les documents et photos, et **Docker** partout — sauf le mobile. Tout est dockerisé et versionné, ce qui simplifie le déploiement et facilite le rollback.
 
-## Slide 11 — Supervision & logs  ⏱️ ~55 s
+## Slide 12 — Supervision & logs  ⏱️ ~55 s
 La supervision est pensée en **niveaux distincts**, pour ne pas être aveugle en production.
 **Netdata** surveille la santé des serveurs — et il est hébergé sur un VPS séparé, pour ne pas tomber en même temps que ce qu'il surveille. **UptimeRobot** vérifie la disponibilité réelle depuis l'extérieur. **Sentry** remonte les erreurs applicatives. Et des **logs structurés** — horodatés, avec niveaux et suivi par ID — permettent de retracer un incident.
 Le tout est accompagné d'**alertes**, pour suivre en temps réel la disponibilité, les temps de réponse, le taux d'erreurs et la charge serveur.
+Et surtout, un **processus de gestion des incidents** clair : détection par alerte, qualification et priorisation, résolution en astreinte, communication au PO et au client, puis **post-mortem (REX)** pour éviter que ça se reproduise.
 
-## Slide 12 — Architecture déploiement  ⏱️ ~55 s
+## Slide 13 — Architecture déploiement  ⏱️ ~55 s
 Voici la vue d'ensemble du déploiement. Le code part de **GitHub**, l'image est construite et poussée dans un **registry**, puis déployée sur le **VPS de production**.
 Ce VPS héberge, dans des conteneurs Docker : le **frontend** (Portail Web), le **backend & API**, la **base de données**, **Traefik** en reverse-proxy, et un **Netdata child**. Les documents partent vers le **bucket S3**, et la base est **sauvegardée** régulièrement.
 La supervision est isolée sur un **VPS Monitoring** dédié, et UptimeRobot teste le service depuis l'extérieur. Les flèches en pointillés, c'est le flux CI/CD et le monitoring ; les flèches pleines, les échanges internes.
 
-## Slide 13 — Pipeline CI/CD  ⏱️ ~60 s
+## Slide 14 — Pipeline CI/CD  ⏱️ ~60 s
 Le pipeline est organisé en **stages**, du plus rapide au plus coûteux, pour échouer vite.
 **Stage 1 — contrôles rapides** : lint, typage, tests unitaires et d'intégration, audit des dépendances, scan de sécurité de l'image avec Trivy, et un check d'accessibilité.
 **Stage 2 — build** de l'application et de l'image Docker. **Stage 3 — tests E2E** sur les parcours critiques.
 **Stage 4 — déploiement** : automatique sur dev et préproduction, mais la **production reste en déclenchement manuel** — c'est un garde-fou volontaire — suivi d'un smoke test.
 Les secrets sont gérés via GitHub Secrets. Le mobile est plus difficile à automatiser, et on pourra renforcer l'outillage (SonarQube, cloud) si le projet grandit.
 
-## Slide 14 — 04 · Qualité, conformité, sécurité (intercalaire)  ⏱️ ~5 s
+## Slide 15 — 04 · Qualité, conformité, sécurité (intercalaire)  ⏱️ ~5 s
 Livrer vite ne suffit pas : il faut livrer **bien**. Parlons qualité, sécurité et conformité.
 
-## Slide 15 — Qualité, sécurité & conformité  ⏱️ ~55 s
+## Slide 16 — Qualité, sécurité & conformité  ⏱️ ~55 s
 Sur la **qualité du code**, on définit clairement quand une fonctionnalité est « terminée » : code relu et fonctionnel, tests exécutés, doc à jour, sécurité vérifiée, critères de recette validés, déployable, et revue avec le Lead Developer. C'est notre **Definition of Done**, et elle aligne toute l'équipe.
 Sur la **sécurité**, elle est intégrée dès le développement : audit des dépendances, scan Trivy, secrets protégés, bonnes pratiques OWASP, revues de code et veille.
 Sur la **conformité**, le contexte des collectivités l'impose : **RGPD**, **RGAA** pour l'accessibilité, et conformité des stores pour le mobile.
 
-## Slide 16 — Tests & accessibilité  ⏱️ ~50 s
-La stratégie de tests est **réaliste**, pas dogmatique : tests unitaires et d'intégration sur toute la logique métier, et tests E2E **uniquement sur les parcours les plus critiques**. On ne cherche pas 100 % de couverture inutile — l'objectif, c'est d'éviter les bugs et les régressions en production.
-Sur mobile, une approche progressive : tests unitaires, build de validation, suivi des crashs, recette manuelle avant diffusion.
-Et pour l'**accessibilité** : les scans automatiques détectent une partie des défauts, mais dans un cadre juridique avec des collectivités, un **audit humain RGAA** reste nécessaire.
+## Slide 17 — Tests & conformité produit  ⏱️ ~55 s
+La stratégie de tests est **réaliste** : unitaires et intégration sur toute la logique métier, E2E **uniquement sur les parcours critiques** — pas de 100 % de couverture inutile.
+Mais surtout, je valide le produit **en situation réelle** : une **recette scénarisée en préproduction iso-prod**, des **tests de charge et de performance** sous trafic simulé, et des tests **sur devices réels** avec des jeux de données réalistes, avant chaque release.
+Et je garantis la **conformité aux canaux de distribution** : côté mobile, le pre-launch report de la Play Console, la bêta TestFlight, les guidelines techniques Apple et Google, les signatures et certificats ; côté web, performance, sécurité et RGAA, avec une checklist avant publication. L'accessibilité RGAA reste un point dur, imposé par le contexte des collectivités.
 
-## Slide 17 — 05 · Gestion produit et relation client (intercalaire)  ⏱️ ~5 s
+## Slide 18 — 05 · Gestion produit et relation client (intercalaire)  ⏱️ ~5 s
 Une plateforme, ça vit : voyons comment on gère le produit et la relation avec les collectivités.
 
-## Slide 18 — Gestion produit & évolutions  ⏱️ ~60 s
+## Slide 19 — Gestion produit & évolutions  ⏱️ ~60 s
 Chaque demande d'évolution passe par un **processus** clair : retour terrain, cadrage produit, analyse d'impact, arbitrage interne, puis roadmap — **ou report, ou refus**.
 Pour prioriser, on regarde : la valeur métier pour plusieurs collectivités, l'effort, les risques (sécurité, RGPD), la capacité technique de l'équipe et le coût.
 Trois exemples de demandes : la **cartographie temps réel** (fort intérêt mais gros impact perf, via WebSocket), les **photos HD** (avec compression et attention RGPD), et un **chatbot citoyen** (cadrage fort, effet de mode IA à surveiller).
 Le principe : une bonne idée doit être **cadrée**. Si c'est trop spécifique, trop coûteux ou trop risqué, on recadre, on reporte, ou on n'intègre pas.
 
-## Slide 19 — Suivi, démonstrations et satisfaction  ⏱️ ~50 s
+## Slide 20 — Suivi, démonstrations et satisfaction  ⏱️ ~50 s
 La relation client est **structurée autour d'un point d'entrée unique** : le Product Owner centralise les échanges, les développeurs ne sont pas sollicités directement, et les décisions sont tracées.
 On fait des **points réguliers** avec les collectivités pilotes, une démo à chaque fin de cycle important, et un comité de pilotage mensuel pour les arbitrages.
 La **préproduction** sert de validation explicite avant livraison, ce qui réduit les incompréhensions.
 Et on suit quelques **indicateurs simples** : satisfaction, respect des délais, avancement de la roadmap, incidents bloquants et budget consommé.
 
-## Slide 20 — 06 · Inclusion et management (intercalaire)  ⏱️ ~5 s
+## Slide 21 — 06 · Inclusion et management (intercalaire)  ⏱️ ~5 s
 Dernier point, et pas le moindre : l'humain. Comment on fait travailler l'équipe durablement.
 
-## Slide 21 — Inclusion & management  ⏱️ ~55 s
+## Slide 22 — Inclusion & management  ⏱️ ~55 s
 Trois angles. Sur la **charge cognitive** : des réunions courtes et préparées, chaque décision formalisée à l'écrit, un suivi asynchrone, des canaux clairs — les demandes client passent uniquement par le PO — et un découpage des tâches lisible.
 Sur le **handicap** : fournir le matériel adapté (écrans, souris ergonomique…) et des outils accessibles et configurables.
 Sur l'**efficacité collective** : on suit le moral, la motivation et la vélocité de l'équipe, et on lit ces indicateurs **collectivement**, pour éviter toute discrimination individuelle.
 Le point clé : l'inclusion n'est pas seulement une question éthique, elle **améliore aussi l'organisation** — moins d'interruptions, plus de temps sur la vraie valeur.
 
-## Slide 22 — Conclusion  ⏱️ ~45 s
+## Slide 23 — Conclusion  ⏱️ ~45 s
 Pour résumer : GreenCity Tech peut passer d'un prototype fragile à une **plateforme multi-collectivités** plus fiable, plus lisible et plus soutenable.
 **Mieux livrer** : équipe structurée, rôles clairs, versioning et pipeline CI/CD.
 **Mieux exploiter** : environnements séparés, supervision, déploiements fiables, sécurité renforcée.
 **Mieux piloter** : un PO comme point d'entrée, des demandes qualifiées, des arbitrages formalisés et une roadmap partagée.
 Le tout de façon **progressive, défendable et réaliste** par rapport à la taille de l'équipe. L'idée n'est pas de livrer seulement *plus vite*, mais de livrer **mieux**.
 
-## Slide 23 — Merci  ⏱️ ~10 s
+## Slide 24 — Merci  ⏱️ ~10 s
 Merci de votre attention. Je suis à votre disposition pour vos questions.
 
 ---
 
 ### Repères de timing
 - Bloc 1 (slides 1-3) : ~1 min 45
-- Bloc Organisation (4-7) : ~2 min 45
-- Bloc Technique (8-13) : ~5 min 20
-- Bloc Qualité (14-16) : ~2 min
-- Bloc Produit/Client (17-19) : ~2 min
-- Bloc Humain (20-21) : ~1 min
-- Conclusion (22-23) : ~1 min
-- **Total ≈ 16-18 min** de parole + marge pour les respirations → ~20 min. Garde ~5-10 min pour les questions.
+- Bloc Organisation & budget (4-8) : ~3 min 35
+- Bloc Technique (9-14) : ~5 min 20
+- Bloc Qualité & tests (15-17) : ~2 min 05
+- Bloc Produit/Client (18-20) : ~2 min
+- Bloc Humain (21-22) : ~1 min
+- Conclusion (23-24) : ~1 min
+- **Total ≈ 17-19 min** de parole + marge pour les respirations → ~20 min. Garde du temps pour les questions.
 
 👉 Pour les questions du jury, appuie-toi sur **../redaction/questions_sensibles_et_reponses.md** (pourquoi pas de QA dédié, pas de Kubernetes, VPS + Docker, etc.).
