@@ -9,6 +9,8 @@
   .env-item p { margin:8px 4px 0; font-size:18px; line-height:1.32; color:var(--indigo); }
   .env-item.on-dark p { color:rgba(255,255,255,.9); }
   .brandmark { margin-top:6px; font-family:"Baloo 2",sans-serif; font-weight:800; font-size:22px; color:var(--indigo); display:flex; align-items:center; gap:10px; }
+  .infra-note { margin-top:12px; padding:10px 12px; border-radius:12px; background:rgba(124,58,237,.09); color:var(--indigo); font-size:14px; line-height:1.35; }
+  .infra-note b { color:var(--violet-deep); }
   .brandmark .gh { width:26px; height:26px; border-radius:50%; background:var(--indigo); }
 </style>
 </head>
@@ -55,6 +57,7 @@
           <span class="pill indigo">dev</span>
           <p>Environnement de dev interne pour intégration, déploiement automatisé.</p>
         </div>
+        <div class="infra-note"><b>Socle cible :</b> 3 VPS applicatifs (dev, préprod, prod) + 1 VPS monitoring.<br>3 BDD isolées : une par environnement.</div>
       </div>
     </div>
   </div>

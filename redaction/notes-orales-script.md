@@ -68,27 +68,27 @@ Résultat : des décisions plus rapides, moins de flou, une meilleure coordinati
 
 ## Slide 7 — Arbitrages & budget  ⏱️ ~55 s
 
-Sur le budget, je raisonne au niveau du **projet**, en ordres de grandeur assumés.
+Ici, je présente un budget de projet : ce sont des **ordres de grandeur** pour la phase de structuration, pas un devis figé.
 
-La phase de structuration, c'est environ **30 k€ par mois**, soit **~120 k€ sur ~4 mois**.
+Sur environ quatre mois, le budget représente **120 k€**, soit autour de **30 k€ par mois**. La plus grande partie correspond logiquement aux ressources humaines : l'équipe de développement, le Product Owner et le DevOps senior.
 
-Le poste **RH pèse ~95 %**, avec des **coûts journaliers différenciés par profil** : de l'ordre de **225 €** pour un développeur, **250 €** pour le Product Owner, **300 €** pour le DevOps senior — le profil le plus cher. L'infra et les outils restent volontairement sobres.
+Les coûts sont différenciés selon les responsabilités : environ **225 € par jour** pour un développeur, **250 €** pour le PO et **300 €** pour le DevOps senior. Ce dernier coûte un peu plus cher, mais il met en place les fondations qui rendent les déploiements et l'exploitation plus fiables.
 
-Mes arbitrages : on capitalise sur l'équipe existante, on cible un DevOps senior, on garde une infra simple. Des ordres de grandeur, à affiner avec le contrôle de gestion.
+L'arbitrage est donc de conserver l'équipe qui connaît déjà le produit, d'ajouter les rôles vraiment nécessaires, et de rester sur une infrastructure simple. Les montants seront ensuite affinés avec le contrôle de gestion.
 
 ---
 
 ## Slide 8 — Suivi budgétaire & maîtrise des écarts  ⏱️ ~50 s
 
-Au-delà de l'estimation, l'essentiel c'est de **piloter le budget projet dans le temps**.
+Mais estimer un budget ne suffit pas : il faut le suivre pendant tout le projet.
 
-Je mets en place un **tableau de bord** alimenté en continu : prévu, consommé, reste à faire, **par poste** (RH, infrastructure, outils).
+Pour cela, je mets en place un tableau de bord qui indique, pour chaque poste — RH, infrastructure et outils — le budget prévu, le montant consommé et ce qu'il reste. Il est mis à jour régulièrement pour détecter les écarts le plus tôt possible.
 
-J'y suis les **écarts** entre le prévu et le réel, avec des **seuils d'alerte** : sous 5 %, sous contrôle ; entre 5 et 10 %, vigilance et analyse de cause ; au-delà de 10 %, alerte et action immédiate.
+On utilise trois seuils simples : moins de 5 % d'écart, la situation est sous contrôle ; entre 5 et 10 %, on analyse ; au-delà de 10 %, on déclenche une action immédiate.
 
-Un exemple concret : à mi-parcours, ~63 k€ consommés sur 120. L'infrastructure ressort à **+31 %** — un VPS ajouté — c'est typiquement l'écart qu'on détecte tôt.
+L'exemple de la slide montre qu'à mi-parcours, 63,6 k€ ont été consommés sur 120 k€. L'infrastructure est à **+31 %**, car un VPS a été ajouté. Ce n'est pas forcément un problème, mais c'est un écart qu'il faut expliquer et traiter.
 
-En cas d'écart ou d'incident, le **plan d'action** est clair : analyse de cause, re-priorisation, réallocation, arbitrage — avec un **reporting mensuel au contrôle de gestion** et une alerte à la **direction financière** si on passe au rouge.
+La suite est claire : on identifie la cause, on peut re-prioriser certaines tâches ou réallouer une partie du budget, puis on arbitre avec le PO et la direction. Un reporting mensuel est envoyé au contrôle de gestion, avec une alerte à la direction financière si le seuil rouge est atteint.
 
 ---
 
@@ -111,6 +111,8 @@ Côté **environnements**, trois environnements séparés avec leurs propres rè
 - **dev** — interne, en déploiement automatisé.
 
 Chaque environnement a sa propre base isolée.
+
+Concrètement, cela représente **trois VPS applicatifs** : un pour le dev, un pour la préproduction et un pour la production ; auxquels s'ajoute un **quatrième VPS dédié au monitoring**. On a donc aussi **trois bases de données isolées**, une par environnement.
 
 ---
 
@@ -142,7 +144,7 @@ Voici la vue d'ensemble. Le code part de **GitHub**, l'image est construite et p
 
 Ce VPS héberge, en conteneurs Docker : le **frontend**, le **backend & API**, la **base de données**, **Traefik** en reverse-proxy, et un **Netdata child**.
 
-Les documents partent vers le **bucket S3**, la base est **sauvegardée**, et la supervision est isolée sur un **VPS Monitoring** dédié.
+Les documents partent vers le **bucket S3**, la base est **sauvegardée**, et la supervision est isolée sur un **VPS Monitoring** dédié. Cette slide détaille surtout la production : les VPS dev et préprod appliquent le même principe avec leur BDD isolée.
 
 Sur le schéma : les flèches en **pointillés** = le flux CI/CD et le monitoring ; les flèches **pleines** = les échanges internes.
 
