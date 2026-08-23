@@ -125,16 +125,16 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   cursor:pointer;font-size:14.5px;font-weight:600;color:var(--text);}
 .nav-item:hover{background:var(--navhover);}
 .nav-item.active{background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#fff;}
-.content{padding:34px 46px;max-width:880px;margin:0 auto;width:100%;font-family:"Source Sans 3","Segoe UI",sans-serif;font-size:var(--fs,18px);line-height:1.75;}
+.content{padding:34px 46px;max-width:760px;margin:0 auto;width:100%;font-family:"Source Sans 3","Segoe UI",sans-serif;font-size:var(--fs,18px);line-height:1.8;}
 .doc-meta{font-size:12px;color:var(--muted);font-family:monospace;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
 .content h1,.content h2,.content h3{font-family:"Baloo 2","Segoe UI",sans-serif;letter-spacing:-.01em;}
-/* script oral : plus grand & aéré, bien lisible sur scène */
-.script-doc{font-size:1.1em;line-height:1.9;}
-.script-doc p{margin:.2em 0 .95em;}
-.script-doc h2{margin-top:1.9em;}
-.content h1{font-size:1.9em;color:var(--h1);border-bottom:3px solid var(--violet);padding-bottom:.2em;margin-top:0;}
-.content h2{font-size:1.45em;color:var(--h2);margin-top:1.6em;}
-.content h3{font-size:1.2em;color:var(--h1);margin-top:1.3em;}
+/* script oral : corps lisible & aéré, titres discrets */
+.script-doc{font-size:1.04em;line-height:1.8;}
+.script-doc p{margin:.2em 0 .85em;}
+.script-doc h2{margin-top:1.5em;}
+.content h1{font-size:1.55em;color:var(--h1);border-bottom:3px solid var(--violet);padding-bottom:.2em;margin-top:0;}
+.content h2{font-size:1.2em;color:var(--h2);margin-top:1.5em;}
+.content h3{font-size:1.05em;color:var(--h1);margin-top:1.3em;}
 .content a{color:var(--h2);}
 .content code{background:var(--code-bg);color:var(--text);padding:2px 6px;border-radius:6px;font-size:.9em;}
 .content pre{background:var(--pre-bg);color:var(--pre-text);padding:16px;border-radius:12px;overflow-x:auto;}
