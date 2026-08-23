@@ -10,11 +10,9 @@
   .budget-panel { padding:16px 20px; }
   .budget-panel .kicker { color:var(--violet-deep); }
   .budget-panel h3 { font-family:"Baloo 2",sans-serif; font-weight:800; font-size:22px; margin:3px 0 12px; color:var(--indigo); }
-  .budget-panel .stat { padding:11px 12px; }
-  .budget-panel .s-v { font-size:24px; }
-  .budget-panel .table th { padding:8px 14px; font-size:12px; }
-  .budget-panel .table td { padding:7px 14px; font-size:15px; }
-  .note { margin-top:10px; font-size:14px; color:var(--muted); }
+  .budget-panel .table th { padding:8px 12px; font-size:12px; }
+  .budget-panel .table td { padding:8px 12px; font-size:15px; }
+  .note { margin-top:10px; font-size:13.5px; color:var(--muted); }
   .note b { color:var(--violet-deep); }
 </style>
 </head>
@@ -49,30 +47,27 @@
           <h3>Où va l'argent</h3>
           <ul class="bullets">
             <li>La <b>RH</b> est de loin le poste dominant (~95 %)</li>
-            <li>Infrastructure &amp; outils volontairement sobres</li>
-            <li>Ordres de grandeur, affinés avec le contrôle de gestion</li>
+            <li>Coûts journaliers <b>différenciés par profil</b></li>
+            <li>Infra &amp; outils sobres · ordres de grandeur affinés avec le contrôle de gestion</li>
           </ul>
         </div>
       </div>
 
       <div class="card budget-panel">
         <div class="kicker">Budget projet · ordres de grandeur</div>
-        <h3>Phase de structuration (~4 mois)</h3>
-        <div class="stats" style="margin-bottom:14px">
-          <div class="stat"><div class="s-k">Mensuel</div><div class="s-v">~30 k€</div></div>
-          <div class="stat"><div class="s-k">Durée</div><div class="s-v">~4 mois</div></div>
-          <div class="stat hl"><div class="s-k">Total</div><div class="s-v">~120 k€</div></div>
-        </div>
+        <h3>Phase de structuration · ~4 mois · ~120 k€</h3>
         <table class="table">
-          <thead><tr><th>Poste</th><th class="r">/ mois</th><th class="r">Phase</th></tr></thead>
+          <thead><tr><th>Poste</th><th class="r">Coût/j</th><th class="r">/ mois</th><th class="r">Phase</th></tr></thead>
           <tbody>
-            <tr><td>RH — équipe (PO, DevOps senior, 4 devs)</td><td class="r">29 k€</td><td class="r">116 k€</td></tr>
-            <tr><td>Infrastructure (VPS, S3, sauvegardes)</td><td class="r">0,8 k€</td><td class="r">3,2 k€</td></tr>
-            <tr><td>Outils &amp; licences</td><td class="r">0,3 k€</td><td class="r">1,2 k€</td></tr>
-            <tr class="total"><td>Total projet</td><td class="r">~30 k€</td><td class="r">~120 k€</td></tr>
+            <tr><td>Développeurs (×4)</td><td class="r">225 €</td><td class="r">18 k€</td><td class="r">72 k€</td></tr>
+            <tr><td>Product Owner</td><td class="r">250 €</td><td class="r">5 k€</td><td class="r">20 k€</td></tr>
+            <tr><td>DevOps senior</td><td class="r">300 €</td><td class="r">6 k€</td><td class="r">24 k€</td></tr>
+            <tr><td>Infrastructure (VPS, S3…)</td><td class="r">—</td><td class="r">0,8 k€</td><td class="r">3,2 k€</td></tr>
+            <tr><td>Outils &amp; licences</td><td class="r">—</td><td class="r">0,3 k€</td><td class="r">1,2 k€</td></tr>
+            <tr class="total"><td>Total projet</td><td class="r"></td><td class="r">~30 k€</td><td class="r">~120 k€</td></tr>
           </tbody>
         </table>
-        <div class="note">RH = 6 pers · <b>~240 €/j</b> en moyenne · dont cadrage DevOps 13 j (~8,45 k€)</div>
+        <div class="note">Coûts journaliers <b>chargés</b> (moyens par profil) · le cadrage DevOps initial (~13 j) est inclus dans la ligne DevOps.</div>
       </div>
     </div>
   </div>

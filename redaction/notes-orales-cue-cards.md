@@ -33,7 +33,7 @@
 
 **7 · Arbitrages & budget**
 - **Budget projet** (ordres de grandeur) : ~30 k€/mois → **~120 k€ sur ~4 mois**.
-- Postes : **RH ~95 %** (~240 €/j/pers en moy.), infra & outils sobres. Cadrage DevOps 13 j / ~8,45 k€ = une ligne dedans.
+- RH ~95 %, **coûts/j différenciés** : dev ~225 € · PO ~250 € · DevOps senior ~300 €.
 - Arbitrages : capitaliser sur l'équipe, DevOps senior, infra simple, pas de QA dédié.
 - (Chiffrage → le **pilotage** vient juste après, slide 8.)
 

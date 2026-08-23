@@ -146,7 +146,7 @@ L'objectif n'est pas le coût minimum absolu, mais le meilleur compromis entre c
 
 Réponse défendable :
 
-Je raisonne au niveau du budget **projet** (RH de l'équipe, infrastructure, outils) — de l'ordre de 30 k€/mois, ~120 k€ sur la phase de structuration, la RH pesant l'essentiel. Au-delà de cette estimation, je mets en place un tableau de bord alimenté en continu : pour chaque **poste**, le prévu, le consommé et le reste à faire, plus un total à date. Ces données sont produites régulièrement et communiquées au contrôle de gestion. On passe ainsi d'une estimation figée à un pilotage vivant.
+Je raisonne au niveau du budget **projet** (RH de l'équipe, infrastructure, outils) — de l'ordre de 30 k€/mois, ~120 k€ sur la phase de structuration, la RH pesant l'essentiel, avec des coûts journaliers **différenciés par profil** (développeur ~225 €, Product Owner ~250 €, DevOps senior ~300 €). Au-delà de cette estimation, je mets en place un tableau de bord alimenté en continu : pour chaque **poste**, le prévu, le consommé et le reste à faire, plus un total à date. Ces données sont produites régulièrement et communiquées au contrôle de gestion. On passe ainsi d'une estimation figée à un pilotage vivant.
 
 ### Comment analysez-vous les écarts et que faites-vous en cas de dépassement ?
 

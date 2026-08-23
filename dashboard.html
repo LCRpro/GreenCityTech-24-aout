@@ -146,114 +146,153 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 </blockquote>
 </article><article class="doc" id="doc-1" hidden><div class="doc-meta">redaction/notes-orales-script.md</div><h1>Script oral — GreenCity Tech (Liam Cariou)</h1>
 <blockquote>
-<p>Présentation ~20 min · calée sur le deck de 24 slides · à dire au mot près ou à adapter.
-<strong>Fil rouge</strong> : faire passer GreenCity Tech d&#39;un <em>prototype fragile</em> à une <em>plateforme fiable, industrialisée, sécurisée, observable et capable d&#39;évoluer avec les collectivités — sans surdimensionner l&#39;équipe ni négliger l&#39;humain.</em>
-Posture : consultant DevOps <strong>pragmatique</strong> (pas de sur-ingénierie, chaque choix est assumé et défendable).</p>
+<p>Présentation ~20 min · calée sur le deck de 24 slides · à dire au mot près ou à adapter.</p>
+<p><strong>Fil rouge</strong> : faire passer GreenCity Tech d&#39;un <em>prototype fragile</em> à une <em>plateforme fiable, industrialisée, sécurisée, observable et capable d&#39;évoluer avec les collectivités — sans surdimensionner l&#39;équipe ni négliger l&#39;humain.</em></p>
+<p>Posture : consultant DevOps <strong>pragmatique</strong> — pas de sur-ingénierie, chaque choix est assumé et défendable.</p>
 </blockquote>
 <hr>
 <h2>Slide 1 — Couverture  ⏱️ ~30 s</h2>
-<p>Bonjour, je m&#39;appelle Liam Cariou, en Master Lead Développeur Full Stack à la Normandie Web School.
-Je vais vous présenter ma proposition d&#39;organisation et de pilotage DevOps pour <strong>GreenCity Tech</strong>.
-L&#39;objectif de cette présentation : montrer comment on transforme un prototype fragile en une plateforme fiable et maîtrisée, de façon <strong>progressive et réaliste</strong>.</p>
-<h2>Slide 2 — 01 · Introduction (intercalaire)  ⏱️ ~5 s</h2>
+<p>Bonjour, je m&#39;appelle Liam Cariou, en Master Lead Développeur Full Stack à la Normandie Web School.</p>
+<p>Je vais vous présenter ma proposition d&#39;organisation et de pilotage DevOps pour <strong>GreenCity Tech</strong>.</p>
+<p>L&#39;objectif : montrer comment on transforme un prototype fragile en une plateforme fiable et maîtrisée, de façon <strong>progressive et réaliste</strong>.</p>
+<hr>
+<h2>Slide 2 — 01 · Introduction <em>(intercalaire)</em>  ⏱️ ~5 s</h2>
 <p>Commençons par le contexte : où en est le projet aujourd&#39;hui, et ce qu&#39;on cherche à obtenir.</p>
+<hr>
 <h2>Slide 3 — Contexte  ⏱️ ~60 s</h2>
-<p>GreenCity Tech, c&#39;est une application de <strong>signalement citoyen</strong> : plusieurs briques — app mobile, app web, API — développées rapidement sous forme de prototype.
-Le problème n&#39;est pas l&#39;idée, elle est bonne. Le problème, c&#39;est que tout a été fait dans l&#39;urgence : <strong>pas d&#39;automatisation, des déploiements manuels, pas de tests, pas de monitoring, pas d&#39;organisation projet claire</strong>, et une communication difficile.
-Mon rôle ici est celui d&#39;un <strong>consultant DevOps</strong> : pas de tout réécrire, mais d&#39;<strong>industrialiser</strong> l&#39;existant pour atteindre trois objectifs simples — <strong>mieux livrer, mieux exploiter, mieux piloter</strong>. C&#39;est le fil rouge de toute la suite.</p>
-<h2>Slide 4 — 02 · Organisation &amp; méthode projet (intercalaire)  ⏱️ ~5 s</h2>
+<p>GreenCity Tech, c&#39;est une application de <strong>signalement citoyen</strong> : plusieurs briques — app mobile, app web, API — développées rapidement sous forme de prototype.</p>
+<p>Le problème n&#39;est pas l&#39;idée, elle est bonne. C&#39;est que tout a été fait dans l&#39;urgence : <strong>pas d&#39;automatisation, déploiements manuels, pas de tests, pas de monitoring, pas d&#39;organisation projet</strong>, et une communication difficile.</p>
+<p>Mon rôle ici est celui d&#39;un <strong>consultant DevOps</strong> : pas de tout réécrire, mais d&#39;<strong>industrialiser</strong> l&#39;existant.</p>
+<p>Trois objectifs simples, qui sont le fil rouge de toute la suite : <strong>mieux livrer, mieux exploiter, mieux piloter</strong>.</p>
+<hr>
+<h2>Slide 4 — 02 · Organisation &amp; méthode projet <em>(intercalaire)</em>  ⏱️ ~5 s</h2>
 <p>Première brique, la fondation de tout le reste : l&#39;organisation de l&#39;équipe et la méthode de travail.</p>
+<hr>
 <h2>Slide 5 — Organisation d&#39;équipe  ⏱️ ~55 s</h2>
-<p>L&#39;objectif, c&#39;est une équipe <strong>plus structurée</strong>, sans la gonfler artificiellement.
-Côté <strong>pilotage</strong> : un Product Owner qui porte la vision, arbitre et protège l&#39;équipe ; et un <strong>DevOps senior</strong> qui prend la CI/CD, le déploiement, les environnements et la supervision.
-Côté <strong>développement</strong> : on <strong>garde les 4 développeurs du prototype</strong> — ils connaissent déjà l&#39;existant — avec un Lead Developer qui coordonne et garantit la cohérence technique.
-C&#39;est un choix d&#39;<strong>arbitrage</strong> assumé : une équipe resserrée au lancement, une maîtrise des coûts, et une montée en compétence progressive sur les sujets DevOps plutôt qu&#39;un recrutement massif.</p>
+<p>L&#39;objectif : une équipe <strong>plus structurée</strong>, sans la gonfler artificiellement.</p>
+<p>Côté <strong>pilotage</strong> : un Product Owner qui porte la vision, arbitre et protège l&#39;équipe ; et un <strong>DevOps senior</strong> qui prend la CI/CD, le déploiement, les environnements et la supervision.</p>
+<p>Côté <strong>développement</strong> : on <strong>garde les 4 développeurs du prototype</strong> — ils connaissent déjà l&#39;existant — avec un Lead Developer qui coordonne et garantit la cohérence technique.</p>
+<p>C&#39;est un <strong>arbitrage</strong> assumé : une équipe resserrée au lancement, des coûts maîtrisés, et une montée en compétence progressive plutôt qu&#39;un recrutement massif.</p>
+<hr>
 <h2>Slide 6 — Méthode &amp; rituels  ⏱️ ~50 s</h2>
-<p>Le cadre retenu, c&#39;est de l&#39;<strong>agile pragmatique</strong> : des sprints de 2 semaines, un backlog priorisé par le PO, un Kanban séparé pour les incidents et les urgences, et des décisions tracées.
-Pourquoi ce choix ? Parce que l&#39;équipe est restreinte et le socle encore fragile : il faut <strong>structurer sans alourdir</strong>.
-Concrètement : un point dev tous les 2 jours pour lever les blocages, un suivi hebdo, une démo client et une rétro en fin de sprint, et un pilotage mensuel avec les collectivités. Résultat : des décisions plus rapides, moins de flou, une meilleure coordination et des livraisons plus fiables.</p>
+<p>Le cadre retenu, c&#39;est de l&#39;<strong>agile pragmatique</strong> : sprints de 2 semaines, backlog priorisé par le PO, un Kanban séparé pour les incidents, et des décisions tracées.</p>
+<p>Pourquoi ce choix ? Parce que l&#39;équipe est restreinte et le socle encore fragile : il faut <strong>structurer sans alourdir</strong>.</p>
+<p>Concrètement : un point dev tous les 2 jours, un suivi hebdo, une démo et une rétro en fin de sprint, un pilotage mensuel avec les collectivités.</p>
+<p>Résultat : des décisions plus rapides, moins de flou, une meilleure coordination et des livraisons plus fiables.</p>
+<hr>
 <h2>Slide 7 — Arbitrages &amp; budget  ⏱️ ~55 s</h2>
-<p>Sur le budget, je raisonne au niveau du <strong>projet</strong>, en ordres de grandeur assumés. La phase de structuration, c&#39;est de l&#39;ordre de <strong>30 k€ par mois</strong>, soit environ <strong>120 k€ sur ~4 mois</strong>. Le poste <strong>RH — l&#39;équipe — pèse à lui seul ~95 %</strong>, soit un <strong>coût journalier moyen d&#39;environ 240 € par personne</strong> ; l&#39;infrastructure et les outils sont volontairement sobres, quelques centaines d&#39;euros par mois.
-Ma prestation DevOps de cadrage — 13 jours, ~8,45 k€ — est une <strong>ligne à l&#39;intérieur de ce budget</strong>, pas le budget total.
-Les arbitrages sont ciblés : on capitalise sur l&#39;équipe existante, on renforce la gestion de projet et le DevOps senior, on reste sur une infra simple. Ces montants sont des ordres de grandeur, à affiner avec le contrôle de gestion.</p>
+<p>Sur le budget, je raisonne au niveau du <strong>projet</strong>, en ordres de grandeur assumés.</p>
+<p>La phase de structuration, c&#39;est environ <strong>30 k€ par mois</strong>, soit <strong>~120 k€ sur ~4 mois</strong>.</p>
+<p>Le poste <strong>RH pèse ~95 %</strong>, avec des <strong>coûts journaliers différenciés par profil</strong> : de l&#39;ordre de <strong>225 €</strong> pour un développeur, <strong>250 €</strong> pour le Product Owner, <strong>300 €</strong> pour le DevOps senior — le profil le plus cher. L&#39;infra et les outils restent volontairement sobres.</p>
+<p>Mes arbitrages : on capitalise sur l&#39;équipe existante, on cible un DevOps senior, on garde une infra simple. Des ordres de grandeur, à affiner avec le contrôle de gestion.</p>
+<hr>
 <h2>Slide 8 — Suivi budgétaire &amp; maîtrise des écarts  ⏱️ ~50 s</h2>
-<p>Au-delà de l&#39;estimation, l&#39;essentiel c&#39;est de <strong>piloter le budget projet dans le temps</strong>. Je mets en place un <strong>tableau de bord</strong> alimenté en continu : prévu, consommé, reste à faire, <strong>par poste</strong> (RH, infrastructure, outils).
-J&#39;y suis les <strong>écarts</strong> entre le prévu et le réel, avec des <strong>seuils d&#39;alerte</strong> : sous 5 %, c&#39;est sous contrôle ; entre 5 et 10 %, je surveille et j&#39;analyse la cause ; au-delà de 10 %, c&#39;est une alerte qui déclenche une action immédiate.
-Un exemple concret : à mi-parcours, ~63 k€ consommés sur 120 ; l&#39;infrastructure ressort à <strong>+31 %</strong> parce qu&#39;on a ajouté un VPS — c&#39;est exactement le type d&#39;écart qu&#39;on détecte tôt et qu&#39;on arbitre.
-En cas d&#39;écart ou d&#39;incident budgétaire, le <strong>plan d&#39;action</strong> est clair : analyse de cause, re-priorisation du backlog, réallocation, arbitrage avec le PO et la direction — avec un <strong>reporting mensuel au contrôle de gestion</strong> et une alerte immédiate à la <strong>direction financière</strong> si on passe au rouge. L&#39;idée : rester <strong>maître</strong> du budget, pas seulement l&#39;estimer.</p>
-<h2>Slide 9 — 03 · Mise en œuvre DevOps (intercalaire)  ⏱️ ~5 s</h2>
+<p>Au-delà de l&#39;estimation, l&#39;essentiel c&#39;est de <strong>piloter le budget projet dans le temps</strong>.</p>
+<p>Je mets en place un <strong>tableau de bord</strong> alimenté en continu : prévu, consommé, reste à faire, <strong>par poste</strong> (RH, infrastructure, outils).</p>
+<p>J&#39;y suis les <strong>écarts</strong> entre le prévu et le réel, avec des <strong>seuils d&#39;alerte</strong> : sous 5 %, sous contrôle ; entre 5 et 10 %, vigilance et analyse de cause ; au-delà de 10 %, alerte et action immédiate.</p>
+<p>Un exemple concret : à mi-parcours, ~63 k€ consommés sur 120. L&#39;infrastructure ressort à <strong>+31 %</strong> — un VPS ajouté — c&#39;est typiquement l&#39;écart qu&#39;on détecte tôt.</p>
+<p>En cas d&#39;écart ou d&#39;incident, le <strong>plan d&#39;action</strong> est clair : analyse de cause, re-priorisation, réallocation, arbitrage — avec un <strong>reporting mensuel au contrôle de gestion</strong> et une alerte à la <strong>direction financière</strong> si on passe au rouge.</p>
+<hr>
+<h2>Slide 9 — 03 · Mise en œuvre DevOps <em>(intercalaire)</em>  ⏱️ ~5 s</h2>
 <p>Passons au concret : comment on met en œuvre cette chaîne DevOps, techniquement.</p>
+<hr>
 <h2>Slide 10 — Versioning &amp; environnements  ⏱️ ~55 s</h2>
-<p>Côté <strong>versioning</strong>, une structure simple et lisible : une branche <code>main</code> de production, alimentée uniquement par des merges depuis <code>develop</code> ; <code>develop</code> pour l&#39;intégration des nouvelles fonctionnalités ; et des branches courtes <code>feature/*</code>, <code>hotfix/*</code>, <code>doc/*</code>, chacune avec un seul but.
-Côté <strong>environnements</strong>, trois environnements séparés avec leurs propres règles : <strong>production</strong>, sensible, où le déploiement n&#39;est déclenché que <strong>manuellement</strong> ; <strong>préproduction</strong>, la version candidate, accessible aux clients pour la démo et la recette ; et <strong>dev</strong>, interne, en déploiement automatisé. Chaque environnement a sa propre base isolée.</p>
+<p>Côté <strong>versioning</strong>, une structure simple et lisible : une branche <code>main</code> de production, alimentée uniquement par des merges depuis <code>develop</code>.</p>
+<p><code>develop</code> sert à l&#39;intégration des nouvelles fonctionnalités, et des branches courtes <code>feature/*</code>, <code>hotfix/*</code>, <code>doc/*</code> ont chacune un seul but.</p>
+<p>Côté <strong>environnements</strong>, trois environnements séparés avec leurs propres règles :</p>
+<ul>
+<li><strong>production</strong> — sensible, déploiement déclenché <strong>manuellement</strong> ;</li>
+<li><strong>préproduction</strong> — la version candidate, accessible aux clients pour démo et recette ;</li>
+<li><strong>dev</strong> — interne, en déploiement automatisé.</li>
+</ul>
+<p>Chaque environnement a sa propre base isolée.</p>
+<hr>
 <h2>Slide 11 — Architecture technique  ⏱️ ~50 s</h2>
-<p>L&#39;architecture reste cohérente avec le produit : un <strong>portail web citoyen</strong> et une <strong>app mobile</strong> pour l&#39;usage terrain, une <strong>interface admin</strong> pour le suivi municipal et le traitement des incidents, et une <strong>API partenaires</strong> pour les échanges externes et les extensions futures.
-En dessous : une <strong>base de données métier</strong> commune mais isolée par environnement, un <strong>stockage S3</strong> pour les documents et photos, et <strong>Docker</strong> partout — sauf le mobile. Tout est dockerisé et versionné, ce qui simplifie le déploiement et facilite le rollback.</p>
-<h2>Slide 12 — Supervision &amp; logs  ⏱️ ~55 s</h2>
-<p>La supervision est pensée en <strong>niveaux distincts</strong>, pour ne pas être aveugle en production.
-<strong>Netdata</strong> surveille la santé des serveurs — et il est hébergé sur un VPS séparé, pour ne pas tomber en même temps que ce qu&#39;il surveille. <strong>UptimeRobot</strong> vérifie la disponibilité réelle depuis l&#39;extérieur. <strong>Sentry</strong> remonte les erreurs applicatives. Et des <strong>logs structurés</strong> — horodatés, avec niveaux et suivi par ID — permettent de retracer un incident.
-Le tout est accompagné d&#39;<strong>alertes</strong>, pour suivre en temps réel la disponibilité, les temps de réponse, le taux d&#39;erreurs et la charge serveur.
-Et surtout, un <strong>processus de gestion des incidents</strong> clair : détection par alerte, qualification et priorisation, résolution en astreinte, communication au PO et au client, puis <strong>post-mortem (REX)</strong> pour éviter que ça se reproduise.</p>
+<p>L&#39;architecture reste cohérente avec le produit : un <strong>portail web citoyen</strong> et une <strong>app mobile</strong> pour l&#39;usage terrain, une <strong>interface admin</strong> pour le suivi municipal, et une <strong>API partenaires</strong> pour les échanges externes.</p>
+<p>En dessous : une <strong>base de données métier</strong> commune mais isolée par environnement, un <strong>stockage S3</strong> pour les documents et photos.</p>
+<p>Et <strong>Docker</strong> partout — sauf le mobile. Tout est dockerisé et versionné, ce qui simplifie le déploiement et facilite le rollback.</p>
+<hr>
+<h2>Slide 12 — Supervision, observabilité &amp; logs  ⏱️ ~55 s</h2>
+<p>La supervision est pensée en <strong>niveaux distincts</strong>, pour ne pas être aveugle en production.</p>
+<p><strong>Netdata</strong> surveille la santé des serveurs — hébergé sur un VPS séparé, pour ne pas tomber avec ce qu&#39;il surveille. <strong>UptimeRobot</strong> vérifie la disponibilité depuis l&#39;extérieur. <strong>Sentry</strong> remonte les erreurs applicatives. Et des <strong>logs structurés</strong> permettent de retracer un incident.</p>
+<p>Le tout accompagné d&#39;<strong>alertes</strong> en temps réel : disponibilité, temps de réponse, taux d&#39;erreurs, charge serveur.</p>
+<p>Et surtout, un <strong>processus de gestion des incidents</strong> clair : détection par alerte → qualification &amp; priorité → résolution en astreinte → communication au PO et au client → <strong>post-mortem</strong> pour un correctif durable.</p>
+<hr>
 <h2>Slide 13 — Architecture déploiement  ⏱️ ~55 s</h2>
-<p>Voici la vue d&#39;ensemble du déploiement. Le code part de <strong>GitHub</strong>, l&#39;image est construite et poussée dans un <strong>registry</strong>, puis déployée sur le <strong>VPS de production</strong>.
-Ce VPS héberge, dans des conteneurs Docker : le <strong>frontend</strong> (Portail Web), le <strong>backend &amp; API</strong>, la <strong>base de données</strong>, <strong>Traefik</strong> en reverse-proxy, et un <strong>Netdata child</strong>. Les documents partent vers le <strong>bucket S3</strong>, et la base est <strong>sauvegardée</strong> régulièrement.
-La supervision est isolée sur un <strong>VPS Monitoring</strong> dédié, et UptimeRobot teste le service depuis l&#39;extérieur. Les flèches en pointillés, c&#39;est le flux CI/CD et le monitoring ; les flèches pleines, les échanges internes.</p>
+<p>Voici la vue d&#39;ensemble. Le code part de <strong>GitHub</strong>, l&#39;image est construite et poussée dans un <strong>registry</strong>, puis déployée sur le <strong>VPS de production</strong>.</p>
+<p>Ce VPS héberge, en conteneurs Docker : le <strong>frontend</strong>, le <strong>backend &amp; API</strong>, la <strong>base de données</strong>, <strong>Traefik</strong> en reverse-proxy, et un <strong>Netdata child</strong>.</p>
+<p>Les documents partent vers le <strong>bucket S3</strong>, la base est <strong>sauvegardée</strong>, et la supervision est isolée sur un <strong>VPS Monitoring</strong> dédié.</p>
+<p>Sur le schéma : les flèches en <strong>pointillés</strong> = le flux CI/CD et le monitoring ; les flèches <strong>pleines</strong> = les échanges internes.</p>
+<hr>
 <h2>Slide 14 — Pipeline CI/CD  ⏱️ ~60 s</h2>
-<p>Le pipeline est organisé en <strong>stages</strong>, du plus rapide au plus coûteux, pour échouer vite.
-<strong>Stage 1 — contrôles rapides</strong> : lint, typage, tests unitaires et d&#39;intégration, audit des dépendances, scan de sécurité de l&#39;image avec Trivy, et un check d&#39;accessibilité.
-<strong>Stage 2 — build</strong> de l&#39;application et de l&#39;image Docker. <strong>Stage 3 — tests E2E</strong> sur les parcours critiques.
-<strong>Stage 4 — déploiement</strong> : automatique sur dev et préproduction, mais la <strong>production reste en déclenchement manuel</strong> — c&#39;est un garde-fou volontaire — suivi d&#39;un smoke test.
-Les secrets sont gérés via GitHub Secrets. Le mobile est plus difficile à automatiser, et on pourra renforcer l&#39;outillage (SonarQube, cloud) si le projet grandit.</p>
-<h2>Slide 15 — 04 · Qualité, conformité, sécurité (intercalaire)  ⏱️ ~5 s</h2>
+<p>Le pipeline est organisé en <strong>stages</strong>, du plus rapide au plus coûteux, pour échouer vite.</p>
+<p><strong>Stage 1 — contrôles rapides</strong> : lint, typage, tests unitaires et d&#39;intégration, audit des dépendances, scan de sécurité de l&#39;image avec Trivy, check d&#39;accessibilité.</p>
+<p><strong>Stage 2 — build</strong> de l&#39;application et de l&#39;image Docker. <strong>Stage 3 — tests E2E</strong> sur les parcours critiques.</p>
+<p><strong>Stage 4 — déploiement</strong> : automatique sur dev et préproduction, mais la <strong>production reste en déclenchement manuel</strong> — un garde-fou volontaire — suivi d&#39;un smoke test.</p>
+<p>Les secrets sont gérés via GitHub Secrets. Le mobile est plus difficile à automatiser, et on pourra renforcer l&#39;outillage (SonarQube, cloud) si le projet grandit.</p>
+<hr>
+<h2>Slide 15 — 04 · Qualité, conformité, sécurité <em>(intercalaire)</em>  ⏱️ ~5 s</h2>
 <p>Livrer vite ne suffit pas : il faut livrer <strong>bien</strong>. Parlons qualité, sécurité et conformité.</p>
+<hr>
 <h2>Slide 16 — Qualité, sécurité &amp; conformité  ⏱️ ~55 s</h2>
-<p>Sur la <strong>qualité du code</strong>, on définit clairement quand une fonctionnalité est « terminée » : code relu et fonctionnel, tests exécutés, doc à jour, sécurité vérifiée, critères de recette validés, déployable, et revue avec le Lead Developer. C&#39;est notre <strong>Definition of Done</strong>, et elle aligne toute l&#39;équipe.
-Sur la <strong>sécurité</strong>, elle est intégrée dès le développement : audit des dépendances, scan Trivy, secrets protégés, bonnes pratiques OWASP, revues de code et veille.
-Sur la <strong>conformité</strong>, le contexte des collectivités l&#39;impose : <strong>RGPD</strong>, <strong>RGAA</strong> pour l&#39;accessibilité, et conformité des stores pour le mobile.</p>
+<p>Sur la <strong>qualité du code</strong>, je définis clairement quand une fonctionnalité est « terminée » : code relu, tests exécutés, doc à jour, sécurité vérifiée, recette validée, déployable, revue avec le Lead Developer.</p>
+<p>C&#39;est notre <strong>Definition of Done</strong>, et elle aligne toute l&#39;équipe.</p>
+<p>Sur la <strong>sécurité</strong>, elle est intégrée dès le développement : audit des dépendances, scan Trivy, secrets protégés, bonnes pratiques OWASP, revues de code et veille.</p>
+<p>Sur la <strong>conformité</strong>, le contexte des collectivités l&#39;impose : <strong>RGPD</strong>, <strong>RGAA</strong> pour l&#39;accessibilité, et conformité des stores pour le mobile.</p>
+<hr>
 <h2>Slide 17 — Tests &amp; conformité produit  ⏱️ ~55 s</h2>
-<p>La stratégie de tests est <strong>réaliste</strong> : unitaires et intégration sur toute la logique métier, E2E <strong>uniquement sur les parcours critiques</strong> — pas de 100 % de couverture inutile.
-Mais surtout, je valide le produit <strong>en situation réelle</strong> : une <strong>recette scénarisée en préproduction iso-prod</strong>, des <strong>tests de charge et de performance</strong> sous trafic simulé, et des tests <strong>sur devices réels</strong> avec des jeux de données réalistes, avant chaque release.
-Et je garantis la <strong>conformité aux canaux de distribution</strong> : côté mobile, le pre-launch report de la Play Console, la bêta TestFlight, les guidelines techniques Apple et Google, les signatures et certificats ; côté web, performance, sécurité et RGAA, avec une checklist avant publication. L&#39;accessibilité RGAA reste un point dur, imposé par le contexte des collectivités.</p>
-<h2>Slide 18 — 05 · Gestion produit et relation client (intercalaire)  ⏱️ ~5 s</h2>
+<p>La stratégie de tests est <strong>réaliste</strong> : unitaires et intégration sur toute la logique métier, E2E <strong>uniquement sur les parcours critiques</strong> — pas de 100 % de couverture inutile.</p>
+<p>Mais surtout, je valide le produit <strong>en situation réelle</strong> : une <strong>recette scénarisée en préproduction iso-prod</strong>, des <strong>tests de charge et de performance</strong> sous trafic simulé, et des tests <strong>sur devices réels</strong> avec des jeux de données réalistes, avant chaque release.</p>
+<p>Et je garantis la <strong>conformité aux canaux de distribution</strong> : côté mobile — pre-launch report de la Play Console, bêta TestFlight, guidelines Apple et Google, signatures et certificats ; côté web — performance, sécurité, RGAA et checklist avant publication.</p>
+<p>L&#39;accessibilité RGAA reste un point dur, imposé par le contexte des collectivités.</p>
+<hr>
+<h2>Slide 18 — 05 · Gestion produit et relation client <em>(intercalaire)</em>  ⏱️ ~5 s</h2>
 <p>Une plateforme, ça vit : voyons comment on gère le produit et la relation avec les collectivités.</p>
+<hr>
 <h2>Slide 19 — Gestion produit &amp; évolutions  ⏱️ ~60 s</h2>
-<p>Chaque demande d&#39;évolution passe par un <strong>processus</strong> clair : retour terrain, cadrage produit, analyse d&#39;impact, arbitrage interne, puis roadmap — <strong>ou report, ou refus</strong>.
-Pour prioriser, on regarde : la valeur métier pour plusieurs collectivités, l&#39;effort, les risques (sécurité, RGPD), la capacité technique de l&#39;équipe et le coût.
-Trois exemples de demandes : la <strong>cartographie temps réel</strong> (fort intérêt mais gros impact perf, via WebSocket), les <strong>photos HD</strong> (avec compression et attention RGPD), et un <strong>chatbot citoyen</strong> (cadrage fort, effet de mode IA à surveiller).
-Le principe : une bonne idée doit être <strong>cadrée</strong>. Si c&#39;est trop spécifique, trop coûteux ou trop risqué, on recadre, on reporte, ou on n&#39;intègre pas.</p>
+<p>Chaque demande d&#39;évolution passe par un <strong>processus</strong> clair : retour terrain → cadrage produit → analyse d&#39;impact → arbitrage interne → puis roadmap, <strong>ou report, ou refus</strong>.</p>
+<p>Pour prioriser, je regarde : la valeur métier pour plusieurs collectivités, l&#39;effort, les risques (sécurité, RGPD), la capacité technique de l&#39;équipe et le coût.</p>
+<p>Trois exemples de demandes : la <strong>cartographie temps réel</strong> (fort intérêt mais gros impact perf), les <strong>photos HD</strong> (compression + attention RGPD), un <strong>chatbot citoyen</strong> (effet de mode IA à surveiller).</p>
+<p>Le principe : une bonne idée doit être <strong>cadrée</strong>. Si c&#39;est trop spécifique, trop coûteux ou trop risqué, on recadre, on reporte, ou on n&#39;intègre pas.</p>
+<hr>
 <h2>Slide 20 — Suivi, démonstrations et satisfaction  ⏱️ ~50 s</h2>
-<p>La relation client est <strong>structurée autour d&#39;un point d&#39;entrée unique</strong> : le Product Owner centralise les échanges, les développeurs ne sont pas sollicités directement, et les décisions sont tracées.
-On fait des <strong>points réguliers</strong> avec les collectivités pilotes, une démo à chaque fin de cycle important, et un comité de pilotage mensuel pour les arbitrages.
-La <strong>préproduction</strong> sert de validation explicite avant livraison, ce qui réduit les incompréhensions.
-Et on suit quelques <strong>indicateurs simples</strong> : satisfaction, respect des délais, avancement de la roadmap, incidents bloquants et budget consommé.</p>
-<h2>Slide 21 — 06 · Inclusion et management (intercalaire)  ⏱️ ~5 s</h2>
-<p>Dernier point, et pas le moindre : l&#39;humain. Comment on fait travailler l&#39;équipe durablement.</p>
+<p>La relation client est <strong>structurée autour d&#39;un point d&#39;entrée unique</strong> : le Product Owner centralise les échanges, les développeurs ne sont pas sollicités directement, et les décisions sont tracées.</p>
+<p>On fait des <strong>points réguliers</strong> avec les collectivités pilotes, une démo à chaque fin de cycle, un comité de pilotage mensuel pour les arbitrages.</p>
+<p>La <strong>préproduction</strong> sert de validation explicite avant livraison, ce qui réduit les incompréhensions.</p>
+<p>Et on suit quelques <strong>indicateurs simples</strong> : satisfaction, respect des délais, avancement de la roadmap, incidents bloquants, budget consommé.</p>
+<hr>
+<h2>Slide 21 — 06 · Inclusion et management <em>(intercalaire)</em>  ⏱️ ~5 s</h2>
+<p>Dernier point, et pas le moindre : l&#39;humain. Comment faire travailler l&#39;équipe durablement.</p>
+<hr>
 <h2>Slide 22 — Inclusion &amp; management  ⏱️ ~55 s</h2>
-<p>Trois angles. Sur la <strong>charge cognitive</strong> : des réunions courtes et préparées, chaque décision formalisée à l&#39;écrit, un suivi asynchrone, des canaux clairs — les demandes client passent uniquement par le PO — et un découpage des tâches lisible.
-Sur le <strong>handicap</strong> : fournir le matériel adapté (écrans, souris ergonomique…) et des outils accessibles et configurables.
-Sur l&#39;<strong>efficacité collective</strong> : on suit le moral, la motivation et la vélocité de l&#39;équipe, et on lit ces indicateurs <strong>collectivement</strong>, pour éviter toute discrimination individuelle.
-Le point clé : l&#39;inclusion n&#39;est pas seulement une question éthique, elle <strong>améliore aussi l&#39;organisation</strong> — moins d&#39;interruptions, plus de temps sur la vraie valeur.</p>
+<p>Trois angles.</p>
+<p>Sur la <strong>charge cognitive</strong> : des réunions courtes et préparées, chaque décision formalisée à l&#39;écrit, un suivi asynchrone, des canaux clairs — les demandes client passent uniquement par le PO.</p>
+<p>Sur le <strong>handicap</strong> : fournir le matériel adapté (écrans, souris ergonomique…) et des outils accessibles et configurables.</p>
+<p>Sur l&#39;<strong>efficacité collective</strong> : on suit le moral, la motivation et la vélocité de l&#39;équipe, et on lit ces indicateurs <strong>collectivement</strong>, pour éviter toute discrimination individuelle.</p>
+<p>Le point clé : l&#39;inclusion n&#39;est pas qu&#39;une question éthique, elle <strong>améliore aussi l&#39;organisation</strong> — moins d&#39;interruptions, plus de temps sur la vraie valeur.</p>
+<hr>
 <h2>Slide 23 — Conclusion  ⏱️ ~45 s</h2>
-<p>Pour résumer : GreenCity Tech peut passer d&#39;un prototype fragile à une <strong>plateforme multi-collectivités</strong> plus fiable, plus lisible et plus soutenable.
-<strong>Mieux livrer</strong> : équipe structurée, rôles clairs, versioning et pipeline CI/CD.
-<strong>Mieux exploiter</strong> : environnements séparés, supervision, déploiements fiables, sécurité renforcée.
-<strong>Mieux piloter</strong> : un PO comme point d&#39;entrée, des demandes qualifiées, des arbitrages formalisés et une roadmap partagée.
-Le tout de façon <strong>progressive, défendable et réaliste</strong> par rapport à la taille de l&#39;équipe. L&#39;idée n&#39;est pas de livrer seulement <em>plus vite</em>, mais de livrer <strong>mieux</strong>.</p>
+<p>Pour résumer : GreenCity Tech peut passer d&#39;un prototype fragile à une <strong>plateforme multi-collectivités</strong> plus fiable, plus lisible et plus soutenable.</p>
+<p><strong>Mieux livrer</strong> : équipe structurée, rôles clairs, versioning et pipeline CI/CD.</p>
+<p><strong>Mieux exploiter</strong> : environnements séparés, supervision, déploiements fiables, sécurité renforcée.</p>
+<p><strong>Mieux piloter</strong> : un PO comme point d&#39;entrée, des demandes qualifiées, des arbitrages formalisés, un budget suivi et une roadmap partagée.</p>
+<p>Le tout de façon <strong>progressive, défendable et réaliste</strong>. L&#39;idée n&#39;est pas de livrer seulement <em>plus vite</em>, mais de livrer <strong>mieux</strong>.</p>
+<hr>
 <h2>Slide 24 — Merci  ⏱️ ~10 s</h2>
 <p>Merci de votre attention. Je suis à votre disposition pour vos questions.</p>
 <hr>
 <h3>Repères de timing</h3>
 <ul>
-<li>Bloc 1 (slides 1-3) : ~1 min 45</li>
-<li>Bloc Organisation &amp; budget (4-8) : ~3 min 35</li>
-<li>Bloc Technique (9-14) : ~5 min 20</li>
-<li>Bloc Qualité &amp; tests (15-17) : ~2 min 05</li>
-<li>Bloc Produit/Client (18-20) : ~2 min</li>
-<li>Bloc Humain (21-22) : ~1 min</li>
-<li>Conclusion (23-24) : ~1 min</li>
-<li><strong>Total ≈ 17-19 min</strong> de parole + marge pour les respirations → ~20 min. Garde du temps pour les questions.</li>
+<li>Bloc 1 <em>(slides 1-3)</em> : ~1 min 45</li>
+<li>Bloc Organisation &amp; budget <em>(4-8)</em> : ~3 min 35</li>
+<li>Bloc Technique <em>(9-14)</em> : ~5 min 20</li>
+<li>Bloc Qualité &amp; tests <em>(15-17)</em> : ~2 min 05</li>
+<li>Bloc Produit/Client <em>(18-20)</em> : ~2 min</li>
+<li>Bloc Humain <em>(21-22)</em> : ~1 min</li>
+<li>Conclusion <em>(23-24)</em> : ~1 min</li>
 </ul>
-<p>👉 Pour les questions du jury, appuie-toi sur <strong>../redaction/questions_sensibles_et_reponses.md</strong> (pourquoi pas de QA dédié, pas de Kubernetes, VPS + Docker, etc.).</p>
+<p><strong>Total ≈ 17-19 min</strong> de parole + respirations → ~20 min. Garde du temps pour les questions.</p>
+<p>👉 Pour les questions du jury, appuie-toi sur <strong>questions_sensibles_et_reponses.md</strong> (pas de QA dédié, pas de Kubernetes, suivi budgétaire, tests en situation, etc.).</p>
 </article><article class="doc" id="doc-2" hidden><div class="doc-meta">redaction/notes-orales-cue-cards.md</div><h1>Cue-cards — GreenCity Tech (Liam Cariou)</h1>
 <blockquote>
 <p>Antisèche : 3-5 puces par slide, juste les points à ne pas oublier.
@@ -291,7 +330,7 @@ Le tout de façon <strong>progressive, défendable et réaliste</strong> par rap
 <p><strong>7 · Arbitrages &amp; budget</strong></p>
 <ul>
 <li><strong>Budget projet</strong> (ordres de grandeur) : ~30 k€/mois → <strong>~120 k€ sur ~4 mois</strong>.</li>
-<li>Postes : <strong>RH ~95 %</strong> (~240 €/j/pers en moy.), infra &amp; outils sobres. Cadrage DevOps 13 j / ~8,45 k€ = une ligne dedans.</li>
+<li>RH ~95 %, <strong>coûts/j différenciés</strong> : dev ~225 € · PO ~250 € · DevOps senior ~300 €.</li>
 <li>Arbitrages : capitaliser sur l&#39;équipe, DevOps senior, infra simple, pas de QA dédié.</li>
 <li>(Chiffrage → le <strong>pilotage</strong> vient juste après, slide 8.)</li>
 </ul>
@@ -1060,7 +1099,7 @@ Demandes client maîtrisées
 <h2>8. Suivi budgétaire, écarts et incidents</h2>
 <h3>Comment suivez-vous concrètement le budget dans le temps ?</h3>
 <p>Réponse défendable :</p>
-<p>Je raisonne au niveau du budget <strong>projet</strong> (RH de l&#39;équipe, infrastructure, outils) — de l&#39;ordre de 30 k€/mois, ~120 k€ sur la phase de structuration, la RH pesant l&#39;essentiel. Au-delà de cette estimation, je mets en place un tableau de bord alimenté en continu : pour chaque <strong>poste</strong>, le prévu, le consommé et le reste à faire, plus un total à date. Ces données sont produites régulièrement et communiquées au contrôle de gestion. On passe ainsi d&#39;une estimation figée à un pilotage vivant.</p>
+<p>Je raisonne au niveau du budget <strong>projet</strong> (RH de l&#39;équipe, infrastructure, outils) — de l&#39;ordre de 30 k€/mois, ~120 k€ sur la phase de structuration, la RH pesant l&#39;essentiel, avec des coûts journaliers <strong>différenciés par profil</strong> (développeur ~225 €, Product Owner ~250 €, DevOps senior ~300 €). Au-delà de cette estimation, je mets en place un tableau de bord alimenté en continu : pour chaque <strong>poste</strong>, le prévu, le consommé et le reste à faire, plus un total à date. Ces données sont produites régulièrement et communiquées au contrôle de gestion. On passe ainsi d&#39;une estimation figée à un pilotage vivant.</p>
 <h3>Comment analysez-vous les écarts et que faites-vous en cas de dépassement ?</h3>
 <p>Réponse défendable :</p>
 <p>Je compare en continu le réel au prévu et je calcule l&#39;écart en pourcentage, avec des seuils d&#39;alerte : sous 5 % c&#39;est sous contrôle, entre 5 et 10 % je passe en vigilance et j&#39;analyse la cause, au-delà de 10 % c&#39;est une alerte. En cas d&#39;écart, l&#39;action corrective est cadrée : analyse de cause, re-priorisation du backlog, réallocation, arbitrage avec le Product Owner et la direction — et si on passe au rouge, alerte immédiate à la direction financière. L&#39;objectif est de réagir tôt, pas de constater trop tard.</p>
