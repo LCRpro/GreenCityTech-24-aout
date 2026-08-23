@@ -9,7 +9,7 @@ fragile à une plateforme fiable et industrialisée.
 | Élément | Contenu |
 |---|---|
 | **[dashboard.html](dashboard.html)** | 🎤 **Tableau de bord d'oral** — lit tous les `.md` + boutons pour lancer la présentation. **Point d'entrée le jour J.** |
-| **[slides/](slides/)** | 🎯 **La présentation** : les 23 slides HTML, `presentation.html` (mode plein écran), l'export `GreenCityTech-LiamCariou.pdf`, `shared.css` et les logos. |
+| **[slides/](slides/)** | 🎯 **La présentation** : les 24 slides HTML, `presentation.html` (mode plein écran), l'export `GreenCityTech-LiamCariou.pdf`, `shared.css` et les logos. |
 | **[livrables/](livrables/)** | Les 11 livrables écrits (cadrage, architecture, pipeline, qualité, budget…). |
 | **[redaction/](redaction/)** | Prépa écrite & orale : brief projet, parties 1-5, synthèse orale, Q&A jury, notes orales (script + cue-cards). |
 | **[sujet/](sujet/)** | Énoncé du partiel (images). |
