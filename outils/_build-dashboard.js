@@ -76,13 +76,13 @@ const page = `<!DOCTYPE html>
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap");
 :root{
   --violet:#7C3AED;--violet-deep:#6D28D9;--violet-soft:#A78BFA;--magenta:#EC4899;--indigo:#1E1B4B;
-  --bg:#efe9fb;--text:#1E1B4B;--sidebar:#FAF7FF;--panel:#ffffff;
-  --border:rgba(30,27,75,.12);--muted:#6b6480;
+  --bg:#ffffff;--text:#1e2230;--sidebar:#f6f6f8;--panel:#ffffff;
+  --border:rgba(18,18,30,.10);--muted:#6b7280;
   --h1:#1E1B4B;--h2:#6D28D9;
-  --code-bg:#F3E8FF;--pre-bg:#1E1B4B;--pre-text:#eee;
-  --quote-bg:#F3E8FF;--quote-text:#241B3D;
-  --field-bg:#fff;--navhover:#F3E8FF;--th-bg:#1E1B4B;--th-text:#fff;
-  --shadow:rgba(30,27,75,.10);
+  --code-bg:#eef0f2;--pre-bg:#1E1B4B;--pre-text:#eee;
+  --quote-bg:#f5f6f8;--quote-text:#2a2a35;
+  --field-bg:#ffffff;--navhover:#eef0f2;--th-bg:#1E1B4B;--th-text:#fff;
+  --shadow:rgba(15,15,30,.08);
   --topbar:linear-gradient(120deg,#1E1B4B,#6D28D9);
 }
 :root[data-theme="dark"]{
