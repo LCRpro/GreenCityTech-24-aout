@@ -8,7 +8,7 @@ fragile à une plateforme fiable et industrialisée.
 
 | Élément | Contenu |
 |---|---|
-| **[dashboard.html](dashboard.html)** | 🎤 **Tableau de bord d'oral** — lit tous les `.md` + boutons pour lancer la présentation. **Point d'entrée le jour J.** |
+| **[index.html](index.html)** | 🎤 **Tableau de bord d'oral** (thème clair/sombre) — lit tous les `.md` + glossaire + boutons pour lancer la présentation. **Point d'entrée le jour J.** |
 | **[slides/](slides/)** | 🎯 **La présentation** : les 24 slides HTML, `presentation.html` (mode plein écran), l'export `GreenCityTech-LiamCariou.pdf`, `shared.css` et les logos. |
 | **[livrables/](livrables/)** | Les 11 livrables écrits (cadrage, architecture, pipeline, qualité, budget…). |
 | **[redaction/](redaction/)** | Prépa écrite & orale : brief projet, parties 1-5, synthèse orale, Q&A jury, notes orales (script + cue-cards). |
@@ -19,7 +19,7 @@ fragile à une plateforme fiable et industrialisée.
 
 ## Pour présenter (le jour J)
 
-1. Ouvre **[dashboard.html](dashboard.html)** → tes notes à gauche.
+1. Ouvre **[index.html](index.html)** → tes notes à gauche.
 2. Clique **« ▶ Lancer la présentation »** → ouvre [slides/presentation.html](slides/presentation.html).
 3. Appuie sur **F** (plein écran) puis navigue aux **flèches** / **espace**.
 
@@ -39,5 +39,5 @@ Fallback : le PDF **[slides/GreenCityTech-LiamCariou.pdf](slides/GreenCityTech-L
   ```bash
   node outils/_build-pdf.js          # → slides/GreenCityTech-LiamCariou.pdf
   node outils/_shot.js slides/*.html # → previews/ (aperçus PNG)
-  node outils/_build-dashboard.js    # → dashboard.html
+  node outils/_build-dashboard.js    # → index.html
   ```

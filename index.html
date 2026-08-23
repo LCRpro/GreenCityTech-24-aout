@@ -4,13 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oral GreenCity Tech — Liam Cariou</title>
+<script>try{var t=localStorage.getItem('gct_theme')||((window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <style>
-:root{--violet:#7C3AED;--violet-deep:#6D28D9;--magenta:#EC4899;--indigo:#1E1B4B;--lilac:#F3E8FF;--foam:#FAF7FF;--ink:#241B3D;--muted:#6b6480;--line:rgba(30,27,75,.12);}
+:root{
+  --violet:#7C3AED;--violet-deep:#6D28D9;--violet-soft:#A78BFA;--magenta:#EC4899;--indigo:#1E1B4B;
+  --bg:#efe9fb;--text:#1E1B4B;--sidebar:#FAF7FF;--panel:#ffffff;
+  --border:rgba(30,27,75,.12);--muted:#6b6480;
+  --h1:#1E1B4B;--h2:#6D28D9;
+  --code-bg:#F3E8FF;--pre-bg:#1E1B4B;--pre-text:#eee;
+  --quote-bg:#F3E8FF;--quote-text:#241B3D;
+  --field-bg:#fff;--navhover:#F3E8FF;--th-bg:#1E1B4B;--th-text:#fff;
+  --shadow:rgba(30,27,75,.10);
+}
+:root[data-theme="dark"]{
+  --bg:#141220;--text:#e7e3f5;--sidebar:#1b1830;--panel:#211d36;
+  --border:rgba(255,255,255,.10);--muted:#a79fc4;
+  --h1:#f0ecff;--h2:#b79bff;
+  --code-bg:#2a2542;--pre-bg:#0e0c17;--pre-text:#e7e3f5;
+  --quote-bg:#241f3a;--quote-text:#d8d2ee;
+  --field-bg:#211d36;--navhover:#2a2542;--th-bg:#37306b;--th-text:#fff;
+  --shadow:rgba(0,0,0,.45);
+}
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
-body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--indigo);background:#efe9fb;}
-.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:16px;padding:14px 22px;
-  background:linear-gradient(120deg,var(--indigo),var(--violet-deep));color:#fff;box-shadow:0 6px 20px rgba(30,27,75,.25);}
+body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);background:var(--bg);transition:background .2s,color .2s;}
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:14px;padding:14px 22px;
+  background:linear-gradient(120deg,var(--indigo),var(--violet-deep));color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.28);}
 .topbar .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;}
 .topbar .brand img{width:38px;height:38px;}
 .topbar .sub{opacity:.8;font-size:13px;font-weight:600;}
@@ -20,33 +39,35 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--indigo);backg
 .btn:active{transform:translateY(1px);}
 .btn.primary{background:linear-gradient(135deg,var(--magenta),#f472b6);color:#fff;box-shadow:0 6px 16px rgba(236,72,153,.4);}
 .btn.ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.25);}
-.layout{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 66px);}
-.sidebar{background:var(--foam);border-right:1px solid var(--line);padding:16px;overflow-y:auto;height:calc(100vh - 66px);position:sticky;top:66px;}
-.filter{width:100%;padding:10px 14px;border-radius:12px;border:1px solid var(--line);font-size:14px;margin-bottom:12px;background:#fff;}
-.nav-group{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--violet-deep);margin:16px 6px 6px;}
-.nav-item{display:block;width:100%;text-align:left;padding:9px 12px;margin:2px 0;border-radius:10px;border:0;background:transparent;
-  cursor:pointer;font-size:14.5px;font-weight:600;color:var(--indigo);}
-.nav-item:hover{background:var(--lilac);}
-.nav-item.active{background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#fff;}
-.content{padding:34px 46px;max-width:900px;margin:0 auto;width:100%;}
-.doc-meta{font-size:12px;color:var(--muted);font-family:monospace;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--line);}
-.content{font-size:var(--fs,17px);line-height:1.7;}
-.content h1{font-size:1.9em;color:var(--indigo);border-bottom:3px solid var(--violet);padding-bottom:.2em;margin-top:0;}
-.content h2{font-size:1.45em;color:var(--violet-deep);margin-top:1.6em;}
-.content h3{font-size:1.2em;color:var(--indigo);margin-top:1.3em;}
-.content a{color:var(--violet-deep);}
-.content code{background:var(--lilac);padding:2px 6px;border-radius:6px;font-size:.9em;}
-.content pre{background:var(--indigo);color:#eee;padding:16px;border-radius:12px;overflow-x:auto;}
-.content pre code{background:transparent;color:inherit;padding:0;}
-.content blockquote{border-left:4px solid var(--magenta);margin:1em 0;padding:.4em 1em;background:var(--lilac);border-radius:0 10px 10px 0;color:var(--ink);}
-.content table{border-collapse:collapse;width:100%;margin:1em 0;box-shadow:0 6px 18px rgba(30,27,75,.08);border-radius:10px;overflow:hidden;}
-.content th{background:var(--indigo);color:#fff;text-align:left;padding:10px 12px;font-size:.92em;}
-.content td{background:#fff;padding:9px 12px;border-top:1px solid var(--line);}
-.content ul,.content ol{padding-left:1.4em;}
-.content li{margin:.3em 0;}
-.content hr{border:0;border-top:1px solid var(--line);margin:1.6em 0;}
+.ico-btn{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.14);
+  color:#fff;cursor:pointer;font-weight:800;font-size:16px;display:inline-flex;align-items:center;justify-content:center;}
+.ico-btn:hover{background:rgba(255,255,255,.24);}
 .fs-ctl{display:inline-flex;gap:4px;}
 .fs-ctl button{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.14);color:#fff;cursor:pointer;font-weight:800;font-size:15px;}
+.layout{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 66px);}
+.sidebar{background:var(--sidebar);border-right:1px solid var(--border);padding:16px;overflow-y:auto;height:calc(100vh - 66px);position:sticky;top:66px;}
+.filter{width:100%;padding:10px 14px;border-radius:12px;border:1px solid var(--border);font-size:14px;margin-bottom:12px;background:var(--field-bg);color:var(--text);}
+.nav-group{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--h2);margin:16px 6px 6px;}
+.nav-item{display:block;width:100%;text-align:left;padding:9px 12px;margin:2px 0;border-radius:10px;border:0;background:transparent;
+  cursor:pointer;font-size:14.5px;font-weight:600;color:var(--text);}
+.nav-item:hover{background:var(--navhover);}
+.nav-item.active{background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#fff;}
+.content{padding:34px 46px;max-width:900px;margin:0 auto;width:100%;font-size:var(--fs,17px);line-height:1.7;}
+.doc-meta{font-size:12px;color:var(--muted);font-family:monospace;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.content h1{font-size:1.9em;color:var(--h1);border-bottom:3px solid var(--violet);padding-bottom:.2em;margin-top:0;}
+.content h2{font-size:1.45em;color:var(--h2);margin-top:1.6em;}
+.content h3{font-size:1.2em;color:var(--h1);margin-top:1.3em;}
+.content a{color:var(--h2);}
+.content code{background:var(--code-bg);color:var(--text);padding:2px 6px;border-radius:6px;font-size:.9em;}
+.content pre{background:var(--pre-bg);color:var(--pre-text);padding:16px;border-radius:12px;overflow-x:auto;}
+.content pre code{background:transparent;color:inherit;padding:0;}
+.content blockquote{border-left:4px solid var(--magenta);margin:1em 0;padding:.4em 1em;background:var(--quote-bg);border-radius:0 10px 10px 0;color:var(--quote-text);}
+.content table{border-collapse:collapse;width:100%;margin:1em 0;box-shadow:0 6px 18px var(--shadow);border-radius:10px;overflow:hidden;}
+.content th{background:var(--th-bg);color:var(--th-text);text-align:left;padding:10px 12px;font-size:.92em;}
+.content td{background:var(--panel);color:var(--text);padding:9px 12px;border-top:1px solid var(--border);}
+.content ul,.content ol{padding-left:1.4em;}
+.content li{margin:.3em 0;}
+.content hr{border:0;border-top:1px solid var(--border);margin:1.6em 0;}
 @media print{.topbar,.sidebar{display:none;}.layout{grid-template-columns:1fr;}.doc[hidden]{display:block!important;}}
 </style>
 </head>
@@ -54,6 +75,7 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--indigo);backg
 <div class="topbar">
   <div class="brand"><img src="slides/logo-greencity-mark.png" alt=""><div>GreenCity Tech<div class="sub">Oral · Liam Cariou · 24 août 2026</div></div></div>
   <div class="spacer"></div>
+  <button id="themeBtn" class="ico-btn" title="Thème clair / sombre">🌙</button>
   <div class="fs-ctl"><button id="fsMinus" title="Réduire le texte">A−</button><button id="fsPlus" title="Agrandir le texte">A+</button></div>
   <a class="btn primary" href="slides/presentation.html" target="_blank">▶ Lancer la présentation</a>
   <a class="btn ghost" href="slides/GreenCityTech-LiamCariou.pdf" target="_blank">📄 PDF</a>
@@ -61,7 +83,7 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--indigo);backg
 <div class="layout">
   <aside class="sidebar">
     <input class="filter" id="filter" placeholder="🔍 Filtrer les documents…">
-    <nav id="nav"><div class="nav-group">🎤 Prépa orale</div><button class="nav-item" data-id="doc-0" title="redaction/00-brief-projet.md">Brief projet</button><button class="nav-item" data-id="doc-1" title="redaction/notes-orales-script.md">Script oral (à dire)</button><button class="nav-item" data-id="doc-2" title="redaction/notes-orales-cue-cards.md">Cue-cards (antisèche)</button><button class="nav-item" data-id="doc-3" title="redaction/synthese_orale_greencity_tech.md">Synthèse orale (fil rouge)</button><button class="nav-item" data-id="doc-4" title="redaction/questions_sensibles_et_reponses.md">Q&amp;A jury</button><div class="nav-group">📝 Contenu détaillé</div><button class="nav-item" data-id="doc-5" title="redaction/partie_1_organisation_methodologie_devops.md">Partie 1 — Organisation &amp; méthodo</button><button class="nav-item" data-id="doc-6" title="redaction/partie_2_mise_en_oeuvre_technique_devops.md">Partie 2 — Mise en œuvre technique</button><button class="nav-item" data-id="doc-7" title="redaction/partie_3_qualite_conformite_securite.md">Partie 3 — Qualité &amp; conformité</button><button class="nav-item" data-id="doc-8" title="redaction/partie_4_relation_client_evolutions.md">Partie 4 — Relation client &amp; évolutions</button><button class="nav-item" data-id="doc-9" title="redaction/partie_5_inclusion_management_equipe.md">Partie 5 — Inclusion &amp; management</button><button class="nav-item" data-id="doc-10" title="redaction/presentation.md">Présentation (détaillée)</button><button class="nav-item" data-id="doc-11" title="redaction/presentation_synthetique.md">Présentation synthétique</button><button class="nav-item" data-id="doc-12" title="redaction/liste_livrables_presentation.md">Liste des livrables</button><div class="nav-group">📦 Livrables</div><button class="nav-item" data-id="doc-13" title="livrables/README.md">README livrables</button><button class="nav-item" data-id="doc-14" title="livrables/01_note_cadrage_devops.md">01 — Note de cadrage</button><button class="nav-item" data-id="doc-15" title="livrables/02_schema_architecture_devops.md">02 — Schéma architecture</button><button class="nav-item" data-id="doc-16" title="livrables/03_exemple_pipeline_ci_cd.md">03 — Pipeline CI/CD</button><button class="nav-item" data-id="doc-17" title="livrables/04_strategie_deploiement_et_rollback.md">04 — Déploiement &amp; rollback</button><button class="nav-item" data-id="doc-18" title="livrables/05_proposition_outillage.md">05 — Proposition d'outillage</button><button class="nav-item" data-id="doc-19" title="livrables/06_plan_qualite_tests_conformite.md">06 — Plan qualité &amp; tests</button><button class="nav-item" data-id="doc-20" title="livrables/07_indicateurs_qualite_et_pilotage.md">07 — Indicateurs qualité</button><button class="nav-item" data-id="doc-21" title="livrables/08_gestion_produit_et_evolutions.md">08 — Gestion produit</button><button class="nav-item" data-id="doc-22" title="livrables/09_plan_de_suivi_et_demonstrations.md">09 — Suivi &amp; démonstrations</button><button class="nav-item" data-id="doc-23" title="livrables/10_inclusion_et_management.md">10 — Inclusion &amp; management</button><button class="nav-item" data-id="doc-24" title="livrables/11_budget_previsionnel.md">11 — Budget prévisionnel</button></nav>
+    <nav id="nav"><div class="nav-group">🎤 Prépa orale</div><button class="nav-item" data-id="doc-0" title="redaction/00-brief-projet.md">Brief projet</button><button class="nav-item" data-id="doc-1" title="redaction/notes-orales-script.md">Script oral (à dire)</button><button class="nav-item" data-id="doc-2" title="redaction/notes-orales-cue-cards.md">Cue-cards (antisèche)</button><button class="nav-item" data-id="doc-3" title="redaction/synthese_orale_greencity_tech.md">Synthèse orale (fil rouge)</button><button class="nav-item" data-id="doc-4" title="redaction/questions_sensibles_et_reponses.md">Q&amp;A jury</button><div class="nav-group">📖 Référence</div><button class="nav-item" data-id="doc-5" title="redaction/glossaire-technique.md">Glossaire technique &amp; outils</button><div class="nav-group">📝 Contenu détaillé</div><button class="nav-item" data-id="doc-6" title="redaction/partie_1_organisation_methodologie_devops.md">Partie 1 — Organisation &amp; méthodo</button><button class="nav-item" data-id="doc-7" title="redaction/partie_2_mise_en_oeuvre_technique_devops.md">Partie 2 — Mise en œuvre technique</button><button class="nav-item" data-id="doc-8" title="redaction/partie_3_qualite_conformite_securite.md">Partie 3 — Qualité &amp; conformité</button><button class="nav-item" data-id="doc-9" title="redaction/partie_4_relation_client_evolutions.md">Partie 4 — Relation client &amp; évolutions</button><button class="nav-item" data-id="doc-10" title="redaction/partie_5_inclusion_management_equipe.md">Partie 5 — Inclusion &amp; management</button><button class="nav-item" data-id="doc-11" title="redaction/presentation.md">Présentation (détaillée)</button><button class="nav-item" data-id="doc-12" title="redaction/presentation_synthetique.md">Présentation synthétique</button><button class="nav-item" data-id="doc-13" title="redaction/liste_livrables_presentation.md">Liste des livrables</button><div class="nav-group">📦 Livrables</div><button class="nav-item" data-id="doc-14" title="livrables/README.md">README livrables</button><button class="nav-item" data-id="doc-15" title="livrables/01_note_cadrage_devops.md">01 — Note de cadrage</button><button class="nav-item" data-id="doc-16" title="livrables/02_schema_architecture_devops.md">02 — Schéma architecture</button><button class="nav-item" data-id="doc-17" title="livrables/03_exemple_pipeline_ci_cd.md">03 — Pipeline CI/CD</button><button class="nav-item" data-id="doc-18" title="livrables/04_strategie_deploiement_et_rollback.md">04 — Déploiement &amp; rollback</button><button class="nav-item" data-id="doc-19" title="livrables/05_proposition_outillage.md">05 — Proposition d'outillage</button><button class="nav-item" data-id="doc-20" title="livrables/06_plan_qualite_tests_conformite.md">06 — Plan qualité &amp; tests</button><button class="nav-item" data-id="doc-21" title="livrables/07_indicateurs_qualite_et_pilotage.md">07 — Indicateurs qualité</button><button class="nav-item" data-id="doc-22" title="livrables/08_gestion_produit_et_evolutions.md">08 — Gestion produit</button><button class="nav-item" data-id="doc-23" title="livrables/09_plan_de_suivi_et_demonstrations.md">09 — Suivi &amp; démonstrations</button><button class="nav-item" data-id="doc-24" title="livrables/10_inclusion_et_management.md">10 — Inclusion &amp; management</button><button class="nav-item" data-id="doc-25" title="livrables/11_budget_previsionnel.md">11 — Budget prévisionnel</button></nav>
   </aside>
   <main class="content" id="content">
     <article class="doc" id="doc-0" hidden><div class="doc-meta">redaction/00-brief-projet.md</div><h1>🧭 Brief projet — GreenCity Tech (remise en contexte)</h1>
@@ -1122,7 +1144,96 @@ Demandes client maîtrisées
 <h3>Comment garantissez-vous la conformité aux canaux de distribution ?</h3>
 <p>Réponse défendable :</p>
 <p>Côté mobile, on s&#39;appuie sur les mécanismes des stores : pre-launch report de la Play Console, bêta via TestFlight, respect des guidelines techniques Apple et Google, gestion des signatures et certificats. Côté web, on vérifie la performance, la sécurité et le RGAA, avec une checklist de conformité avant chaque publication. L&#39;objectif est de publier sans blocage et de rester conforme aux exigences de chaque canal.</p>
-</article><article class="doc" id="doc-5" hidden><div class="doc-meta">redaction/partie_1_organisation_methodologie_devops.md</div><h1>Partie 1 — Organisation et méthodologie DevOps</h1>
+</article><article class="doc" id="doc-5" hidden><div class="doc-meta">redaction/glossaire-technique.md</div><h1>📖 Glossaire technique &amp; outils</h1>
+<blockquote>
+<p>Les termes et outils cités dans la présentation, expliqués simplement — pour comprendre et <strong>défendre</strong> chaque choix à l&#39;oral.</p>
+</blockquote>
+<h2>DevOps &amp; CI/CD</h2>
+<ul>
+<li><strong>DevOps</strong> — culture + pratiques qui rapprochent le développement (<em>Dev</em>) et l&#39;exploitation (<em>Ops</em>) pour livrer plus vite <strong>et</strong> plus fiablement.</li>
+<li><strong>CI/CD</strong> — <em>Intégration Continue / Déploiement Continu</em> : automatiser le build, les tests et la mise en production.</li>
+<li><strong>Pipeline</strong> — la suite d&#39;étapes automatisées déclenchées à chaque <code>push</code>.</li>
+<li><strong>Stage</strong> — une étape du pipeline (contrôles, build, tests, déploiement…).</li>
+<li><strong>Lint</strong> — analyse automatique du code (style, erreurs de syntaxe).</li>
+<li><strong>Build</strong> — compilation/assemblage de l&#39;application prête à déployer.</li>
+<li><strong>Infrastructure as Code (IaC)</strong> — décrire l&#39;infrastructure dans des fichiers versionnés → reproductible et traçable.</li>
+<li><strong>Rollback</strong> — revenir à la version précédente en cas de problème.</li>
+<li><strong>Smoke test</strong> — test rapide après déploiement pour vérifier que l&#39;essentiel fonctionne.</li>
+<li><strong>GitHub Actions</strong> — l&#39;outil de CI/CD intégré à GitHub. <strong>GitHub Secrets</strong> — stockage sécurisé des clés/mots de passe pour le pipeline.</li>
+</ul>
+<h2>Conteneurs &amp; déploiement</h2>
+<ul>
+<li><strong>Docker</strong> — empaquette une app + ses dépendances dans un <strong>conteneur</strong> (tourne pareil partout).</li>
+<li><strong>Image / Conteneur</strong> — l&#39;<em>image</em> est le modèle figé ; le <em>conteneur</em> est une instance qui tourne.</li>
+<li><strong>Docker Compose</strong> — décrit et lance plusieurs conteneurs ensemble.</li>
+<li><strong>Registry</strong> — dépôt d&#39;images Docker versionnées.</li>
+<li><strong>VPS</strong> — <em>Virtual Private Server</em> : serveur virtuel loué.</li>
+<li><strong>Traefik</strong> — <em>reverse-proxy</em> : aiguille le trafic vers les bons services et gère le HTTPS.</li>
+<li><strong>Bucket S3</strong> — stockage d&#39;objets (fichiers, photos) dans le cloud.</li>
+</ul>
+<h2>Git &amp; environnements</h2>
+<ul>
+<li><strong>main / develop / feature</strong> — branches Git : production / intégration / fonctionnalité en cours.</li>
+<li><strong>Environnement</strong> — instance isolée : <strong>dev</strong>, <strong>préproduction</strong>, <strong>production</strong>.</li>
+<li><strong>Préproduction iso-prod</strong> — un environnement <strong>identique à la prod</strong> pour valider avant de livrer.</li>
+</ul>
+<h2>Tests</h2>
+<ul>
+<li><strong>Test unitaire</strong> — teste une fonction isolée.</li>
+<li><strong>Test d&#39;intégration</strong> — teste plusieurs composants ensemble.</li>
+<li><strong>Test E2E</strong> (<em>end-to-end</em>) — simule un <strong>parcours utilisateur complet</strong>.</li>
+<li><strong>Jest</strong> — framework de tests JavaScript (unitaires/intégration).</li>
+<li><strong>Cypress</strong> — outil de tests E2E dans le navigateur.</li>
+<li><strong>Test de charge / performance</strong> — vérifie le comportement sous <strong>fort trafic</strong>.</li>
+<li><strong>Recette</strong> — validation fonctionnelle avant mise en production.</li>
+<li><strong>TestFlight</strong> — plateforme Apple pour distribuer une <strong>bêta iOS</strong>.</li>
+<li><strong>Pre-launch report (Play Console)</strong> — rapport automatique de Google qui teste l&#39;app Android sur de <strong>vrais appareils</strong> avant publication.</li>
+<li><strong>Devices réels</strong> — vrais téléphones/tablettes (≠ émulateurs).</li>
+</ul>
+<h2>Supervision &amp; observabilité</h2>
+<ul>
+<li><strong>Supervision / Monitoring</strong> — surveiller l&#39;état des serveurs et services.</li>
+<li><strong>Observabilité</strong> — comprendre l&#39;état interne d&#39;un système via ses données (métriques, logs, traces).</li>
+<li><strong>Netdata</strong> — monitoring <strong>temps réel</strong> de la santé des serveurs (CPU, RAM, disque…).</li>
+<li><strong>UptimeRobot</strong> — vérifie la <strong>disponibilité</strong> d&#39;un site depuis l&#39;extérieur.</li>
+<li><strong>Sentry</strong> — remonte les <strong>erreurs applicatives</strong> (exceptions, fréquence).</li>
+<li><strong>Logs structurés</strong> — journaux formatés (horodatage, niveau, ID) faciles à analyser.</li>
+<li><strong>Alerting</strong> — notifications automatiques quand un seuil est dépassé.</li>
+<li><strong>Astreinte</strong> — la personne prête à intervenir en cas d&#39;incident.</li>
+<li><strong>Post-mortem / REX</strong> — analyse après incident (<em>Retour d&#39;EXpérience</em>) pour éviter la récidive.</li>
+</ul>
+<h2>Qualité, sécurité, conformité</h2>
+<ul>
+<li><strong>Definition of Done (DoD)</strong> — les critères qui définissent quand une tâche est <strong>vraiment terminée</strong>.</li>
+<li><strong>Trivy</strong> — scanner de <strong>vulnérabilités</strong> pour images Docker et dépendances.</li>
+<li><strong>OWASP</strong> — référentiel des principales failles de sécurité web + bonnes pratiques.</li>
+<li><strong>Audit de dépendances</strong> — vérifier les failles connues des librairies utilisées.</li>
+<li><strong>RGPD</strong> — règlement européen sur la <strong>protection des données personnelles</strong>.</li>
+<li><strong>RGAA / WCAG</strong> — référentiels d&#39;<strong>accessibilité</strong> numérique (RGAA = français, WCAG = international).</li>
+</ul>
+<h2>Produit &amp; gestion de projet</h2>
+<ul>
+<li><strong>Backlog</strong> — la liste <strong>priorisée</strong> des tâches/fonctionnalités à faire.</li>
+<li><strong>Sprint</strong> — un cycle de travail court (ici 2 semaines).</li>
+<li><strong>Kanban</strong> — tableau visuel de suivi des tâches (utile pour les incidents/urgences).</li>
+<li><strong>Product Owner (PO)</strong> — porte la vision produit, priorise, fait le lien avec le client.</li>
+<li><strong>Roadmap</strong> — le plan des évolutions dans le temps.</li>
+<li><strong>MoSCoW / « must-have »</strong> — méthode de priorisation (<em>Must / Should / Could / Won&#39;t</em>).</li>
+<li><strong>WebSocket</strong> — connexion <strong>temps réel</strong> bidirectionnelle (ex. carte live).</li>
+<li><strong>API</strong> — interface qui permet à des applications de communiquer.</li>
+</ul>
+<h2>Budget &amp; pilotage</h2>
+<ul>
+<li><strong>TJM</strong> (<em>Taux Journalier Moyen</em>) — tarif <strong>facturé</strong> par jour pour un profil (modèle prestation).</li>
+<li><strong>Coût journalier chargé</strong> — coût <strong>réel</strong> d&#39;un salarié par jour (salaire + charges). ≠ TJM (qui inclut une marge).</li>
+<li><strong>Écart budgétaire</strong> — la différence entre le prévu et le réel.</li>
+<li><strong>Burn rate</strong> — la vitesse de consommation du budget.</li>
+<li><strong>Contrôle de gestion / direction financière</strong> — suivent et arbitrent les budgets.</li>
+<li><strong>Point mort</strong> (<em>break-even</em>) — le seuil où les revenus couvrent les coûts.</li>
+<li><strong>Coût marginal</strong> — le coût d&#39;un client/d&#39;une unité supplémentaire.</li>
+<li><strong>Multi-collectivités</strong> — un seul socle logiciel sert plusieurs clients (mutualisation → coût marginal faible).</li>
+</ul>
+</article><article class="doc" id="doc-6" hidden><div class="doc-meta">redaction/partie_1_organisation_methodologie_devops.md</div><h1>Partie 1 — Organisation et méthodologie DevOps</h1>
 <h2>1. Intention de la partie</h2>
 <p>L&#39;objectif de cette partie est de proposer une organisation DevOps réaliste pour GreenCity Tech, afin de passer d&#39;un prototype développé rapidement à un mode de fonctionnement plus fiable, plus industrialisé et plus lisible pour la direction comme pour les équipes.</p>
 <p>Le projet cumule plusieurs contraintes :</p>
@@ -1771,7 +1882,7 @@ Demandes client maîtrisées
 <li>un nombre limité d&#39;indicateurs de pilotage réellement exploitables.</li>
 </ul>
 <p>La logique générale à conserver est la suivante : proposer une démarche DevOps complète sur le principe, mais volontairement progressive dans sa mise en œuvre, afin qu&#39;elle reste crédible au regard de la taille de l&#39;équipe, du niveau de maturité initial et des contraintes du sujet.</p>
-</article><article class="doc" id="doc-6" hidden><div class="doc-meta">redaction/partie_2_mise_en_oeuvre_technique_devops.md</div><h1>Partie 2 — Mise en œuvre technique DevOps</h1>
+</article><article class="doc" id="doc-7" hidden><div class="doc-meta">redaction/partie_2_mise_en_oeuvre_technique_devops.md</div><h1>Partie 2 — Mise en œuvre technique DevOps</h1>
 <h2>1. Objectif de la partie</h2>
 <p>Cette partie présente la mise en œuvre technique de la démarche DevOps pour GreenCity Tech.</p>
 <p>L’objectif est de passer d’un prototype fragile, déployé manuellement, à une plateforme :</p>
@@ -2544,7 +2655,7 @@ Demandes client maîtrisées
 <li>observer l’état réel du service ;</li>
 <li>permettre un rollback rapide en cas d’incident.</li>
 </ol>
-</article><article class="doc" id="doc-7" hidden><div class="doc-meta">redaction/partie_3_qualite_conformite_securite.md</div><h1>Partie 3 — Qualité, conformité et sécurité applicative</h1>
+</article><article class="doc" id="doc-8" hidden><div class="doc-meta">redaction/partie_3_qualite_conformite_securite.md</div><h1>Partie 3 — Qualité, conformité et sécurité applicative</h1>
 <h2>1. Objectif de la partie</h2>
 <p>Cette partie présente la stratégie qualité, conformité et sécurité applicative proposée pour GreenCity Tech.</p>
 <p>Après avoir structuré l&#39;organisation DevOps et la mise en œuvre technique, l&#39;objectif est de s&#39;assurer que les fonctionnalités livrées sont réellement :</p>
@@ -3097,7 +3208,7 @@ afin que ma collectivité puisse le traiter.
 <li>les indicateurs doivent rester peu nombreux mais suivis régulièrement.</li>
 </ul>
 <p>La logique générale à conserver est la suivante : une chaîne DevOps fiable ne suffit pas si le produit livré n&#39;est pas testé, sécurisé, conforme et réellement utilisable par les citoyens.</p>
-</article><article class="doc" id="doc-8" hidden><div class="doc-meta">redaction/partie_4_relation_client_evolutions.md</div><h1>Partie 4 — Gestion produit, évolutions et priorisation</h1>
+</article><article class="doc" id="doc-9" hidden><div class="doc-meta">redaction/partie_4_relation_client_evolutions.md</div><h1>Partie 4 — Gestion produit, évolutions et priorisation</h1>
 <h2>1. Objectif de la partie</h2>
 <p>Cette partie présente la façon dont GreenCity Tech peut organiser sa gestion produit et piloter les nouvelles évolutions fonctionnelles sans désorganiser le projet.</p>
 <p>Après avoir défini l&#39;organisation DevOps, la mise en œuvre technique et la stratégie qualité, l&#39;objectif est maintenant de répondre à une question centrale : comment faire évoluer une plateforme destinée à plusieurs collectivités tout en gardant une trajectoire réaliste, maîtrisée et compatible avec les capacités de l&#39;équipe ?</p>
@@ -3668,7 +3779,7 @@ afin que ma collectivité puisse le traiter.
 <li>les indicateurs produit permettent de vérifier la valeur réelle après livraison.</li>
 </ul>
 <p>La logique générale à conserver est la suivante : GreenCity Tech ne doit pas seulement livrer plus de fonctionnalités, mais livrer les bonnes fonctionnalités, au bon moment, avec un niveau de risque maîtrisé.</p>
-</article><article class="doc" id="doc-9" hidden><div class="doc-meta">redaction/partie_5_inclusion_management_equipe.md</div><h1>Partie 5 — Inclusion, management d&#39;équipe et accompagnement humain</h1>
+</article><article class="doc" id="doc-10" hidden><div class="doc-meta">redaction/partie_5_inclusion_management_equipe.md</div><h1>Partie 5 — Inclusion, management d&#39;équipe et accompagnement humain</h1>
 <h2>1. Objectif de la partie</h2>
 <p>Cette partie présente les mesures d&#39;inclusion et d&#39;accompagnement humain à mettre en place chez GreenCity Tech.</p>
 <p>Après avoir traité l&#39;organisation DevOps, la mise en œuvre technique, la qualité et la relation client, l&#39;objectif est maintenant de montrer que la transformation ne repose pas uniquement sur des outils ou des processus. Elle dépend aussi de la capacité de l&#39;équipe à travailler durablement dans de bonnes conditions.</p>
@@ -4130,7 +4241,7 @@ afin que ma collectivité puisse le traiter.
 <li>une organisation inclusive est aussi une organisation plus fiable, plus claire et plus durable.</li>
 </ul>
 <p>La logique générale à conserver est la suivante : GreenCity Tech ne doit pas seulement industrialiser sa plateforme, mais aussi construire un cadre de travail soutenable, accessible et compatible avec une amélioration continue.</p>
-</article><article class="doc" id="doc-10" hidden><div class="doc-meta">redaction/presentation.md</div><h1>Présentation GreenCity Tech</h1>
+</article><article class="doc" id="doc-11" hidden><div class="doc-meta">redaction/presentation.md</div><h1>Présentation GreenCity Tech</h1>
 <h2>Objectif du document</h2>
 <p>Ce document sert de conducteur de soutenance pour une présentation d&#39;environ <strong>20 minutes</strong>.</p>
 <p>Il ne remplace pas les parties de fond, mais permet de savoir :</p>
@@ -4764,7 +4875,7 @@ afin que ma collectivité puisse le traiter.
 <li>inclusion</li>
 <li>conclusion</li>
 </ol>
-</article><article class="doc" id="doc-11" hidden><div class="doc-meta">redaction/presentation_synthetique.md</div><h1>Présentation synthétique GreenCity Tech</h1>
+</article><article class="doc" id="doc-12" hidden><div class="doc-meta">redaction/presentation_synthetique.md</div><h1>Présentation synthétique GreenCity Tech</h1>
 <h2>Slide 1 - Couverture</h2>
 <p>Points clés : contexte GreenCity Tech, prototype fragile, trajectoire progressive et défendable.
 Visuel / asset : Fond d’ouverture GreenCity Tech</p>
@@ -4832,7 +4943,7 @@ Visuel / asset : Bloc inclusion et management</p>
 <h2>Slide 17 - Conclusion</h2>
 <p>Points clés : livrer mieux plutôt que seulement plus vite, trajectoire cohérente, progressive, soutenable.
 Visuel / asset : Slide de conclusion et fond d’intercalaire</p>
-</article><article class="doc" id="doc-12" hidden><div class="doc-meta">redaction/liste_livrables_presentation.md</div><h1>Liste des livrables visuels pour la présentation GreenCity Tech</h1>
+</article><article class="doc" id="doc-13" hidden><div class="doc-meta">redaction/liste_livrables_presentation.md</div><h1>Liste des livrables visuels pour la présentation GreenCity Tech</h1>
 <h2>1. Objectif du document</h2>
 <p>Ce document recense les livrables visuels utiles à intégrer dans la présentation finale.<br>L&#39;idée n&#39;est pas de tout transformer en visuel, mais d&#39;identifier les éléments qui apportent une vraie valeur de compréhension à l&#39;oral.</p>
 <p>Chaque livrable devra ensuite pouvoir être produit dans un format propre, réutilisable et intégrable dans la présentation :</p>
@@ -5434,7 +5545,7 @@ Visuel / asset : Slide de conclusion et fond d’intercalaire</p>
 <li>slide de synthèse finale.</li>
 </ol>
 <p>Cet ordre permet de fabriquer d&#39;abord les éléments structurants, puis les visuels de détail.</p>
-</article><article class="doc" id="doc-13" hidden><div class="doc-meta">livrables/README.md</div><h1>Livrables GreenCity Tech</h1>
+</article><article class="doc" id="doc-14" hidden><div class="doc-meta">livrables/README.md</div><h1>Livrables GreenCity Tech</h1>
 <p>Ce dossier regroupe des livrables autonomes construits à partir de l&#39;analyse de fond réalisée sur les 5 parties du sujet.</p>
 <p>L&#39;objectif n&#39;est pas de remplacer les documents détaillés, mais de disposer de versions plus directement exploitables si l&#39;on souhaite matérialiser les livrables implicites ou explicites du sujet.</p>
 <h2>Contenu</h2>
@@ -5468,7 +5579,7 @@ Visuel / asset : Slide de conclusion et fond d’intercalaire</p>
 <li>automatisation progressive sur mobile ;</li>
 <li>trajectoire sobre, défendable et évolutive.</li>
 </ul>
-</article><article class="doc" id="doc-14" hidden><div class="doc-meta">livrables/01_note_cadrage_devops.md</div><h1>Note de cadrage DevOps</h1>
+</article><article class="doc" id="doc-15" hidden><div class="doc-meta">livrables/01_note_cadrage_devops.md</div><h1>Note de cadrage DevOps</h1>
 <h2>Objet</h2>
 <p>Cette note de cadrage présente l&#39;orientation DevOps retenue pour GreenCity Tech afin de transformer un prototype fragile en plateforme plus fiable, industrialisée et exploitable.</p>
 <h2>Contexte</h2>
@@ -5558,7 +5669,7 @@ Visuel / asset : Slide de conclusion et fond d’intercalaire</p>
 <li>d&#39;une meilleure visibilité sur la qualité ;</li>
 <li>d&#39;un cadre plus sain pour faire évoluer la plateforme.</li>
 </ul>
-</article><article class="doc" id="doc-15" hidden><div class="doc-meta">livrables/02_schema_architecture_devops.md</div><h1>Schéma d&#39;architecture DevOps cible</h1>
+</article><article class="doc" id="doc-16" hidden><div class="doc-meta">livrables/02_schema_architecture_devops.md</div><h1>Schéma d&#39;architecture DevOps cible</h1>
 <h2>Objectif</h2>
 <p>Décrire l&#39;architecture DevOps cible de GreenCity Tech de façon simple, lisible et cohérente avec la maturité actuelle du projet.</p>
 <h2>Vue fonctionnelle</h2>
@@ -5623,7 +5734,7 @@ Canaux applicatifs
 <li>les modules <code>cartographie temps réel</code>, <code>photos HD</code> ou <code>chatbot</code> deviennent centraux ;</li>
 <li>les coûts d&#39;exploitation des VPS deviennent moins avantageux qu&#39;une cible plus managée.</li>
 </ul>
-</article><article class="doc" id="doc-16" hidden><div class="doc-meta">livrables/03_exemple_pipeline_ci_cd.md</div><h1>Exemple de pipeline CI/CD</h1>
+</article><article class="doc" id="doc-17" hidden><div class="doc-meta">livrables/03_exemple_pipeline_ci_cd.md</div><h1>Exemple de pipeline CI/CD</h1>
 <h2>Objectif</h2>
 <p>Présenter une chaîne CI/CD crédible et progressive pour GreenCity Tech.</p>
 <h2>Principes</h2>
@@ -5699,7 +5810,7 @@ Canaux applicatifs
 <li>elle reste compatible avec une petite équipe ;</li>
 <li>elle évite de surpromettre sur la chaîne mobile.</li>
 </ul>
-</article><article class="doc" id="doc-17" hidden><div class="doc-meta">livrables/04_strategie_deploiement_et_rollback.md</div><h1>Stratégie de déploiement et de rollback</h1>
+</article><article class="doc" id="doc-18" hidden><div class="doc-meta">livrables/04_strategie_deploiement_et_rollback.md</div><h1>Stratégie de déploiement et de rollback</h1>
 <h2>Objectif</h2>
 <p>Définir une méthode de déploiement reproductible, traçable et sécurisée pour GreenCity Tech.</p>
 <h2>Principes</h2>
@@ -5762,7 +5873,7 @@ Canaux applicatifs
 <li>il évite une dépendance totale au diagnostic à chaud ;</li>
 <li>il rend la stratégie de déploiement défendable.</li>
 </ul>
-</article><article class="doc" id="doc-18" hidden><div class="doc-meta">livrables/05_proposition_outillage.md</div><h1>Proposition d&#39;outillage</h1>
+</article><article class="doc" id="doc-19" hidden><div class="doc-meta">livrables/05_proposition_outillage.md</div><h1>Proposition d&#39;outillage</h1>
 <h2>Objectif</h2>
 <p>Présenter une stack outillage cohérente avec les contraintes de GreenCity Tech.</p>
 <h2>Outils retenus</h2>
@@ -5868,7 +5979,7 @@ Canaux applicatifs
 <li>une trajectoire progressive.</li>
 </ul>
 <p>Le bon critère n&#39;est pas le nombre d&#39;outils, mais le fait qu&#39;ils répondent aux problèmes réels du projet.</p>
-</article><article class="doc" id="doc-19" hidden><div class="doc-meta">livrables/06_plan_qualite_tests_conformite.md</div><h1>Plan qualité, tests et conformité</h1>
+</article><article class="doc" id="doc-20" hidden><div class="doc-meta">livrables/06_plan_qualite_tests_conformite.md</div><h1>Plan qualité, tests et conformité</h1>
 <h2>Objectif</h2>
 <p>Définir les règles minimales permettant de livrer un produit plus fiable, plus conforme et plus stable.</p>
 <h2>Principes</h2>
@@ -5943,7 +6054,7 @@ Canaux applicatifs
 <li>surveillance des erreurs applicatives ;</li>
 <li>règles minimales de gestion des accès.</li>
 </ul>
-</article><article class="doc" id="doc-20" hidden><div class="doc-meta">livrables/07_indicateurs_qualite_et_pilotage.md</div><h1>Indicateurs qualité et pilotage</h1>
+</article><article class="doc" id="doc-21" hidden><div class="doc-meta">livrables/07_indicateurs_qualite_et_pilotage.md</div><h1>Indicateurs qualité et pilotage</h1>
 <h2>Objectif</h2>
 <p>Définir un jeu réduit mais utile d&#39;indicateurs pour piloter la transformation.</p>
 <h2>Principe</h2>
@@ -5993,7 +6104,7 @@ Canaux applicatifs
 <li>vulnérabilités critiques ouvertes ;</li>
 <li>satisfaction des collectivités.</li>
 </ul>
-</article><article class="doc" id="doc-21" hidden><div class="doc-meta">livrables/08_gestion_produit_et_evolutions.md</div><h1>Gestion produit et évolutions</h1>
+</article><article class="doc" id="doc-22" hidden><div class="doc-meta">livrables/08_gestion_produit_et_evolutions.md</div><h1>Gestion produit et évolutions</h1>
 <h2>Objectif</h2>
 <p>Définir une méthode de gestion des évolutions pour une plateforme destinée à plusieurs collectivités.</p>
 <h2>Positionnement</h2>
@@ -6043,7 +6154,7 @@ Canaux applicatifs
 <li>trop risquée ;</li>
 <li>insuffisamment mutualisable.</li>
 </ul>
-</article><article class="doc" id="doc-22" hidden><div class="doc-meta">livrables/09_plan_de_suivi_et_demonstrations.md</div><h1>Plan de suivi, points d&#39;étape et démonstrations</h1>
+</article><article class="doc" id="doc-23" hidden><div class="doc-meta">livrables/09_plan_de_suivi_et_demonstrations.md</div><h1>Plan de suivi, points d&#39;étape et démonstrations</h1>
 <h2>Objectif</h2>
 <p>Définir un cadre simple de suivi avec les collectivités et les parties prenantes internes.</p>
 <h2>Rythme proposé</h2>
@@ -6091,7 +6202,7 @@ Canaux applicatifs
 <li>de mieux piloter les attentes ;</li>
 <li>de soutenir une logique de plateforme plus qu&#39;une logique de demandes dispersées.</li>
 </ul>
-</article><article class="doc" id="doc-23" hidden><div class="doc-meta">livrables/10_inclusion_et_management.md</div><h1>Inclusion et management d&#39;équipe</h1>
+</article><article class="doc" id="doc-24" hidden><div class="doc-meta">livrables/10_inclusion_et_management.md</div><h1>Inclusion et management d&#39;équipe</h1>
 <h2>Objectif</h2>
 <p>Proposer des mesures concrètes d&#39;inclusion et de management adaptées au contexte GreenCity Tech.</p>
 <h2>Contexte</h2>
@@ -6145,7 +6256,7 @@ Canaux applicatifs
 <li>qualité de vie au travail ;</li>
 <li>maintien du niveau d&#39;exigence professionnelle.</li>
 </ul>
-</article><article class="doc" id="doc-24" hidden><div class="doc-meta">livrables/11_budget_previsionnel.md</div><h1>Budget prévisionnel simplifié</h1>
+</article><article class="doc" id="doc-25" hidden><div class="doc-meta">livrables/11_budget_previsionnel.md</div><h1>Budget prévisionnel simplifié</h1>
 <h2>Objectif</h2>
 <p>Donner une lecture budgétaire synthétique de la transformation DevOps proposée.</p>
 <h2>Hypothèse</h2>
@@ -6248,6 +6359,14 @@ document.getElementById('filter').addEventListener('input',e=>{
   items.forEach(b=>{b.style.display=b.textContent.toLowerCase().includes(q)?'':'none';});
   document.querySelectorAll('.nav-group').forEach(g=>g.style.display=q?'none':'');
 });
+// thème clair/sombre
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  const b=document.getElementById('themeBtn'); if(b) b.textContent=(t==='dark'?'☀️':'🌙');
+  try{localStorage.setItem('gct_theme',t);}catch(e){}
+}
+setTheme(document.documentElement.getAttribute('data-theme')||'light');
+document.getElementById('themeBtn').onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
 // taille de texte
 let fs=parseInt((()=>{try{return localStorage.getItem('gct_fs')}catch(e){return null}})()||'17',10);
 function applyFs(){document.getElementById('content').style.setProperty('--fs',fs+'px');try{localStorage.setItem('gct_fs',fs)}catch(e){}}
