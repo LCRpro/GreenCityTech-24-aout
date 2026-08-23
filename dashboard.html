@@ -173,12 +173,13 @@ C&#39;est un choix d&#39;<strong>arbitrage</strong> assumé : une équipe resser
 Pourquoi ce choix ? Parce que l&#39;équipe est restreinte et le socle encore fragile : il faut <strong>structurer sans alourdir</strong>.
 Concrètement : un point dev tous les 2 jours pour lever les blocages, un suivi hebdo, une démo client et une rétro en fin de sprint, et un pilotage mensuel avec les collectivités. Résultat : des décisions plus rapides, moins de flou, une meilleure coordination et des livraisons plus fiables.</p>
 <h2>Slide 7 — Arbitrages &amp; budget  ⏱️ ~55 s</h2>
-<p>Sur le budget, je suis transparent : le coût global du projet est <strong>difficile à estimer</strong> sans plus de documents, et il évoluera avec les collectivités clientes.
-Ce que je peux chiffrer, c&#39;est le <strong>besoin DevOps</strong> de démarrage : environ <strong>13 jours</strong> de charge, à un TJM de 650 €, soit à peu près <strong>8,45 k€</strong> — répartis entre cadrage, pipeline CI/CD, hébergement VPS, monitoring et déploiement.
-Les arbitrages sont ciblés : on capitalise sur l&#39;équipe existante, on renforce la gestion de projet et le DevOps, et on part sur une <strong>infrastructure simple et peu coûteuse</strong>. On dimensionne pour le démarrage, pas pour un pic hypothétique.</p>
+<p>Sur le budget, je raisonne au niveau du <strong>projet</strong>, en ordres de grandeur assumés. La phase de structuration, c&#39;est de l&#39;ordre de <strong>30 k€ par mois</strong>, soit environ <strong>120 k€ sur ~4 mois</strong>. Le poste <strong>RH — l&#39;équipe — pèse à lui seul ~95 %</strong> ; l&#39;infrastructure et les outils sont volontairement sobres, quelques centaines d&#39;euros par mois.
+Ma prestation DevOps de cadrage — 13 jours, ~8,45 k€ — est une <strong>ligne à l&#39;intérieur de ce budget</strong>, pas le budget total.
+Les arbitrages sont ciblés : on capitalise sur l&#39;équipe existante, on renforce la gestion de projet et le DevOps senior, on reste sur une infra simple. Ces montants sont des ordres de grandeur, à affiner avec le contrôle de gestion.</p>
 <h2>Slide 8 — Suivi budgétaire &amp; maîtrise des écarts  ⏱️ ~50 s</h2>
-<p>Au-delà de l&#39;estimation, l&#39;essentiel c&#39;est de <strong>piloter le budget dans le temps</strong>. Je mets en place un <strong>tableau de bord budgétaire</strong> alimenté en continu : prévu, consommé, reste à faire, par lot.
+<p>Au-delà de l&#39;estimation, l&#39;essentiel c&#39;est de <strong>piloter le budget projet dans le temps</strong>. Je mets en place un <strong>tableau de bord</strong> alimenté en continu : prévu, consommé, reste à faire, <strong>par poste</strong> (RH, infrastructure, outils).
 J&#39;y suis les <strong>écarts</strong> entre le prévu et le réel, avec des <strong>seuils d&#39;alerte</strong> : sous 5 %, c&#39;est sous contrôle ; entre 5 et 10 %, je surveille et j&#39;analyse la cause ; au-delà de 10 %, c&#39;est une alerte qui déclenche une action immédiate.
+Un exemple concret : à mi-parcours, ~63 k€ consommés sur 120 ; l&#39;infrastructure ressort à <strong>+31 %</strong> parce qu&#39;on a ajouté un VPS — c&#39;est exactement le type d&#39;écart qu&#39;on détecte tôt et qu&#39;on arbitre.
 En cas d&#39;écart ou d&#39;incident budgétaire, le <strong>plan d&#39;action</strong> est clair : analyse de cause, re-priorisation du backlog, réallocation, arbitrage avec le PO et la direction — avec un <strong>reporting mensuel au contrôle de gestion</strong> et une alerte immédiate à la <strong>direction financière</strong> si on passe au rouge. L&#39;idée : rester <strong>maître</strong> du budget, pas seulement l&#39;estimer.</p>
 <h2>Slide 9 — 03 · Mise en œuvre DevOps (intercalaire)  ⏱️ ~5 s</h2>
 <p>Passons au concret : comment on met en œuvre cette chaîne DevOps, techniquement.</p>
@@ -289,16 +290,16 @@ Le tout de façon <strong>progressive, défendable et réaliste</strong> par rap
 </ul>
 <p><strong>7 · Arbitrages &amp; budget</strong></p>
 <ul>
-<li>Coût global = difficile à estimer, évoluera avec les collectivités.</li>
-<li>Besoin DevOps chiffrable : <strong>~13 j · TJM 650 € · ~8,45 k€</strong>.</li>
-<li>Infra simple &amp; peu coûteuse, on capitalise sur l&#39;existant.</li>
-<li>(Estimation seulement → le <strong>pilotage</strong> vient juste après, slide 8.)</li>
+<li><strong>Budget projet</strong> (ordres de grandeur) : ~30 k€/mois → <strong>~120 k€ sur ~4 mois</strong>.</li>
+<li>Postes : <strong>RH ~95 %</strong>, infra &amp; outils sobres. Cadrage DevOps 13 j / ~8,45 k€ = une ligne dedans.</li>
+<li>Arbitrages : capitaliser sur l&#39;équipe, DevOps senior, infra simple, pas de QA dédié.</li>
+<li>(Chiffrage → le <strong>pilotage</strong> vient juste après, slide 8.)</li>
 </ul>
 <p><strong>8 · Suivi budgétaire &amp; maîtrise des écarts</strong></p>
 <ul>
-<li>Tableau de bord : <strong>prévu / consommé / reste</strong>, par lot, alimenté en continu.</li>
-<li>Analyse des écarts + <strong>seuils</strong> : 🟢 &lt; 5 % · 🟠 5-10 % (analyse cause) · 🔴 &gt; 10 % (alerte).</li>
-<li>Plan d&#39;action : re-priorisation, réallocation, arbitrage → <strong>reporting mensuel contrôle de gestion + alerte direction financière</strong> au rouge.</li>
+<li>Tableau de bord <strong>projet</strong> : prévu / consommé / reste, <strong>par poste</strong> (RH, infra, outils).</li>
+<li>Ex. à mi-parcours : 63 k€ / 120 ; <strong>infra +31 %</strong> (VPS ajouté) = écart détecté.</li>
+<li>Seuils : 🟢 &lt; 5 % · 🟠 5-10 % · 🔴 &gt; 10 %. Plan : analyse cause → réallocation/arbitrage → <strong>reporting contrôle de gestion + alerte direction financière</strong>.</li>
 </ul>
 <p><strong>9 · Mise en œuvre DevOps (intercalaire)</strong> → « place au concret technique ».</p>
 <p><strong>10 · Versioning &amp; environnements</strong></p>
@@ -1059,7 +1060,7 @@ Demandes client maîtrisées
 <h2>8. Suivi budgétaire, écarts et incidents</h2>
 <h3>Comment suivez-vous concrètement le budget dans le temps ?</h3>
 <p>Réponse défendable :</p>
-<p>Au-delà de l&#39;estimation initiale, je mets en place un tableau de bord budgétaire alimenté en continu : pour chaque lot, le prévu, le consommé et le reste à faire, plus un total à date. Ces données sont produites régulièrement et communiquées au contrôle de gestion. On passe ainsi d&#39;une estimation figée à un pilotage vivant.</p>
+<p>Je raisonne au niveau du budget <strong>projet</strong> (RH de l&#39;équipe, infrastructure, outils) — de l&#39;ordre de 30 k€/mois, ~120 k€ sur la phase de structuration, la RH pesant l&#39;essentiel. Au-delà de cette estimation, je mets en place un tableau de bord alimenté en continu : pour chaque <strong>poste</strong>, le prévu, le consommé et le reste à faire, plus un total à date. Ces données sont produites régulièrement et communiquées au contrôle de gestion. On passe ainsi d&#39;une estimation figée à un pilotage vivant.</p>
 <h3>Comment analysez-vous les écarts et que faites-vous en cas de dépassement ?</h3>
 <p>Réponse défendable :</p>
 <p>Je compare en continu le réel au prévu et je calcule l&#39;écart en pourcentage, avec des seuils d&#39;alerte : sous 5 % c&#39;est sous contrôle, entre 5 et 10 % je passe en vigilance et j&#39;analyse la cause, au-delà de 10 % c&#39;est une alerte. En cas d&#39;écart, l&#39;action corrective est cadrée : analyse de cause, re-priorisation du backlog, réallocation, arbitrage avec le Product Owner et la direction — et si on passe au rouge, alerte immédiate à la direction financière. L&#39;objectif est de réagir tôt, pas de constater trop tard.</p>

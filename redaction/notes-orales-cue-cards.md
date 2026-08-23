@@ -32,15 +32,15 @@
 - Rituels : point dev /2j, suivi hebdo, démo + rétro, pilotage mensuel.
 
 **7 · Arbitrages & budget**
-- Coût global = difficile à estimer, évoluera avec les collectivités.
-- Besoin DevOps chiffrable : **~13 j · TJM 650 € · ~8,45 k€**.
-- Infra simple & peu coûteuse, on capitalise sur l'existant.
-- (Estimation seulement → le **pilotage** vient juste après, slide 8.)
+- **Budget projet** (ordres de grandeur) : ~30 k€/mois → **~120 k€ sur ~4 mois**.
+- Postes : **RH ~95 %**, infra & outils sobres. Cadrage DevOps 13 j / ~8,45 k€ = une ligne dedans.
+- Arbitrages : capitaliser sur l'équipe, DevOps senior, infra simple, pas de QA dédié.
+- (Chiffrage → le **pilotage** vient juste après, slide 8.)
 
 **8 · Suivi budgétaire & maîtrise des écarts**
-- Tableau de bord : **prévu / consommé / reste**, par lot, alimenté en continu.
-- Analyse des écarts + **seuils** : 🟢 < 5 % · 🟠 5-10 % (analyse cause) · 🔴 > 10 % (alerte).
-- Plan d'action : re-priorisation, réallocation, arbitrage → **reporting mensuel contrôle de gestion + alerte direction financière** au rouge.
+- Tableau de bord **projet** : prévu / consommé / reste, **par poste** (RH, infra, outils).
+- Ex. à mi-parcours : 63 k€ / 120 ; **infra +31 %** (VPS ajouté) = écart détecté.
+- Seuils : 🟢 < 5 % · 🟠 5-10 % · 🔴 > 10 %. Plan : analyse cause → réallocation/arbitrage → **reporting contrôle de gestion + alerte direction financière**.
 
 **9 · Mise en œuvre DevOps (intercalaire)** → « place au concret technique ».
 

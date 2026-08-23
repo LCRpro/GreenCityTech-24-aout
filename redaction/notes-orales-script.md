@@ -34,13 +34,14 @@ Pourquoi ce choix ? Parce que l'équipe est restreinte et le socle encore fragil
 Concrètement : un point dev tous les 2 jours pour lever les blocages, un suivi hebdo, une démo client et une rétro en fin de sprint, et un pilotage mensuel avec les collectivités. Résultat : des décisions plus rapides, moins de flou, une meilleure coordination et des livraisons plus fiables.
 
 ## Slide 7 — Arbitrages & budget  ⏱️ ~55 s
-Sur le budget, je suis transparent : le coût global du projet est **difficile à estimer** sans plus de documents, et il évoluera avec les collectivités clientes.
-Ce que je peux chiffrer, c'est le **besoin DevOps** de démarrage : environ **13 jours** de charge, à un TJM de 650 €, soit à peu près **8,45 k€** — répartis entre cadrage, pipeline CI/CD, hébergement VPS, monitoring et déploiement.
-Les arbitrages sont ciblés : on capitalise sur l'équipe existante, on renforce la gestion de projet et le DevOps, et on part sur une **infrastructure simple et peu coûteuse**. On dimensionne pour le démarrage, pas pour un pic hypothétique.
+Sur le budget, je raisonne au niveau du **projet**, en ordres de grandeur assumés. La phase de structuration, c'est de l'ordre de **30 k€ par mois**, soit environ **120 k€ sur ~4 mois**. Le poste **RH — l'équipe — pèse à lui seul ~95 %** ; l'infrastructure et les outils sont volontairement sobres, quelques centaines d'euros par mois.
+Ma prestation DevOps de cadrage — 13 jours, ~8,45 k€ — est une **ligne à l'intérieur de ce budget**, pas le budget total.
+Les arbitrages sont ciblés : on capitalise sur l'équipe existante, on renforce la gestion de projet et le DevOps senior, on reste sur une infra simple. Ces montants sont des ordres de grandeur, à affiner avec le contrôle de gestion.
 
 ## Slide 8 — Suivi budgétaire & maîtrise des écarts  ⏱️ ~50 s
-Au-delà de l'estimation, l'essentiel c'est de **piloter le budget dans le temps**. Je mets en place un **tableau de bord budgétaire** alimenté en continu : prévu, consommé, reste à faire, par lot.
+Au-delà de l'estimation, l'essentiel c'est de **piloter le budget projet dans le temps**. Je mets en place un **tableau de bord** alimenté en continu : prévu, consommé, reste à faire, **par poste** (RH, infrastructure, outils).
 J'y suis les **écarts** entre le prévu et le réel, avec des **seuils d'alerte** : sous 5 %, c'est sous contrôle ; entre 5 et 10 %, je surveille et j'analyse la cause ; au-delà de 10 %, c'est une alerte qui déclenche une action immédiate.
+Un exemple concret : à mi-parcours, ~63 k€ consommés sur 120 ; l'infrastructure ressort à **+31 %** parce qu'on a ajouté un VPS — c'est exactement le type d'écart qu'on détecte tôt et qu'on arbitre.
 En cas d'écart ou d'incident budgétaire, le **plan d'action** est clair : analyse de cause, re-priorisation du backlog, réallocation, arbitrage avec le PO et la direction — avec un **reporting mensuel au contrôle de gestion** et une alerte immédiate à la **direction financière** si on passe au rouge. L'idée : rester **maître** du budget, pas seulement l'estimer.
 
 ## Slide 9 — 03 · Mise en œuvre DevOps (intercalaire)  ⏱️ ~5 s
