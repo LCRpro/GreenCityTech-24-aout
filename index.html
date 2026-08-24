@@ -516,7 +516,8 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 <li><strong>Tests « en situation » ?</strong> → recette préprod iso-prod, tests de charge/perf, devices réels ; conformité stores (pre-launch report, TestFlight, guidelines) avant publication.</li>
 <li><strong>Pas assez de collectivités ?</strong> → point mort ≈ <strong>40 clients</strong> (30 k€/mois ÷ ~600 €). À 6 mois : <strong>≥8</strong> on continue · <strong>3-7</strong> on allonge la phase (DevOps à temps partiel, évolutions repoussées) · <strong>≤2</strong> go/no-go → réduire au socle, viser les intercommunalités ou arrêt maîtrisé. Amortisseurs : multi-collectivités (coût marginal faible) + socle réutilisable.</li>
 <li><strong>Budget dépassé ?</strong> → chaque seuil a <strong>une action + un décideur</strong> : <strong>&lt;5 %** moi (suivi) · **5-10 %** moi+PO (analyse 48 h, re-priorisation du sprint) · **&gt;10 %</strong> direction+DAF (2-3 options chiffrées). Leviers dans l&#39;ordre : <strong>1) réallouer entre postes · 2) réduire le périmètre</strong> (protéger le must-have) <strong>· 3) étaler dans le temps · 4) rallonge</strong> (dernier recours, si justifiée par de la valeur). Distinguer <strong>ponctuel</strong> (on résorbe) et <strong>structurel</strong> (on révise le plan).</li>
-<li><strong>Et à 100 collectivités ?</strong> → évolution <strong>par paliers</strong> : 10-30 → BDD séparée + réplicas + CDN + cache · 30-60 → <strong>load balancer</strong> + multi-instances · 60-100 → orchestration/autoscaling + <strong>renforts humains</strong> (QA, support N1, 2e DevOps). Le goulot à 100 est <strong>humain, pas technique</strong> → <strong>onboarding self-service</strong> dès ~30. <strong>Multi-tenant dès le départ</strong> (non rattrapable après). Et passage aux <strong>SLA</strong> + astreinte facturée.</li>
+<li><strong>Et à 100 collectivités ? Plusieurs VPS ?</strong> → <strong>oui, en 3 étapes</strong> : ① <strong>agrandir</strong> le VPS (simple, mais si il tombe tout tombe) → ② <strong>séparer la BDD</strong> sur son VPS (elle sature en premier) <em>« on sépare la salle de la cuisine »</em> + photos sur S3/CDN → ③ <strong>dupliquer</strong> l&#39;applicatif en 2-3 VPS identiques + <strong>load balancer</strong> devant <em>« le maître d&#39;hôtel répartit les clients »</em> = plus de coupure si un tombe. Possible <strong>grâce à Docker</strong>. Parc : 1 → +1 BDD → 2-3 + LB → orchestré (60-100+).
+↳ Goulot réel à 100 = <strong>humain, pas technique</strong> → <strong>onboarding self-service</strong> dès ~30 · <strong>cloisonnement des données dès le départ</strong> (non rattrapable) · passage aux <strong>SLA</strong> + astreinte. Et j&#39;assume de <strong>ne pas le construire aujourd&#39;hui</strong> : l&#39;archi actuelle ne bloque aucune étape.</li>
 </ul>
 </article><article class="doc" id="doc-3" hidden><div class="doc-meta">redaction/synthese_orale_greencity_tech.md</div><h1>Synthèse orale — Présentation GreenCity Tech</h1>
 <h2>1. Objectif de ce document</h2>
@@ -1264,41 +1265,47 @@ Demandes client maîtrisées
 <li><strong>Demander une rallonge</strong> — en dernier recours seulement, et uniquement si elle est justifiée par de la valeur : une nouvelle collectivité signée qui change le dimensionnement, par exemple.</li>
 </ol>
 <p>Un point important : je distingue toujours le dépassement <strong>ponctuel</strong> — un pic d&#39;un mois, qu&#39;on résorbe sur les mois suivants — du dépassement <strong>structurel</strong>, où la trajectoire elle-même est fausse. Dans le second cas, on ne bricole pas : on révise le plan avec la direction. Et dans les deux cas, la cause est documentée pour que la prochaine estimation soit meilleure.</p>
-<h3>Comment la plateforme tiendrait-elle avec 100 collectivités ?</h3>
+<h3>Comment la plateforme tiendrait-elle avec 100 collectivités ? Faut-il plusieurs VPS ?</h3>
 <p>Réponse défendable :</p>
-<p>L&#39;architecture que je propose est volontairement dimensionnée pour le démarrage, mais elle est pensée pour <strong>évoluer par paliers</strong> — je ne construis pas aujourd&#39;hui une usine pour un trafic qui n&#39;existe pas, mais je sais où sont les points de rupture et ce qu&#39;on fait à chacun.</p>
+<p>Oui, on passe à plusieurs serveurs — mais <strong>progressivement</strong>, et dans un ordre précis. Aujourd&#39;hui, tout tourne sur <strong>un seul VPS de production</strong> : le site web, l&#39;API et la base de données sont dessus, dans des conteneurs Docker. C&#39;est parfait pour quelques collectivités, mais ça ne tient pas à 100. Il y a trois étapes, et chacune se déclenche quand la précédente atteint sa limite.</p>
+<p><strong>Étape 1 — on agrandit la machine.</strong> C&#39;est le réflexe le plus simple : on prend un VPS plus puissant, avec plus de mémoire et de processeur. Ça ne change rien à l&#39;architecture, c&#39;est juste une montée en gamme chez l&#39;hébergeur. Ça suffit facilement jusqu&#39;à une dizaine de collectivités. Avantage : immédiat et pas cher. Limite : on ne peut pas grossir indéfiniment, et surtout <strong>si ce serveur tombe, tout tombe</strong>.</p>
+<p><strong>Étape 2 — on sépare la base de données.</strong> C&#39;est elle qui sature en premier, parce qu&#39;elle travaille pour tout le monde en même temps. On la sort donc sur <strong>son propre VPS</strong>. L&#39;image que j&#39;utilise : au début le cuisinier prend les commandes et cuisine ; quand il y a trop de monde, on sépare la salle de la cuisine. Résultat : deux serveurs, chacun son métier, et si l&#39;un rame l&#39;autre continue. On en profite pour envoyer les photos vers le stockage S3 et un CDN, pour ne pas encombrer les serveurs avec des fichiers lourds.</p>
+<p><strong>Étape 3 — on duplique le serveur applicatif.</strong> Là on ne grossit plus, on <strong>multiplie</strong> : au lieu d&#39;un serveur web, on en met deux ou trois <strong>identiques</strong>, et on place devant un <strong>load balancer</strong> — un répartiteur qui envoie chaque visiteur vers le serveur le moins occupé. C&#39;est le maître d&#39;hôtel qui répartit les clients entre plusieurs salles. Double bénéfice : on encaisse beaucoup plus de trafic, et surtout <strong>si un serveur tombe, les autres prennent le relais</strong> — plus de coupure. C&#39;est possible seulement parce que les applications sont <strong>dockerisées</strong> : dupliquer un conteneur, c&#39;est trivial ; dupliquer une installation faite à la main, ça ne l&#39;est pas.</p>
+<p>Concrètement, voici comment le parc évolue :</p>
 <table>
 <thead>
 <tr>
-<th>Palier</th>
-<th>Ce qui casse en premier</th>
-<th>Ce qu&#39;on met en place</th>
+<th>Collectivités</th>
+<th>Serveurs</th>
+<th>Ce qu&#39;on a mis en place</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>1 – 10</strong></td>
-<td>Rien : le socle actuel suffit</td>
-<td>VPS + Docker, tel que présenté.</td>
+<td>1 VPS prod + 1 monitoring</td>
+<td>Tel que présenté aujourd&#39;hui. On agrandit le VPS si besoin.</td>
 </tr>
 <tr>
 <td><strong>10 – 30</strong></td>
-<td>La base de données et le stockage photo</td>
-<td>Séparation de la base sur son propre serveur, réplicas de lecture, CDN pour les médias, cache applicatif (Redis).</td>
+<td>+1 VPS base de données</td>
+<td>La base est séparée. Photos sur S3 + CDN.</td>
 </tr>
 <tr>
 <td><strong>30 – 60</strong></td>
-<td>Le serveur applicatif unique (point de défaillance)</td>
-<td>Passage en <strong>plusieurs instances derrière un load balancer</strong>, sessions externalisées, déploiement sans coupure.</td>
+<td>2-3 VPS applicatifs + 1 load balancer</td>
+<td>Le trafic est réparti, plus de point de défaillance unique.</td>
 </tr>
 <tr>
 <td><strong>60 – 100+</strong></td>
-<td>L&#39;exploitation manuelle et le support</td>
-<td><strong>Orchestration</strong> (Kubernetes ou service managé), autoscaling, observabilité centralisée, et surtout <strong>renforts humains</strong> : QA dédié, support niveau 1, second DevOps.</td>
+<td>Parc orchestré (Kubernetes ou managé)</td>
+<td>Les serveurs s&#39;ajoutent et se retirent automatiquement selon la charge.</td>
 </tr>
 </tbody></table>
-<p>Trois points que je tiens à souligner. D&#39;abord, à 100 collectivités le vrai goulot d&#39;étranglement n&#39;est <strong>pas technique mais humain</strong> : le support, l&#39;onboarding et la gestion des demandes. C&#39;est pour ça qu&#39;à partir d&#39;une trentaine de clients je prévois un <strong>onboarding self-service</strong> — création de compte, paramétrage, import des données — plutôt que d&#39;ajouter du personnel proportionnellement.</p>
-<p>Ensuite, la question du <strong>multi-tenant</strong> : dès le départ, les données sont cloisonnées par collectivité. C&#39;est un choix structurant qu&#39;on ne peut pas rattraper facilement après coup, donc il est pris tôt même si aujourd&#39;hui on n&#39;a que quelques clients.</p>
-<p>Enfin, l&#39;aspect contractuel : à cette échelle on ne fonctionne plus au « best effort », on s&#39;engage sur des <strong>SLA</strong> — disponibilité, délai de prise en charge des incidents — ce qui implique une astreinte organisée et facturée. Le modèle économique suit la même logique par paliers que la technique.</p>
+<p>Trois points que je tiens à souligner.</p>
+<p>D&#39;abord, à 100 collectivités, le vrai goulot d&#39;étranglement n&#39;est <strong>pas technique, il est humain</strong> : le support, l&#39;accompagnement, les demandes clients. C&#39;est pour ça qu&#39;à partir d&#39;une trentaine de clients je prévois un <strong>onboarding self-service</strong> — la collectivité crée son espace et le paramètre elle-même — plutôt que d&#39;embaucher proportionnellement.</p>
+<p>Ensuite, le <strong>cloisonnement des données par collectivité</strong> est prévu dès le départ. C&#39;est un choix structurant qu&#39;on ne rattrape pas facilement après coup, donc il est pris maintenant même avec quelques clients seulement.</p>
+<p>Enfin, à cette échelle on ne fonctionne plus au « best effort » : on s&#39;engage sur des <strong>SLA</strong> — un taux de disponibilité, un délai de prise en charge des incidents — ce qui implique une astreinte organisée, et facturée en conséquence.</p>
+<p>Et j&#39;assume complètement de ne pas construire tout ça aujourd&#39;hui : ce serait payer pour un trafic qui n&#39;existe pas. Ce qui compte, c&#39;est que <strong>l&#39;architecture actuelle ne bloque aucune de ces étapes</strong> — c&#39;est précisément ce que permettent Docker et la séparation des environnements.</p>
 <hr>
 <h2>9. Tests en situation et conformité produit</h2>
 <h3>Qu&#39;entendez-vous par « tests en situation » ?</h3>

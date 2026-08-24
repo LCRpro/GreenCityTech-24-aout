@@ -199,24 +199,36 @@ Au-delà de 10 %, les options que je mets sur la table sont toujours les mêmes,
 
 Un point important : je distingue toujours le dépassement **ponctuel** — un pic d'un mois, qu'on résorbe sur les mois suivants — du dépassement **structurel**, où la trajectoire elle-même est fausse. Dans le second cas, on ne bricole pas : on révise le plan avec la direction. Et dans les deux cas, la cause est documentée pour que la prochaine estimation soit meilleure.
 
-### Comment la plateforme tiendrait-elle avec 100 collectivités ?
+### Comment la plateforme tiendrait-elle avec 100 collectivités ? Faut-il plusieurs VPS ?
 
 Réponse défendable :
 
-L'architecture que je propose est volontairement dimensionnée pour le démarrage, mais elle est pensée pour **évoluer par paliers** — je ne construis pas aujourd'hui une usine pour un trafic qui n'existe pas, mais je sais où sont les points de rupture et ce qu'on fait à chacun.
+Oui, on passe à plusieurs serveurs — mais **progressivement**, et dans un ordre précis. Aujourd'hui, tout tourne sur **un seul VPS de production** : le site web, l'API et la base de données sont dessus, dans des conteneurs Docker. C'est parfait pour quelques collectivités, mais ça ne tient pas à 100. Il y a trois étapes, et chacune se déclenche quand la précédente atteint sa limite.
 
-| Palier | Ce qui casse en premier | Ce qu'on met en place |
+**Étape 1 — on agrandit la machine.** C'est le réflexe le plus simple : on prend un VPS plus puissant, avec plus de mémoire et de processeur. Ça ne change rien à l'architecture, c'est juste une montée en gamme chez l'hébergeur. Ça suffit facilement jusqu'à une dizaine de collectivités. Avantage : immédiat et pas cher. Limite : on ne peut pas grossir indéfiniment, et surtout **si ce serveur tombe, tout tombe**.
+
+**Étape 2 — on sépare la base de données.** C'est elle qui sature en premier, parce qu'elle travaille pour tout le monde en même temps. On la sort donc sur **son propre VPS**. L'image que j'utilise : au début le cuisinier prend les commandes et cuisine ; quand il y a trop de monde, on sépare la salle de la cuisine. Résultat : deux serveurs, chacun son métier, et si l'un rame l'autre continue. On en profite pour envoyer les photos vers le stockage S3 et un CDN, pour ne pas encombrer les serveurs avec des fichiers lourds.
+
+**Étape 3 — on duplique le serveur applicatif.** Là on ne grossit plus, on **multiplie** : au lieu d'un serveur web, on en met deux ou trois **identiques**, et on place devant un **load balancer** — un répartiteur qui envoie chaque visiteur vers le serveur le moins occupé. C'est le maître d'hôtel qui répartit les clients entre plusieurs salles. Double bénéfice : on encaisse beaucoup plus de trafic, et surtout **si un serveur tombe, les autres prennent le relais** — plus de coupure. C'est possible seulement parce que les applications sont **dockerisées** : dupliquer un conteneur, c'est trivial ; dupliquer une installation faite à la main, ça ne l'est pas.
+
+Concrètement, voici comment le parc évolue :
+
+| Collectivités | Serveurs | Ce qu'on a mis en place |
 |---|---|---|
-| **1 – 10** | Rien : le socle actuel suffit | VPS + Docker, tel que présenté. |
-| **10 – 30** | La base de données et le stockage photo | Séparation de la base sur son propre serveur, réplicas de lecture, CDN pour les médias, cache applicatif (Redis). |
-| **30 – 60** | Le serveur applicatif unique (point de défaillance) | Passage en **plusieurs instances derrière un load balancer**, sessions externalisées, déploiement sans coupure. |
-| **60 – 100+** | L'exploitation manuelle et le support | **Orchestration** (Kubernetes ou service managé), autoscaling, observabilité centralisée, et surtout **renforts humains** : QA dédié, support niveau 1, second DevOps. |
+| **1 – 10** | 1 VPS prod + 1 monitoring | Tel que présenté aujourd'hui. On agrandit le VPS si besoin. |
+| **10 – 30** | +1 VPS base de données | La base est séparée. Photos sur S3 + CDN. |
+| **30 – 60** | 2-3 VPS applicatifs + 1 load balancer | Le trafic est réparti, plus de point de défaillance unique. |
+| **60 – 100+** | Parc orchestré (Kubernetes ou managé) | Les serveurs s'ajoutent et se retirent automatiquement selon la charge. |
 
-Trois points que je tiens à souligner. D'abord, à 100 collectivités le vrai goulot d'étranglement n'est **pas technique mais humain** : le support, l'onboarding et la gestion des demandes. C'est pour ça qu'à partir d'une trentaine de clients je prévois un **onboarding self-service** — création de compte, paramétrage, import des données — plutôt que d'ajouter du personnel proportionnellement.
+Trois points que je tiens à souligner.
 
-Ensuite, la question du **multi-tenant** : dès le départ, les données sont cloisonnées par collectivité. C'est un choix structurant qu'on ne peut pas rattraper facilement après coup, donc il est pris tôt même si aujourd'hui on n'a que quelques clients.
+D'abord, à 100 collectivités, le vrai goulot d'étranglement n'est **pas technique, il est humain** : le support, l'accompagnement, les demandes clients. C'est pour ça qu'à partir d'une trentaine de clients je prévois un **onboarding self-service** — la collectivité crée son espace et le paramètre elle-même — plutôt que d'embaucher proportionnellement.
 
-Enfin, l'aspect contractuel : à cette échelle on ne fonctionne plus au « best effort », on s'engage sur des **SLA** — disponibilité, délai de prise en charge des incidents — ce qui implique une astreinte organisée et facturée. Le modèle économique suit la même logique par paliers que la technique.
+Ensuite, le **cloisonnement des données par collectivité** est prévu dès le départ. C'est un choix structurant qu'on ne rattrape pas facilement après coup, donc il est pris maintenant même avec quelques clients seulement.
+
+Enfin, à cette échelle on ne fonctionne plus au « best effort » : on s'engage sur des **SLA** — un taux de disponibilité, un délai de prise en charge des incidents — ce qui implique une astreinte organisée, et facturée en conséquence.
+
+Et j'assume complètement de ne pas construire tout ça aujourd'hui : ce serait payer pour un trafic qui n'existe pas. Ce qui compte, c'est que **l'architecture actuelle ne bloque aucune de ces étapes** — c'est précisément ce que permettent Docker et la séparation des environnements.
 
 ---
 
