@@ -280,6 +280,20 @@ Réponse défendable :
 
 Côté mobile, on s'appuie sur les mécanismes des stores : pre-launch report de la Play Console, bêta via TestFlight, respect des guidelines techniques Apple et Google, gestion des signatures et certificats. Côté web, on vérifie la performance, la sécurité et le RGAA, avec une checklist de conformité avant chaque publication. L'objectif est de publier sans blocage et de rester conforme aux exigences de chaque canal.
 
+### Sur quelle stack technique travaillez-vous ?
+
+Réponse défendable :
+
+L'ensemble du projet est en **TypeScript**, sur l'écosystème JavaScript : **React** pour le portail citoyen et l'interface d'administration, **React Native** pour l'application mobile, **Node.js** pour le backend et l'API, et **PostgreSQL** comme base de données — avec l'extension **PostGIS**, essentielle ici puisqu'on manipule en permanence des coordonnées géographiques de signalements.
+
+Deux précisions importantes.
+
+D'abord, **ce n'est pas un choix que j'impose, c'est l'existant que je consolide**. Le prototype a déjà été développé, et mon rôle n'est pas de tout réécrire mais d'industrialiser ce qui existe. Réécrire la stack coûterait cher, ferait perdre des mois et démotiverait une équipe qui maîtrise déjà son code.
+
+Ensuite, cette homogénéité est un **vrai atout pour une équipe de quatre développeurs** : un seul langage du front au back, donc chacun peut intervenir partout, les revues de code sont plus faciles, et on n'a pas besoin de spécialistes séparés. C'est aussi ce qui rend l'outillage cohérent — ESLint, Jest ou Cypress fonctionnent sur toute la chaîne, ce qui simplifie le pipeline.
+
+Enfin, React Native permet de mutualiser une grande partie du code entre iOS et Android, ce qui est cohérent avec le dimensionnement de l'équipe.
+
 ### Quels outils concrets composent le pipeline ?
 
 Réponse défendable :
