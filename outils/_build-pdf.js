@@ -3,8 +3,8 @@ const { PDFDocument } = require("pdf-lib");
 const path = require("path");
 const fs = require("fs");
 
+// NB : "00-preparation" est volontairement exclu du PDF (slide technique = code télécommande)
 const ORDER = [
-  "00-preparation",
   "01-couverture", "02-intro", "03-contexte", "04-organisation-methode",
   "05-organisation-equipe", "06-methode-rituels", "07-arbitrages-budget",
   "07b-suivi-budgetaire",

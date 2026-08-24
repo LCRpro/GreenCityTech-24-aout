@@ -46,7 +46,7 @@
 <div id="hud">
   <button class="btn" id="bPrev">◀</button>
   <button class="btn" id="bNext">▶</button>
-  <span id="counter">1 / 23</span>
+  <span id="counter">Prépa</span>
   <span id="title"></span>
   <span class="grow"></span>
   <button class="btn" id="bFull">⛶ Plein écran (F)</button>
@@ -150,7 +150,8 @@ function go(i){
   frames[i].classList.add("on");
   cur = i;
   if(i===0) setTimeout(updatePreparationCode,0);
-  document.getElementById("counter").textContent = (i+1)+" / "+N;
+  // la slide "Préparation" (index 0) ne compte pas dans la numérotation de l'oral
+  document.getElementById("counter").textContent = (i===0) ? "Prépa" : (i+" / "+(N-1));
   document.getElementById("title").textContent = SLIDES[i][1];
   document.getElementById("bar").style.width = ((i+1)/N*100)+"%";
   if(bc) bc.postMessage({type:"state", i:cur, n:N, title:SLIDES[cur][1]});
