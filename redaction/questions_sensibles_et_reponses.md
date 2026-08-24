@@ -279,3 +279,35 @@ Ce sont des tests dans des conditions proches du réel, pas seulement en local :
 Réponse défendable :
 
 Côté mobile, on s'appuie sur les mécanismes des stores : pre-launch report de la Play Console, bêta via TestFlight, respect des guidelines techniques Apple et Google, gestion des signatures et certificats. Côté web, on vérifie la performance, la sécurité et le RGAA, avec une checklist de conformité avant chaque publication. L'objectif est de publier sans blocage et de rester conforme aux exigences de chaque canal.
+
+### Quels outils concrets composent le pipeline ?
+
+Réponse défendable :
+
+Le pipeline tourne sur **GitHub Actions**, et chaque étape a son outil : **ESLint et Prettier** pour la qualité et le formatage du code, **TypeScript** pour la vérification du typage, **Jest** pour les tests unitaires et d'intégration, **Cypress** pour les tests end-to-end sur les parcours critiques.
+
+Côté sécurité : **npm audit** complété par **Dependabot** pour les failles des dépendances, et **Trivy** pour scanner l'image Docker. Côté accessibilité, **axe-core** en automatisé, avec **Lighthouse** pour un contrôle global performance et bonnes pratiques.
+
+Le build produit une **image Docker** versionnée, poussée sur le registry, puis déployée via **Docker Compose** sur le VPS cible.
+
+Ce sont volontairement des outils **standards, gratuits et bien documentés** : l'équipe peut se les approprier rapidement, et ils n'ajoutent pas de coût de licence. Si le projet grandit, on peut ajouter **SonarQube** pour une analyse de qualité plus poussée, et **Fastlane** pour automatiser la publication mobile.
+
+---
+
+## 11. Management et situations humaines difficiles
+
+### Si le suivi du moral ne s'améliore pas et qu'un collaborateur va toujours mal, que faites-vous ?
+
+Réponse défendable :
+
+C'est une question importante, parce qu'elle touche à la limite de mon rôle. Je procède par étapes.
+
+**D'abord, un entretien individuel**, en direct et sans jugement. Les indicateurs collectifs disent qu'il y a un problème, mais ils ne disent jamais *pourquoi*. Il faut donc écouter la personne, sans chercher à interpréter à sa place — et sans en faire un sujet public devant l'équipe.
+
+**Ensuite, j'agis sur ce qui est dans mon périmètre** : réduire ou rééquilibrer la charge, ajuster le type de tâches, revoir les horaires ou le télétravail, compléter les aménagements matériels, retirer les réunions non essentielles. Beaucoup de situations se débloquent là, parce que la cause est organisationnelle.
+
+**Mais si la situation ne s'améliore pas, je passe la main** — et c'est le point clé. Un manager n'est ni médecin, ni psychologue. À ce stade, on mobilise les bons acteurs : les **RH**, la **médecine du travail**, le **référent handicap** de l'entreprise. La médecine du travail peut préconiser un aménagement de poste formalisé, éventuellement une reconnaissance RQTH si la personne le souhaite — toujours avec son accord, jamais imposé. Selon les cas, on envisage aussi un temps partiel thérapeutique ou une mobilité interne.
+
+Trois principes guident tout ça. **Ne jamais laisser la situation s'installer** : plus on attend, plus c'est difficile à réparer, pour la personne comme pour l'équipe. **Tracer les actions engagées**, pas l'état de santé de la personne — le manager documente ce qu'il a mis en place, pas un diagnostic. Et **ne jamais individualiser les indicateurs en public** : je suis le moral au niveau de l'équipe, et les cas individuels se traitent en tête-à-tête, ce qui est aussi une exigence de non-discrimination.
+
+Enfin, il faut accepter qu'un projet ne peut pas tout résoudre : certaines causes sont personnelles et extérieures au travail. Mon rôle est de **garantir un cadre qui n'aggrave pas la situation**, et d'orienter vers les personnes compétentes quand ça dépasse le cadre professionnel.

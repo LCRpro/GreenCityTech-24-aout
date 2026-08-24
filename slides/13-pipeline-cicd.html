@@ -37,23 +37,23 @@
     <div class="pipe">
       <div class="stage-col">
         <div class="sh"><div class="st-k">Stage 01</div><div class="st-t">Contrôles rapides</div><div class="count">6</div></div>
-        <div class="step"><div class="st-name">lint</div><div class="st-desc">Contrôle du code.</div></div>
-        <div class="step"><div class="st-name">typecheck</div><div class="st-desc">Vérification du typage.</div></div>
-        <div class="step"><div class="st-name">app_tests</div><div class="st-desc">Tests unitaires et d’intégration.</div></div>
-        <div class="step"><div class="st-name">dependency_audit</div><div class="st-desc">Vérification des dépendances.</div></div>
-        <div class="step"><div class="st-name">image_scan</div><div class="st-desc">Scan Trivy de l’image Docker.</div></div>
-        <div class="step"><div class="st-name">accessibility_check</div><div class="st-desc">Vérification rapide de l’accessibilité.</div></div>
+        <div class="step"><div class="st-name">lint</div><div class="st-desc">Style &amp; erreurs — <b>ESLint + Prettier</b></div></div>
+        <div class="step"><div class="st-name">typecheck</div><div class="st-desc">Typage — <b>TypeScript</b></div></div>
+        <div class="step"><div class="st-name">app_tests</div><div class="st-desc">Unitaires &amp; intégration — <b>Jest</b></div></div>
+        <div class="step"><div class="st-name">dependency_audit</div><div class="st-desc">Failles des libs — <b>npm audit / Dependabot</b></div></div>
+        <div class="step"><div class="st-name">image_scan</div><div class="st-desc">Vulnérabilités image — <b>Trivy</b></div></div>
+        <div class="step"><div class="st-name">accessibility_check</div><div class="st-desc">Accessibilité — <b>axe-core / Lighthouse</b></div></div>
       </div>
 
       <div class="stage-col">
         <div class="sh"><div class="st-k">Stage 02</div><div class="st-t">Build</div><div class="count">2</div></div>
-        <div class="step"><div class="st-name">app_build</div><div class="st-desc">Compilation de l’application.</div></div>
-        <div class="step"><div class="st-name">docker_build</div><div class="st-desc">Construction de l’image Docker.</div></div>
+        <div class="step"><div class="st-name">app_build</div><div class="st-desc">Compilation de l’application</div></div>
+        <div class="step"><div class="st-name">docker_build</div><div class="st-desc">Image versionnée — <b>Docker</b></div></div>
       </div>
 
       <div class="stage-col">
         <div class="sh"><div class="st-k">Stage 03</div><div class="st-t">Tests avancés</div><div class="count">1</div></div>
-        <div class="step indigo"><div class="st-name">e2e_tests</div><div class="st-desc">Tests E2E sur les parcours critiques.</div></div>
+        <div class="step indigo"><div class="st-name">e2e_tests</div><div class="st-desc">Parcours critiques — <b>Cypress</b></div></div>
       </div>
 
       <div class="stage-col">
@@ -61,7 +61,7 @@
         <div class="step violet"><div class="st-name">deploy_dev</div><div class="st-desc">Si branche « develop ».</div></div>
         <div class="step"><div class="st-name">deploy_preprod</div><div class="st-desc">Si release candidate.</div></div>
         <div class="step magenta"><div class="st-name">▶ deploy_prod</div><div class="st-desc">Si branche « main ».</div><span class="manuel">MANUEL</span></div>
-        <div class="step violet"><div class="st-name">smoke_check</div><div class="st-desc">Contrôle rapide après déploiement.</div></div>
+        <div class="step violet"><div class="st-name">smoke_check</div><div class="st-desc">Contrôle santé après déploiement</div></div>
       </div>
 
       <div class="card indigo arb">
