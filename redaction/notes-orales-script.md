@@ -10,7 +10,7 @@
 
 ## Slide 1 — Couverture  ⏱️ ~30 s
 
-Bonjour, je m'appelle Liam Cariou, en Master Lead Développeur Full Stack à la Normandie Web School.
+Bonjour, je m'appelle Liam Cariou, en Master Manager de l'ingénierie numérique à la Normandie Web School.
 
 Je vais vous présenter ma proposition d'organisation et de pilotage DevOps pour **GreenCity Tech**.
 

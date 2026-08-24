@@ -7,7 +7,7 @@
 ---
 
 **1 · Couverture**
-- Se présenter : Liam Cariou, Master Lead Dev Full Stack, NWS.
+- Se présenter : Liam Cariou, Master Manager de l'ingénierie numérique, NWS.
 - Sujet : organisation & pilotage DevOps de GreenCity Tech.
 - Angle : prototype → plateforme, progressif & réaliste.
 
