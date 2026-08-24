@@ -294,6 +294,26 @@ Ensuite, cette homogénéité est un **vrai atout pour une équipe de quatre dé
 
 Enfin, React Native permet de mutualiser une grande partie du code entre iOS et Android, ce qui est cohérent avec le dimensionnement de l'équipe.
 
+### Pourquoi PostgreSQL plutôt que MySQL ?
+
+Réponse défendable :
+
+La raison principale est **géospatiale**. GreenCity Tech est une application de signalement localisé : chaque signalement porte des coordonnées, et on doit pouvoir répondre à des questions comme « quels signalements dans un rayon de 500 mètres », « lesquels dans ce quartier », ou les regrouper efficacement sur une carte. PostgreSQL dispose de **PostGIS**, qui est la référence du domaine, avec des index spatiaux et des requêtes géographiques natives. MySQL propose des fonctions spatiales, mais nettement plus limitées.
+
+À cela s'ajoutent trois avantages : le type **JSONB**, qui permet de stocker des métadonnées variables selon le type de signalement tout en restant indexable et performant ; une **robustesse transactionnelle** et un respect des standards SQL reconnus ; et une **licence pleinement open source**, là où MySQL appartient à Oracle avec un modèle de double licence.
+
+Cela dit, je reste mesuré : MySQL n'est pas un mauvais choix en soi, et pour un CRUD classique la question ne se poserait pas. C'est le besoin cartographique qui tranche. Et si le prototype existant tournait déjà sur MySQL, je ne migrerais pas par principe — je le ferais seulement quand la cartographie devient réellement structurante, en traitant ça comme une évolution cadrée, avec son analyse d'impact.
+
+### Combien d'applications y a-t-il exactement ?
+
+Réponse défendable :
+
+Il y a **trois interfaces et un backend**. Côté citoyen, un portail web en React et une application mobile en React Native — le mobile est essentiel puisque le signalement se fait sur le terrain, avec photo et géolocalisation. Côté collectivité, une interface d'administration en React, utilisée par les agents pour traiter les signalements. Et un backend Node.js qui expose l'API consommée par ces trois interfaces, ainsi que par les partenaires externes.
+
+On pourrait me demander pourquoi le portail citoyen et l'interface d'administration sont deux applications distinctes plutôt qu'une seule avec des rôles. C'est un choix assumé : les publics et les usages n'ont rien à voir, et surtout l'interface d'administration n'a pas vocation à être exposée publiquement — on peut la restreindre, la déployer séparément et la sécuriser davantage. Cela permet aussi de faire évoluer l'une sans risquer de casser l'autre.
+
+Enfin, sur la mutualisation : React et React Native partagent le même langage et la même logique de composants. On mutualise donc la **logique métier, les types TypeScript et les appels API** dans un package commun. Ce qui diffère, c'est uniquement la couche d'interface — composants web d'un côté, composants natifs de l'autre. C'est précisément ce qui rend cette stack cohérente avec une équipe de quatre développeurs.
+
 ### Quels outils concrets composent le pipeline ?
 
 Réponse défendable :
