@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Télécommande — GreenCity Tech</title>
+<style>
+  :root{--indigo:#1E1B4B;--violet:#7C3AED;--magenta:#EC4899;}
+  *{box-sizing:border-box} body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;background:linear-gradient(145deg,var(--indigo),#35206e);font-family:system-ui,sans-serif;color:#fff}
+  main{width:min(100%,420px);padding:28px 22px;border-radius:22px;background:rgba(255,255,255,.12);box-shadow:0 18px 45px rgba(0,0,0,.28);backdrop-filter:blur(10px)}
+  h1{margin:0 0 8px;font-size:25px}p{line-height:1.45;opacity:.9}.code{display:flex;gap:8px;margin:22px 0 12px}input{width:100%;padding:14px;border:0;border-radius:11px;font-size:18px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.connect,button{border:0;border-radius:11px;font:inherit;font-weight:800;cursor:pointer}.connect{padding:0 15px;background:#fff;color:var(--violet)}
+  .controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}.controls button{min-height:104px;background:linear-gradient(145deg,var(--violet),var(--magenta));color:#fff;font-size:19px;box-shadow:0 8px 20px rgba(0,0,0,.25)}.controls button:active{transform:translateY(2px)}.status{min-height:22px;font-size:14px;margin:12px 0 0;color:#d8fbe8}
+</style>
+</head>
+<body>
+<main>
+  <h1>🎤 Télécommande du diapo</h1>
+  <p>Sur le PC, relevez le code affiché en bas de la présentation, puis saisissez-le ici.</p>
+  <div class="code"><input id="session" autocomplete="off" autocapitalize="characters" placeholder="Code" maxlength="64"><button class="connect" id="connect">Lier</button></div>
+  <div class="controls"><button data-action="prev">◀<br>Précédente</button><button data-action="next">Suivante<br>▶</button></div>
+  <div class="status" id="status">Saisissez le code pour relier le téléphone.</div>
+</main>
+<script>
+const input=document.getElementById("session"), status=document.getElementById("status");
+let session="";
+function valid(value){return /^\d{4}$/.test(value)}
+function connect(){
+  const value=input.value.trim().toUpperCase().replace(/-/g,"");
+  if(!valid(value)){status.textContent="Le code doit contenir exactement 4 chiffres.";return;}
+  session=value; localStorage.setItem("gct_remote_session",session); status.textContent="Télécommande reliée."
+}
+const fromUrl=new URLSearchParams(location.search).get("remote");
+const saved=fromUrl||localStorage.getItem("gct_remote_session")||"";
+if(valid(saved)){input.value=saved.toUpperCase();connect();}
+document.getElementById("connect").onclick=connect;
+input.addEventListener("keydown",e=>{if(e.key==="Enter")connect()});
+document.querySelectorAll("[data-action]").forEach(button=>button.onclick=async()=>{
+  if(!session){status.textContent="Saisissez d'abord le code.";return;}
+  try{
+    const response=await fetch("remote-control.php?session="+encodeURIComponent(session),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:button.dataset.action})});
+    status.textContent=response.ok?"Commande envoyée.":"Impossible d'envoyer la commande.";
+  }catch(e){status.textContent="Serveur inaccessible : vérifiez la connexion.";}
+});
+</script>
+</body>
+</html>

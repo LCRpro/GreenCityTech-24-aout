@@ -54,6 +54,7 @@
 
 <script>
 const SLIDES = [
+  ["00-preparation.html","Préparation"],
   ["01-couverture.html","Couverture"],
   ["02-intro.html","01 · Introduction"],
   ["03-contexte.html","Contexte"],
@@ -94,6 +95,41 @@ const frames = SLIDES.map(([src], i) => {
 let cur = 0;
 const N = SLIDES.length;
 
+// Télécommande depuis un autre appareil : un code éphémère relie le PC et le téléphone.
+function createRemoteSession(){
+  const bytes=new Uint32Array(1);
+  crypto.getRandomValues(bytes);
+  return String(1000+(bytes[0]%9000));
+}
+const remoteParams=new URLSearchParams(location.search);
+let remoteSession=remoteParams.get("remote");
+if(!/^\d{4}$/.test(remoteSession||"")){
+  remoteSession=createRemoteSession();
+  remoteParams.set("remote",remoteSession);
+  history.replaceState(null,"",location.pathname+"?"+remoteParams.toString());
+}
+let remoteSequence=0;
+function updatePreparationCode(){
+  const code=frames[0]?.contentDocument?.getElementById("remoteCode");
+  if(code) code.textContent=remoteSession;
+}
+frames[0].addEventListener("load",updatePreparationCode);
+async function pollRemote(){
+  try{
+    const response=await fetch("remote-control.php?session="+encodeURIComponent(remoteSession),{cache:"no-store"});
+    if(!response.ok) return;
+    const command=await response.json();
+    if(command.sequence>remoteSequence){
+      remoteSequence=command.sequence;
+      if(command.action==="next") go(cur+1);
+      else if(command.action==="prev") go(cur-1);
+      else if(command.action==="goto" && Number.isInteger(command.slide)) go(command.slide);
+    }
+  }catch(e){ /* Le diapo reste utilisable même si le relais n'est pas disponible. */ }
+}
+setInterval(pollRemote,500);
+pollRemote();
+
 // Télécommande depuis le dashboard (même origine)
 const bc = ("BroadcastChannel" in window) ? new BroadcastChannel("gct-present") : null;
 if(bc) bc.onmessage = (e)=>{
@@ -113,6 +149,7 @@ function go(i){
   frames[cur].classList.remove("on");
   frames[i].classList.add("on");
   cur = i;
+  if(i===0) setTimeout(updatePreparationCode,0);
   document.getElementById("counter").textContent = (i+1)+" / "+N;
   document.getElementById("title").textContent = SLIDES[i][1];
   document.getElementById("bar").style.width = ((i+1)/N*100)+"%";

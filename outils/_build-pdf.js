@@ -4,6 +4,7 @@ const path = require("path");
 const fs = require("fs");
 
 const ORDER = [
+  "00-preparation",
   "01-couverture", "02-intro", "03-contexte", "04-organisation-methode",
   "05-organisation-equipe", "06-methode-rituels", "07-arbitrages-budget",
   "07b-suivi-budgetaire",

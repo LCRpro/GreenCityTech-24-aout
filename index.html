@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oral GreenCity Tech — Liam Cariou</title>
 <link rel="icon" type="image/png" href="slides/logo-greencity-mark.png">
-<script>try{var t=localStorage.getItem('gct_theme')||((window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<script>try{var t=localStorage.getItem('gct_theme')||((window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');document.documentElement.setAttribute('data-theme',t);if(localStorage.getItem('gct_dash_ok')==='1')document.documentElement.classList.add('unlocked');}catch(e){}</script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap");
 :root{
@@ -80,6 +80,15 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
 .content ul,.content ol{padding-left:1.4em;}
 .content li{margin:.3em 0;}
 .content hr{border:0;border-top:1px solid var(--border);margin:1.6em 0;}
+/* ---------- Portail d'accès ---------- */
+.gate{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:var(--topbar);color:#fff;padding:20px;}
+html.unlocked .gate{display:none;}
+.gate .gcard{width:min(100%,360px);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:30px 24px;text-align:center;backdrop-filter:blur(8px);box-shadow:0 22px 55px rgba(0,0,0,.4);}
+.gate .gcard h2{font-family:"Baloo 2","Segoe UI",sans-serif;margin:.15em 0 .1em;font-size:26px;}
+.gate .gcard p{opacity:.85;margin:.2em 0 1.2em;font-size:14px;line-height:1.4;}
+.gate input{width:100%;text-align:center;font-size:28px;font-weight:800;letter-spacing:.45em;padding:14px 10px;border:0;border-radius:12px;background:#fff;color:#1E1B4B;}
+.gate .gbtn{margin-top:14px;width:100%;padding:13px;border:0;border-radius:12px;cursor:pointer;font-weight:800;font-size:16px;background:linear-gradient(135deg,var(--magenta),#f472b6);color:#fff;}
+.gate .gerr{min-height:18px;margin-top:10px;font-size:13px;color:#ffd7d7;font-weight:700;}
 
 /* ---------- Responsive : sidebar en burger ---------- */
 @media (max-width:860px){
@@ -93,7 +102,9 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   .overlay.show{opacity:1;pointer-events:auto;}
   .content{padding:22px 18px 100px;}
   .topbar .sub{display:none;}
-  .btn.primary,.btn.ghost{display:none;} /* mobile : on masque présentation + PDF, on garde A−/A+ */
+  .btn.primary,.btn.ghost:not(.remote-link){display:none;} /* mobile : on garde l'accès à la télécommande */
+  .btn.remote-link{padding:10px 12px;font-size:0;}
+  .btn.remote-link .ico{font-size:17px;}
 }
 @media (max-width:520px){
   .topbar{gap:8px;padding:10px 12px;}
@@ -108,11 +119,23 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
 .remote .rinfo{display:flex;flex-direction:column;align-items:center;min-width:150px;line-height:1.15;padding:0 4px;}
 .remote .rpos{font-family:"Baloo 2","Segoe UI",sans-serif;font-weight:800;font-size:15px;color:var(--text);}
 .remote .rtitle{font-size:11.5px;color:var(--muted);max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.remote .rcode{width:62px;border:1px solid var(--border);border-radius:9px;padding:7px 4px;background:var(--field-bg);color:var(--text);text-align:center;font-weight:800;letter-spacing:.06em;}
+.remote .rconnect{border:0;border-radius:9px;padding:8px 9px;background:var(--violet);color:#fff;font-weight:800;cursor:pointer;font-size:12px;}
 @media (max-width:520px){.remote{gap:6px;}.remote .rinfo{min-width:92px;}.remote .rtitle{max-width:120px;}.remote .rbtn{width:44px;height:44px;}}
 @media print{.topbar,.sidebar,.overlay,.remote{display:none!important;}.layout{grid-template-columns:1fr;}.doc[hidden]{display:block!important;}}
 </style>
 </head>
 <body>
+<div class="gate" id="gate">
+  <div class="gcard">
+    <div style="font-size:42px;line-height:1">🔒</div>
+    <h2>Accès protégé</h2>
+    <p>Entre le code à 4 chiffres pour ouvrir le tableau de bord.</p>
+    <input id="gcode" inputmode="numeric" maxlength="4" placeholder="••••" aria-label="Code d'accès">
+    <button class="gbtn" id="gbtn">Entrer</button>
+    <div class="gerr" id="gerr"></div>
+  </div>
+</div>
 <div class="topbar">
   <button id="burger" class="ico-btn burger" title="Menu" aria-label="Menu">☰</button>
   <div class="brand"><img src="slides/logo-greencity-mark.png" alt=""><div class="name">GreenCity Tech<div class="sub">Oral · Liam Cariou · 24 août 2026</div></div></div>
@@ -120,6 +143,7 @@ body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--text);backgro
   <button id="themeBtn" class="ico-btn" title="Thème clair / sombre">🌙</button>
   <div class="fs-ctl"><button id="fsMinus" title="Réduire le texte">A−</button><button id="fsPlus" title="Agrandir le texte">A+</button></div>
   <a class="btn primary" href="slides/presentation.html" target="_blank"><span class="ico">▶</span><span class="lbl">Lancer la présentation</span></a>
+  <a class="btn ghost remote-link" href="slides/remote.html" target="_blank"><span class="ico">🎤</span><span class="lbl">Télécommande</span></a>
   <a class="btn ghost" href="slides/GreenCityTech-LiamCariou.pdf" target="_blank">📄 PDF</a>
 </div>
 <div class="overlay" id="overlay"></div>
@@ -6387,12 +6411,25 @@ Canaux applicatifs
 </article>
   </main>
 </div>
-<div class="remote" id="remote" title="Télécommande de la présentation">
+<div class="remote" id="remote" title="Saisissez le code affiché sur la slide Préparation pour piloter le diapo depuis ce téléphone.">
   <button class="rbtn" id="rprev" aria-label="Slide précédente">◀</button>
   <div class="rinfo"><span class="rpos" id="rpos">— / —</span><span class="rtitle" id="rtitle">présentation non ouverte</span></div>
+  <input class="rcode" id="rcode" inputmode="numeric" maxlength="4" placeholder="Code" aria-label="Code télécommande">
+  <button class="rconnect" id="rconnect">Lier</button>
   <button class="rbtn" id="rnext" aria-label="Slide suivante">▶</button>
 </div>
 <script>
+// Portail d'accès (code à 4 chiffres — dissuasion, pas une vraie sécurité côté serveur)
+(function(){
+  const ACCESS="2408";
+  const gcode=document.getElementById('gcode'), gerr=document.getElementById('gerr');
+  function unlock(){ try{localStorage.setItem('gct_dash_ok','1');}catch(e){} document.documentElement.classList.add('unlocked'); }
+  function tryUnlock(){ if((gcode.value||'').trim()===ACCESS){ unlock(); } else { gerr.textContent='Code incorrect'; gcode.value=''; gcode.focus(); } }
+  document.getElementById('gbtn').onclick=tryUnlock;
+  gcode.addEventListener('keydown',e=>{ if(e.key==='Enter') tryUnlock(); });
+  gcode.addEventListener('input',()=>{ if((gcode.value||'').trim().length===4) tryUnlock(); });
+  if(!document.documentElement.classList.contains('unlocked')) setTimeout(()=>gcode.focus(),60);
+})();
 const items=[...document.querySelectorAll('.nav-item')];
 const docs=[...document.querySelectorAll('.doc')];
 const sidebar=document.getElementById('sidebar'), overlay=document.getElementById('overlay');
@@ -6431,12 +6468,39 @@ applyFs();
 // Télécommande de la présentation (BroadcastChannel, même origine)
 const present=("BroadcastChannel" in window)?new BroadcastChannel("gct-present"):null;
 const rpos=document.getElementById("rpos"), rtitle=document.getElementById("rtitle");
+const rcode=document.getElementById("rcode");
+let remoteSession="";
+function validRemoteCode(value){return /^\d{4}$/.test(value);}
+function setRemoteCode(value){
+  const code=String(value||"").trim();
+  if(!validRemoteCode(code)){rtitle.textContent="Code à 4 chiffres requis";return false;}
+  remoteSession=code; rcode.value=code; rpos.textContent="Code "+code; rtitle.textContent="prêt — lance le diapo";
+  try{localStorage.setItem("gct_remote_session",code);}catch(e){}
+  const link=document.querySelector('a.btn.primary');       // le lancement partage le code au diapo
+  if(link) link.href="slides/presentation.html?remote="+code;
+  return true;
+}
+const codeFromUrl=new URLSearchParams(location.search).get("remote")||"";
+let savedRemoteCode="";
+try{savedRemoteCode=localStorage.getItem("gct_remote_session")||"";}catch(e){}
+if(validRemoteCode(codeFromUrl)) setRemoteCode(codeFromUrl);
+else if(validRemoteCode(savedRemoteCode)) setRemoteCode(savedRemoteCode);
+else { const rb=new Uint32Array(1); crypto.getRandomValues(rb); setRemoteCode(String(1000+(rb[0]%9000))); } // sinon on en génère un
+document.getElementById("rconnect").onclick=()=>setRemoteCode(rcode.value);
+rcode.addEventListener("keydown",e=>{if(e.key==="Enter")setRemoteCode(rcode.value);});
+rcode.addEventListener("input",()=>{if(rcode.value.trim().length===4)setRemoteCode(rcode.value);});
+async function sendRemote(action){
+  try{
+    const response=await fetch("slides/remote-control.php?session="+encodeURIComponent(remoteSession),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action})});
+    rtitle.textContent=response.ok?"Commande envoyée":"Erreur de relais";
+  }catch(e){rtitle.textContent="Relais inaccessible";}
+}
 if(present){
   present.onmessage=(e)=>{const d=e.data||{}; if(d.type==="state"){rpos.textContent=(d.i+1)+" / "+d.n; rtitle.textContent=d.title||"";}};
   present.postMessage({action:"ping"});
 }else{ rtitle.textContent="navigateur non compatible"; }
-document.getElementById("rprev").onclick=()=>{ if(present) present.postMessage({action:"prev"}); };
-document.getElementById("rnext").onclick=()=>{ if(present) present.postMessage({action:"next"}); };
+document.getElementById("rprev").onclick=()=>{ if(remoteSession) sendRemote("prev"); else if(present) present.postMessage({action:"prev"}); else rtitle.textContent="Saisissez le code"; };
+document.getElementById("rnext").onclick=()=>{ if(remoteSession) sendRemote("next"); else if(present) present.postMessage({action:"next"}); else rtitle.textContent="Saisissez le code"; };
 // doc initial (dernier ouvert ou premier)
 let start='doc-0';
 try{const s=localStorage.getItem('gct_lastdoc'); if(s&&document.getElementById(s))start=s;}catch(e){}
