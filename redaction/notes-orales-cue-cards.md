@@ -87,7 +87,7 @@
 **19 · Gestion produit & évolutions**
 - Process : retour terrain → cadrage → analyse d'impact → arbitrage → roadmap/report/refus.
 - Priorisation : valeur multi-collectivités, effort, risques, capacité, coût.
-- Exemples : carto temps réel (WebSocket), photos HD (RGPD), chatbot (effet de mode).
+- Les 3 demandes = les 3 issues : **carto temps réel → ROADMAP** (refresh 30 s d'abord, WebSocket au lot suivant) · **photos HD → INTÉGRÉ** (compression + taille limitée + durée de conservation RGPD) · **chatbot → REPORTÉ** (valeur incertaine, coût récurrent, RGPD → une **FAQ dynamique** suffit).
 - « Une bonne idée doit être **cadrée** ».
 
 **20 · Suivi, démonstrations & satisfaction**

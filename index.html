@@ -342,7 +342,10 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 <h2>Slide 19 — Gestion produit &amp; évolutions  ⏱️ ~60 s</h2>
 <p>Chaque demande d&#39;évolution passe par un <strong>processus</strong> clair : retour terrain → cadrage produit → analyse d&#39;impact → arbitrage interne → puis roadmap, <strong>ou report, ou refus</strong>.</p>
 <p>Pour prioriser, je regarde : la valeur métier pour plusieurs collectivités, l&#39;effort, les risques (sécurité, RGPD), la capacité technique de l&#39;équipe et le coût.</p>
-<p>Trois exemples de demandes : la <strong>cartographie temps réel</strong> (fort intérêt mais gros impact perf), les <strong>photos HD</strong> (compression + attention RGPD), un <strong>chatbot citoyen</strong> (effet de mode IA à surveiller).</p>
+<p>Les trois demandes du client illustrent justement les trois issues possibles.</p>
+<p>La <strong>cartographie temps réel</strong> : la valeur est réelle — voir les signalements en direct pour mieux prioriser les interventions. Mais le temps réel via WebSocket fait grimper la charge serveur et le coût. Je la mets donc <strong>en roadmap</strong> : d&#39;abord un simple rafraîchissement automatique toutes les 30 secondes, qui couvre 90 % du besoin, et le vrai temps réel au lot suivant.</p>
+<p>Les <strong>photos HD</strong> : signalements plus précis, moins d&#39;allers-retours pour qualifier. L&#39;impact est maîtrisable — stockage S3 et bande passante — mais il y a des données personnelles potentielles. Je l&#39;<strong>intègre</strong>, avec compression, taille limitée et une durée de conservation définie pour le RGPD.</p>
+<p>Le <strong>chatbot citoyen</strong> : là je dis non pour l&#39;instant. La valeur est incertaine, le coût récurrent élevé, le RGPD sensible et les réponses difficiles à fiabiliser. Une <strong>FAQ dynamique</strong> couvre le besoin pour une fraction du prix — on réévaluera si la demande se confirme vraiment.</p>
 <p>Le principe : une bonne idée doit être <strong>cadrée</strong>. Si c&#39;est trop spécifique, trop coûteux ou trop risqué, on recadre, on reporte, ou on n&#39;intègre pas.</p>
 <hr>
 <h2>Slide 20 — Suivi, démonstrations et satisfaction  ⏱️ ~50 s</h2>
@@ -480,7 +483,7 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 <ul>
 <li>Process : retour terrain → cadrage → analyse d&#39;impact → arbitrage → roadmap/report/refus.</li>
 <li>Priorisation : valeur multi-collectivités, effort, risques, capacité, coût.</li>
-<li>Exemples : carto temps réel (WebSocket), photos HD (RGPD), chatbot (effet de mode).</li>
+<li>Les 3 demandes = les 3 issues : <strong>carto temps réel → ROADMAP</strong> (refresh 30 s d&#39;abord, WebSocket au lot suivant) · <strong>photos HD → INTÉGRÉ</strong> (compression + taille limitée + durée de conservation RGPD) · <strong>chatbot → REPORTÉ</strong> (valeur incertaine, coût récurrent, RGPD → une <strong>FAQ dynamique</strong> suffit).</li>
 <li>« Une bonne idée doit être <strong>cadrée</strong> ».</li>
 </ul>
 <p><strong>20 · Suivi, démonstrations &amp; satisfaction</strong></p>

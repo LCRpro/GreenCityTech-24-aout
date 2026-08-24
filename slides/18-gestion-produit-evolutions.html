@@ -8,14 +8,22 @@
   .proc .pstep .pt { font-family:"Baloo 2",sans-serif; font-weight:800; font-size:21px; color:var(--indigo); line-height:1.05; margin-top:2px; }
   .proc .parr { display:flex; align-items:center; color:var(--violet); font-size:24px; font-weight:800; }
   .gp { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
-  .gp .col { display:flex; flex-direction:column; gap:14px; }
+  .gp .col { display:flex; flex-direction:column; gap:11px; }
   .gp .card { padding:16px 20px; }
   .gp .card h3 { font-size:23px; margin:2px 0 8px; }
   .gp .bullets li { font-size:17px; margin:5px 0; line-height:1.28; }
-  .dc h3 { font-size:22px; }
-  .dc .two { display:grid; grid-template-columns:1fr 1fr; gap:2px 18px; }
-  .dc .bullets { margin:0; }
-  .dc .bullets li { font-size:16px; margin:3px 0; }
+  .dc { padding:11px 16px; }
+  .dc .dhead { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:4px; }
+  .dc h3 { font-size:18px; margin:0; }
+  .dc .line { margin:1px 0; font-size:13.5px; line-height:1.28; color:var(--indigo); }
+  .dc .line b { color:var(--violet-deep); }
+  .dc .deci { margin:5px 0 0; font-size:13.5px; line-height:1.28; font-weight:600; color:var(--indigo);
+    border-top:1px solid rgba(124,58,237,.18); padding-top:4px; }
+  .verdict { flex:none; padding:3px 10px; border-radius:999px; font-size:11.5px; font-weight:800;
+    letter-spacing:.06em; text-transform:uppercase; color:#fff; }
+  .verdict.ok { background:#059669; }
+  .verdict.roadmap { background:linear-gradient(135deg,var(--violet),var(--violet-deep)); }
+  .verdict.no { background:linear-gradient(135deg,var(--magenta),var(--magenta-deep)); }
   .arb-card p { margin:6px 0 0; font-size:16.5px; line-height:1.32; color:var(--indigo); }
 </style>
 </head>
@@ -62,28 +70,22 @@
 
       <div class="col">
         <div class="card tint dc">
-          <div class="kicker" style="color:var(--violet-deep)">Demande client 1</div>
-          <h3>Cartographie en temps réel</h3>
-          <div class="two">
-            <ul class="bullets"><li>Intérêt des collectivités</li><li>Gros impact performances</li></ul>
-            <ul class="bullets"><li>Communication temps réel via WebSocket</li></ul>
-          </div>
+          <div class="dhead"><h3>🗺️ Cartographie temps réel</h3><span class="verdict roadmap">Roadmap</span></div>
+          <p class="line"><b>Valeur</b> — voir les signalements en direct, mieux prioriser les interventions terrain.</p>
+          <p class="line"><b>Impact</b> — WebSocket, charge serveur et coût infra en hausse.</p>
+          <p class="deci">→ D'abord un <b>rafraîchissement auto (30 s)</b>, le vrai temps réel au lot suivant.</p>
         </div>
         <div class="card tint dc">
-          <div class="kicker" style="color:var(--violet-deep)">Demande client 2</div>
-          <h3>Photos HD</h3>
-          <div class="two">
-            <ul class="bullets"><li>Signalement renforcé</li><li>Stockage bucket S3</li></ul>
-            <ul class="bullets"><li>Compression</li><li>Attention au RGPD</li></ul>
-          </div>
+          <div class="dhead"><h3>📸 Photos HD</h3><span class="verdict ok">Intégré</span></div>
+          <p class="line"><b>Valeur</b> — signalements plus précis, moins d'allers-retours pour qualifier.</p>
+          <p class="line"><b>Impact</b> — stockage S3 et bande passante ; données personnelles possibles.</p>
+          <p class="deci">→ <b>Compression + taille limitée</b>, durée de conservation définie (RGPD).</p>
         </div>
         <div class="card tint dc">
-          <div class="kicker" style="color:var(--violet-deep)">Demande client 3</div>
-          <h3>Chatbot citoyen</h3>
-          <div class="two">
-            <ul class="bullets"><li>Cadrage fort nécessaire</li><li>Coûts importants</li></ul>
-            <ul class="bullets"><li>Effet de mode IA</li><li>Attention au RGPD</li></ul>
-          </div>
+          <div class="dhead"><h3>🤖 Chatbot citoyen</h3><span class="verdict no">Reporté</span></div>
+          <p class="line"><b>Valeur</b> — incertaine : peu de demandes réelles, effet de mode IA.</p>
+          <p class="line"><b>Impact</b> — coût récurrent élevé, RGPD sensible, réponses à fiabiliser.</p>
+          <p class="deci">→ <b>Une FAQ dynamique</b> couvre le besoin ; réévalué si la demande se confirme.</p>
         </div>
       </div>
     </div>

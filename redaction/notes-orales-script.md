@@ -206,7 +206,13 @@ Chaque demande d'évolution passe par un **processus** clair : retour terrain �
 
 Pour prioriser, je regarde : la valeur métier pour plusieurs collectivités, l'effort, les risques (sécurité, RGPD), la capacité technique de l'équipe et le coût.
 
-Trois exemples de demandes : la **cartographie temps réel** (fort intérêt mais gros impact perf), les **photos HD** (compression + attention RGPD), un **chatbot citoyen** (effet de mode IA à surveiller).
+Les trois demandes du client illustrent justement les trois issues possibles.
+
+La **cartographie temps réel** : la valeur est réelle — voir les signalements en direct pour mieux prioriser les interventions. Mais le temps réel via WebSocket fait grimper la charge serveur et le coût. Je la mets donc **en roadmap** : d'abord un simple rafraîchissement automatique toutes les 30 secondes, qui couvre 90 % du besoin, et le vrai temps réel au lot suivant.
+
+Les **photos HD** : signalements plus précis, moins d'allers-retours pour qualifier. L'impact est maîtrisable — stockage S3 et bande passante — mais il y a des données personnelles potentielles. Je l'**intègre**, avec compression, taille limitée et une durée de conservation définie pour le RGPD.
+
+Le **chatbot citoyen** : là je dis non pour l'instant. La valeur est incertaine, le coût récurrent élevé, le RGPD sensible et les réponses difficiles à fiabiliser. Une **FAQ dynamique** couvre le besoin pour une fraction du prix — on réévaluera si la demande se confirme vraiment.
 
 Le principe : une bonne idée doit être **cadrée**. Si c'est trop spécifique, trop coûteux ou trop risqué, on recadre, on reporte, ou on n'intègre pas.
 
