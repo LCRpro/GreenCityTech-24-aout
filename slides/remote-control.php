@@ -15,7 +15,10 @@ if (!is_string($session) || !preg_match('/^[0-9]{4}$/', $session)) {
     respond(['error' => 'Code de session invalide.'], 400);
 }
 
-$file = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'gct-remote-' . hash('sha256', $session) . '.json';
+$dir = __DIR__ . DIRECTORY_SEPARATOR . 'remote-data';
+if (!is_dir($dir)) { @mkdir($dir, 0775, true); }
+if (!is_dir($dir) || !is_writable($dir)) { $dir = sys_get_temp_dir(); }
+$file = $dir . DIRECTORY_SEPARATOR . 'gct-remote-' . hash('sha256', $session) . '.json';
 $handle = fopen($file, 'c+');
 if ($handle === false || !flock($handle, LOCK_EX)) {
     respond(['error' => 'Relais temporairement indisponible.'], 503);
