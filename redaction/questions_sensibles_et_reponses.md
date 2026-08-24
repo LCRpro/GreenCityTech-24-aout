@@ -314,6 +314,30 @@ On pourrait me demander pourquoi le portail citoyen et l'interface d'administrat
 
 Enfin, sur la mutualisation : React et React Native partagent le même langage et la même logique de composants. On mutualise donc la **logique métier, les types TypeScript et les appels API** dans un package commun. Ce qui diffère, c'est uniquement la couche d'interface — composants web d'un côté, composants natifs de l'autre. C'est précisément ce qui rend cette stack cohérente avec une équipe de quatre développeurs.
 
+### Avec trois applications, avez-vous un seul dépôt ou plusieurs ?
+
+Réponse défendable :
+
+Je pars sur un **monorepo** : un seul dépôt Git, organisé en dossiers — une application par dossier (portail, admin, mobile, API), plus un dossier partagé contenant les types TypeScript et la logique métier commune.
+
+Le raisonnement est simple. Ces applications ne sont pas indépendantes : elles consomment la même API et manipulent les mêmes objets métier. Si j'ajoute un champ à un signalement, il doit être répercuté dans l'API et dans les trois interfaces. Avec quatre dépôts séparés, cela ferait quatre demandes de fusion à synchroniser, avec un risque permanent de désynchronisation. Avec un monorepo, c'est **une seule modification, cohérente, revue d'un bloc**. Pour une équipe de quatre développeurs, c'est aussi bien plus simple à maintenir que quatre projets à faire vivre en parallèle.
+
+La stratégie Git reste identique — `main`, `develop`, branches courtes — elle s'applique juste à un dépôt unique.
+
+La contrepartie, que j'assume : le pipeline doit être un peu plus intelligent. On utilise des **filtres par chemin** : si seul le dossier de l'API a changé, on ne reconstruit et ne redéploie que l'API, pas les trois interfaces. Sans cela, chaque commit relancerait toute la chaîne inutilement.
+
+### Concrètement, comment ces applications se déploient-elles sur le VPS ?
+
+Réponse défendable :
+
+Il faut d'abord distinguer deux cas, parce qu'ils ne suivent pas du tout le même chemin.
+
+**Les trois applications web** — portail citoyen, interface d'administration et backend — sont **dockerisées**. Le pipeline construit une image par application, la pousse sur le registry avec un tag de version, puis le VPS récupère ces images et les lance via **Docker Compose**. Sur le VPS de production tournent donc plusieurs conteneurs : le portail, l'admin, l'API, la base de données, et **Traefik** en frontal. C'est Traefik qui aiguille selon le nom de domaine — le portail sur l'adresse publique, l'administration sur un sous-domaine séparé et restreint, l'API sur le sien. Un seul VPS, plusieurs conteneurs isolés.
+
+**L'application mobile, elle, ne se déploie pas sur le VPS** — et c'est un point que je tiens à souligner, parce qu'on l'oublie souvent. Une application mobile se distribue par les **stores**. Le pipeline construit les binaires, les envoie en bêta via TestFlight pour iOS et la Play Console pour Android, et la publication finale reste soumise à la **validation d'Apple et Google**, qui prend de quelques heures à quelques jours. C'est exactement pour ça que j'ai dit que le mobile est plus difficile à automatiser : on ne maîtrise pas le dernier maillon.
+
+Conséquence concrète sur la gestion : côté web on peut corriger un bug et livrer dans l'heure, alors que côté mobile il faut anticiper le délai de validation. Et comme tous les utilisateurs ne mettent pas à jour immédiatement, **l'API doit rester compatible avec les versions précédentes de l'application** — c'est une contrainte de versionnement à intégrer dès le départ.
+
 ### Quels outils concrets composent le pipeline ?
 
 Réponse défendable :

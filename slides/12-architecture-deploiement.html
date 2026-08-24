@@ -9,6 +9,9 @@
   .n .nk { display:block; font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); }
   .n .nt { display:block; font-family:"Baloo 2",sans-serif; font-weight:800; font-size:19px; color:var(--indigo); line-height:1.08; margin-top:2px; }
   .n .ic { position:absolute; top:11px; right:13px; font-size:14px; color:var(--violet-deep); opacity:.85; }
+  .n.small { padding:10px 12px; }
+  .n.small .nt { font-size:15px; }
+  .n.small .nk { font-size:9.5px; }
   .n.dark    { background:var(--indigo); border-color:transparent; }
   .n.violet  { background:linear-gradient(150deg,var(--violet),var(--violet-deep)); border-color:transparent; }
   .n.magenta { background:linear-gradient(150deg,var(--magenta),var(--magenta-deep)); border-color:transparent; }
@@ -55,8 +58,9 @@
           <line x1="235" y1="38"  x2="298" y2="38"  stroke-dasharray="7 6" marker-end="url(#ah)"/>
           <line x1="505" y1="38"  x2="543" y2="38"  stroke-dasharray="7 6" marker-end="url(#ah)"/>
           <line x1="235" y1="180" x2="561" y2="106" stroke-dasharray="7 6" marker-end="url(#ah)"/>
-          <!-- internal (solid, double) -->
-          <line x1="715" y1="146" x2="715" y2="212" marker-start="url(#ah)" marker-end="url(#ah)"/>
+          <!-- internal (solid, double) : les 2 fronts appellent le backend -->
+          <line x1="638" y1="146" x2="638" y2="212" marker-start="url(#ah)" marker-end="url(#ah)"/>
+          <line x1="792" y1="146" x2="792" y2="212" marker-start="url(#ah)" marker-end="url(#ah)"/>
           <line x1="865" y1="254" x2="878" y2="254" marker-start="url(#ah)" marker-end="url(#ah)"/>
           <line x1="715" y1="296" x2="715" y2="428" marker-start="url(#ah)" marker-end="url(#ah)"/>
           <!-- backend -> bucket (solid) -->
@@ -75,7 +79,8 @@
       <div class="n violet" style="left:0; top:290px; width:235px"><span class="nk">BDD</span><span class="nt">Bucket S3</span><span class="ic">▤</span></div>
 
       <!-- VPS Production inner nodes -->
-      <div class="n dark" style="left:565px; top:64px; width:300px"><span class="nk">Frontend</span><span class="nt">Portail Web</span><span class="ic">▢▦</span></div>
+      <div class="n dark small" style="left:565px; top:64px; width:146px"><span class="nk">Front citoyen</span><span class="nt">Portail Web</span></div>
+      <div class="n dark small" style="left:719px; top:64px; width:146px"><span class="nk">Front agents</span><span class="nt">Interface admin</span></div>
       <div class="n" style="left:880px; top:64px; width:260px"><span class="nk">Network</span><span class="nt">Traefik</span><span class="ic">⇄▦</span></div>
       <div class="n" style="left:880px; top:150px; width:260px"><span class="nk">Monitoring</span><span class="nt">Netdata child</span><span class="ic">✓▦</span></div>
       <div class="n dark" style="left:565px; top:214px; width:300px"><span class="nk">Backend</span><span class="nt">Backend &amp; API</span><span class="ic">⚙▦</span></div>
