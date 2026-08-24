@@ -232,7 +232,41 @@ Et j'assume complètement de ne pas construire tout ça aujourd'hui : ce serait 
 
 ---
 
-## 9. Tests en situation et conformité produit
+## 9. Données, stockage et sauvegardes
+
+### Où sont hébergées les bases de données ?
+
+Réponse défendable :
+
+Chaque environnement a **sa propre base, sur son propre serveur**. La base de production tourne dans un conteneur sur le VPS de production, celle de préproduction sur le VPS de préproduction, et celle de dev sur le VPS de dev. Trois environnements, trois bases totalement isolées.
+
+L'intérêt est double : aucun test en dev ne peut toucher aux données réelles, et une base saturée ou corrompue sur un environnement n'affecte pas les autres. C'est aussi une exigence RGPD — les données réelles des citoyens ne descendent pas en dev ; si on a besoin d'un jeu de données réaliste pour tester, il est **anonymisé**.
+
+Je précise que c'est une architecture de démarrage volontairement simple. Dès que la charge augmente, la première évolution consiste justement à **sortir la base de production sur son propre serveur**, séparée de l'applicatif.
+
+### Où partent les sauvegardes ?
+
+Réponse défendable :
+
+Le point essentiel : **jamais sur le serveur qu'elles sauvegardent**. Une sauvegarde stockée sur le VPS de production ne sert à rien le jour où ce VPS est perdu, corrompu ou chiffré par un rançongiciel — on perdrait la base *et* sa copie.
+
+Les sauvegardes sont donc **externalisées** : un dump automatique quotidien de la base, chiffré, envoyé vers un espace de stockage distinct — un bucket dédié aux sauvegardes ou l'espace de backup de l'hébergeur, séparé du serveur applicatif. On applique une rétention progressive : les sauvegardes quotidiennes des derniers jours, puis hebdomadaires sur un mois.
+
+Et surtout : **une sauvegarde qui n'a jamais été restaurée n'est pas une sauvegarde**. Je prévois un test de restauration périodique sur l'environnement de préproduction, pour vérifier que le fichier est exploitable et mesurer le temps réel de remise en service.
+
+### Un seul bucket S3 pour tous les environnements, est-ce suffisant ?
+
+Réponse défendable :
+
+Non, et c'est un point sur lequel je suis volontairement strict : le stockage est **cloisonné par environnement**, avec un bucket dédié à chacun — ou a minima des préfixes séparés avec des droits d'accès distincts.
+
+Deux raisons. La première est technique : si dev, préproduction et production partagent le même espace, un test ou un script de nettoyage lancé en dev peut écraser ou supprimer des fichiers de production. La seconde est juridique, et c'est la plus importante : les photos de signalement peuvent contenir des données personnelles — visages, plaques, adresses. Les rendre accessibles depuis un environnement de développement reviendrait à exposer des données réelles de citoyens hors production. C'est incompatible avec le RGPD, surtout dans un contexte de collectivités.
+
+Chaque environnement dispose donc de ses propres accès, avec des clés distinctes, et la production a les droits les plus restreints.
+
+---
+
+## 10. Tests en situation et conformité produit
 
 ### Qu'entendez-vous par « tests en situation » ?
 
