@@ -514,8 +514,9 @@ Analyser les difficultés des développeurs en situation de handicap. Proposer a
 <li><strong>Suivi budgétaire concret ?</strong> → tableau de bord prévu/consommé par poste, seuils d&#39;écart (5/10 %), reporting mensuel au contrôle de gestion, alerte direction financière au rouge.</li>
 <li><strong>Plan d&#39;action en cas d&#39;incident ?</strong> → détection (alerte) → priorité → résolution (astreinte) → communication → post-mortem. Côté budget : analyse de cause → re-priorisation / réallocation / arbitrage.</li>
 <li><strong>Tests « en situation » ?</strong> → recette préprod iso-prod, tests de charge/perf, devices réels ; conformité stores (pre-launch report, TestFlight, guidelines) avant publication.</li>
-<li><strong>Pas assez de collectivités ?</strong> → dimensionné sobre (point mort bas) · plateforme <strong>multi-collectivités</strong> (coût marginal faible) · <strong>jalons go/no-go</strong> pour réduire la voilure · suivi revenus vs budget avec la direction financière.</li>
-<li><strong>Budget dépassé ?</strong> → détecté tôt (seuils) → analyse cause → <strong>re-prioriser / réallouer / ajuster le périmètre</strong> (protéger le « must have ») / arbitrer ; si structurel → réviser le plan avec la direction.</li>
+<li><strong>Pas assez de collectivités ?</strong> → point mort ≈ <strong>40 clients</strong> (30 k€/mois ÷ ~600 €). À 6 mois : <strong>≥8</strong> on continue · <strong>3-7</strong> on allonge la phase (DevOps à temps partiel, évolutions repoussées) · <strong>≤2</strong> go/no-go → réduire au socle, viser les intercommunalités ou arrêt maîtrisé. Amortisseurs : multi-collectivités (coût marginal faible) + socle réutilisable.</li>
+<li><strong>Budget dépassé ?</strong> → chaque seuil a <strong>une action + un décideur</strong> : <strong>&lt;5 %** moi (suivi) · **5-10 %** moi+PO (analyse 48 h, re-priorisation du sprint) · **&gt;10 %</strong> direction+DAF (2-3 options chiffrées). Leviers dans l&#39;ordre : <strong>1) réallouer entre postes · 2) réduire le périmètre</strong> (protéger le must-have) <strong>· 3) étaler dans le temps · 4) rallonge</strong> (dernier recours, si justifiée par de la valeur). Distinguer <strong>ponctuel</strong> (on résorbe) et <strong>structurel</strong> (on révise le plan).</li>
+<li><strong>Et à 100 collectivités ?</strong> → évolution <strong>par paliers</strong> : 10-30 → BDD séparée + réplicas + CDN + cache · 30-60 → <strong>load balancer</strong> + multi-instances · 60-100 → orchestration/autoscaling + <strong>renforts humains</strong> (QA, support N1, 2e DevOps). Le goulot à 100 est <strong>humain, pas technique</strong> → <strong>onboarding self-service</strong> dès ~30. <strong>Multi-tenant dès le départ</strong> (non rattrapable après). Et passage aux <strong>SLA</strong> + astreinte facturée.</li>
 </ul>
 </article><article class="doc" id="doc-3" hidden><div class="doc-meta">redaction/synthese_orale_greencity_tech.md</div><h1>Synthèse orale — Présentation GreenCity Tech</h1>
 <h2>1. Objectif de ce document</h2>
@@ -1200,10 +1201,104 @@ Demandes client maîtrisées
 <p>Oui, un processus clair, aussi bien côté exploitation que côté budget. Côté opérationnel : détection par alerte, qualification et priorisation, résolution en astreinte, communication au PO et au client, puis post-mortem (REX) pour un correctif durable. Côté budgétaire : le dépassement est traité comme un incident, avec analyse de cause et solutions correctives documentées. L&#39;idée est que rien ne reste sans réponse ni sans traçabilité.</p>
 <h3>Que se passe-t-il si vous n&#39;avez pas assez de collectivités clientes ?</h3>
 <p>Réponse défendable :</p>
-<p>C&#39;est le principal risque business, et il est anticipé. D&#39;abord, tout est dimensionné <strong>sobrement au démarrage</strong> — équipe resserrée, infrastructure peu coûteuse — donc le point mort est bas et on ne creuse pas. Ensuite, la plateforme est <strong>multi-collectivités</strong> : un même socle sert plusieurs clients, donc chaque nouvelle collectivité coûte très peu en marginal et quelques clients suffisent à amortir. Enfin, on pose des <strong>jalons de décision</strong> (go / no-go) : si le nombre de collectivités reste sous un seuil, on réduit la voilure — phase plus courte, évolutions repoussées, effectifs ajustés — plutôt que de continuer à dépenser. Ce risque est suivi avec la direction financière, en confrontant le prévisionnel de revenus au budget.</p>
-<h3>Et si le budget est dépassé, comment le gérez-vous ?</h3>
+<p>C&#39;est le principal risque business, donc je le traite avec des <strong>seuils et des décisions préparées</strong>, pas au feeling.</p>
+<p>D&#39;abord le repère : le budget de la phase est d&#39;environ 30 k€/mois. Avec un abonnement de l&#39;ordre de 500 à 800 € par mois et par collectivité, il faut donc <strong>une quarantaine de collectivités pour atteindre le point mort</strong> en régime courant. C&#39;est justement pour ça que je garde une équipe resserrée et une infrastructure sobre au démarrage : moins on brûle, plus on a de temps pour convaincre.</p>
+<p>Ensuite, trois scénarios avec une décision associée, revue à chaque comité mensuel :</p>
+<table>
+<thead>
+<tr>
+<th>Situation à 6 mois</th>
+<th>Lecture</th>
+<th>Décision</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>≥ 8 collectivités</strong></td>
+<td>trajectoire tenue</td>
+<td>On continue, on investit sur l&#39;industrialisation.</td>
+</tr>
+<tr>
+<td><strong>3 à 7</strong></td>
+<td>lent mais viable</td>
+<td>On <strong>allonge la phase</strong> : évolutions non essentielles repoussées, DevOps senior passé à temps partiel, on concentre l&#39;effort sur ce qui aide à vendre (démos, référence client).</td>
+</tr>
+<tr>
+<td><strong>≤ 2</strong></td>
+<td>modèle non validé</td>
+<td><strong>Go / no-go</strong> : on gèle les recrutements, on réduit l&#39;équipe au socle, et on ré-oriente — mutualisation avec un éditeur, cible intercommunalités plutôt que communes isolées, ou arrêt maîtrisé.</td>
+</tr>
+</tbody></table>
+<p>Enfin, deux amortisseurs structurels : la plateforme est <strong>multi-collectivités</strong>, donc le coût marginal d&#39;un client supplémentaire est très faible — chaque nouvelle signature améliore directement la marge ; et le socle technique reste <strong>réutilisable</strong> sur un autre produit de signalement si le marché ne prend pas. Ce suivi se fait avec la direction financière, en confrontant chaque mois le prévisionnel de revenus au budget consommé.</p>
+<h3>Et si le budget est dépassé, comment le gérez-vous concrètement ?</h3>
 <p>Réponse défendable :</p>
-<p>Un dépassement n&#39;est jamais une surprise, parce qu&#39;il est détecté tôt par le tableau de bord et les seuils d&#39;alerte. Dès qu&#39;un poste dérive, j&#39;analyse la cause — technique, périmètre ou charge — puis j&#39;active des leviers correctifs : re-prioriser le backlog en repoussant le non-essentiel, réallouer entre postes, ajuster le périmètre en protégeant le « must have », ou arbitrer avec le PO et la direction. Si le dépassement est ponctuel, on le résorbe ; s&#39;il est structurel, on révise le plan — durée, effectifs, roadmap — avec la direction plutôt que de le subir. Tout passe par un reporting mensuel au contrôle de gestion, avec alerte immédiate à la direction financière au-delà du seuil rouge.</p>
+<p>Le principe est simple : un dépassement n&#39;est jamais une surprise, il est détecté par le tableau de bord, et à chaque niveau d&#39;écart correspond <strong>une action et un décideur identifiés</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Écart</th>
+<th>Qui décide</th>
+<th>Action concrète</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>&lt; 5 %</strong></td>
+<td>Moi (pilotage projet)</td>
+<td>Rien de plus que le suivi : on note la cause dans le reporting mensuel.</td>
+</tr>
+<tr>
+<td><strong>5 – 10 %</strong></td>
+<td>Moi + Product Owner</td>
+<td>Analyse de cause sous 48 h. On <strong>re-priorise le sprint suivant</strong> : ce qui est « nice to have » sort, on absorbe l&#39;écart sur les semaines restantes.</td>
+</tr>
+<tr>
+<td><strong>&gt; 10 %</strong></td>
+<td>Direction + direction financière</td>
+<td><strong>Alerte immédiate.</strong> On présente 2 ou 3 options chiffrées, pas un simple constat.</td>
+</tr>
+</tbody></table>
+<p>Au-delà de 10 %, les options que je mets sur la table sont toujours les mêmes, dans cet ordre :</p>
+<ol>
+<li><strong>Réallouer entre postes</strong> — si l&#39;infrastructure dérape de 500 €/mois mais qu&#39;un lot RH a été plus rapide que prévu, on compense en interne sans toucher à l&#39;enveloppe globale. C&#39;est le levier le moins douloureux.</li>
+<li><strong>Réduire le périmètre</strong> — on protège le « must have » (signalement, traitement, supervision) et on repousse le reste au lot suivant. Le budget tient, la date tient, c&#39;est le contenu qui s&#39;ajuste.</li>
+<li><strong>Étaler dans le temps</strong> — on allonge la phase d&#39;un mois en réduisant la charge mensuelle, par exemple en passant le DevOps senior à temps partiel une fois les fondations posées.</li>
+<li><strong>Demander une rallonge</strong> — en dernier recours seulement, et uniquement si elle est justifiée par de la valeur : une nouvelle collectivité signée qui change le dimensionnement, par exemple.</li>
+</ol>
+<p>Un point important : je distingue toujours le dépassement <strong>ponctuel</strong> — un pic d&#39;un mois, qu&#39;on résorbe sur les mois suivants — du dépassement <strong>structurel</strong>, où la trajectoire elle-même est fausse. Dans le second cas, on ne bricole pas : on révise le plan avec la direction. Et dans les deux cas, la cause est documentée pour que la prochaine estimation soit meilleure.</p>
+<h3>Comment la plateforme tiendrait-elle avec 100 collectivités ?</h3>
+<p>Réponse défendable :</p>
+<p>L&#39;architecture que je propose est volontairement dimensionnée pour le démarrage, mais elle est pensée pour <strong>évoluer par paliers</strong> — je ne construis pas aujourd&#39;hui une usine pour un trafic qui n&#39;existe pas, mais je sais où sont les points de rupture et ce qu&#39;on fait à chacun.</p>
+<table>
+<thead>
+<tr>
+<th>Palier</th>
+<th>Ce qui casse en premier</th>
+<th>Ce qu&#39;on met en place</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1 – 10</strong></td>
+<td>Rien : le socle actuel suffit</td>
+<td>VPS + Docker, tel que présenté.</td>
+</tr>
+<tr>
+<td><strong>10 – 30</strong></td>
+<td>La base de données et le stockage photo</td>
+<td>Séparation de la base sur son propre serveur, réplicas de lecture, CDN pour les médias, cache applicatif (Redis).</td>
+</tr>
+<tr>
+<td><strong>30 – 60</strong></td>
+<td>Le serveur applicatif unique (point de défaillance)</td>
+<td>Passage en <strong>plusieurs instances derrière un load balancer</strong>, sessions externalisées, déploiement sans coupure.</td>
+</tr>
+<tr>
+<td><strong>60 – 100+</strong></td>
+<td>L&#39;exploitation manuelle et le support</td>
+<td><strong>Orchestration</strong> (Kubernetes ou service managé), autoscaling, observabilité centralisée, et surtout <strong>renforts humains</strong> : QA dédié, support niveau 1, second DevOps.</td>
+</tr>
+</tbody></table>
+<p>Trois points que je tiens à souligner. D&#39;abord, à 100 collectivités le vrai goulot d&#39;étranglement n&#39;est <strong>pas technique mais humain</strong> : le support, l&#39;onboarding et la gestion des demandes. C&#39;est pour ça qu&#39;à partir d&#39;une trentaine de clients je prévois un <strong>onboarding self-service</strong> — création de compte, paramétrage, import des données — plutôt que d&#39;ajouter du personnel proportionnellement.</p>
+<p>Ensuite, la question du <strong>multi-tenant</strong> : dès le départ, les données sont cloisonnées par collectivité. C&#39;est un choix structurant qu&#39;on ne peut pas rattraper facilement après coup, donc il est pris tôt même si aujourd&#39;hui on n&#39;a que quelques clients.</p>
+<p>Enfin, l&#39;aspect contractuel : à cette échelle on ne fonctionne plus au « best effort », on s&#39;engage sur des <strong>SLA</strong> — disponibilité, délai de prise en charge des incidents — ce qui implique une astreinte organisée et facturée. Le modèle économique suit la même logique par paliers que la technique.</p>
 <hr>
 <h2>9. Tests en situation et conformité produit</h2>
 <h3>Qu&#39;entendez-vous par « tests en situation » ?</h3>

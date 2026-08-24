@@ -164,13 +164,59 @@ Oui, un processus clair, aussi bien côté exploitation que côté budget. Côt�
 
 Réponse défendable :
 
-C'est le principal risque business, et il est anticipé. D'abord, tout est dimensionné **sobrement au démarrage** — équipe resserrée, infrastructure peu coûteuse — donc le point mort est bas et on ne creuse pas. Ensuite, la plateforme est **multi-collectivités** : un même socle sert plusieurs clients, donc chaque nouvelle collectivité coûte très peu en marginal et quelques clients suffisent à amortir. Enfin, on pose des **jalons de décision** (go / no-go) : si le nombre de collectivités reste sous un seuil, on réduit la voilure — phase plus courte, évolutions repoussées, effectifs ajustés — plutôt que de continuer à dépenser. Ce risque est suivi avec la direction financière, en confrontant le prévisionnel de revenus au budget.
+C'est le principal risque business, donc je le traite avec des **seuils et des décisions préparées**, pas au feeling.
 
-### Et si le budget est dépassé, comment le gérez-vous ?
+D'abord le repère : le budget de la phase est d'environ 30 k€/mois. Avec un abonnement de l'ordre de 500 à 800 € par mois et par collectivité, il faut donc **une quarantaine de collectivités pour atteindre le point mort** en régime courant. C'est justement pour ça que je garde une équipe resserrée et une infrastructure sobre au démarrage : moins on brûle, plus on a de temps pour convaincre.
+
+Ensuite, trois scénarios avec une décision associée, revue à chaque comité mensuel :
+
+| Situation à 6 mois | Lecture | Décision |
+|---|---|---|
+| **≥ 8 collectivités** | trajectoire tenue | On continue, on investit sur l'industrialisation. |
+| **3 à 7** | lent mais viable | On **allonge la phase** : évolutions non essentielles repoussées, DevOps senior passé à temps partiel, on concentre l'effort sur ce qui aide à vendre (démos, référence client). |
+| **≤ 2** | modèle non validé | **Go / no-go** : on gèle les recrutements, on réduit l'équipe au socle, et on ré-oriente — mutualisation avec un éditeur, cible intercommunalités plutôt que communes isolées, ou arrêt maîtrisé. |
+
+Enfin, deux amortisseurs structurels : la plateforme est **multi-collectivités**, donc le coût marginal d'un client supplémentaire est très faible — chaque nouvelle signature améliore directement la marge ; et le socle technique reste **réutilisable** sur un autre produit de signalement si le marché ne prend pas. Ce suivi se fait avec la direction financière, en confrontant chaque mois le prévisionnel de revenus au budget consommé.
+
+### Et si le budget est dépassé, comment le gérez-vous concrètement ?
 
 Réponse défendable :
 
-Un dépassement n'est jamais une surprise, parce qu'il est détecté tôt par le tableau de bord et les seuils d'alerte. Dès qu'un poste dérive, j'analyse la cause — technique, périmètre ou charge — puis j'active des leviers correctifs : re-prioriser le backlog en repoussant le non-essentiel, réallouer entre postes, ajuster le périmètre en protégeant le « must have », ou arbitrer avec le PO et la direction. Si le dépassement est ponctuel, on le résorbe ; s'il est structurel, on révise le plan — durée, effectifs, roadmap — avec la direction plutôt que de le subir. Tout passe par un reporting mensuel au contrôle de gestion, avec alerte immédiate à la direction financière au-delà du seuil rouge.
+Le principe est simple : un dépassement n'est jamais une surprise, il est détecté par le tableau de bord, et à chaque niveau d'écart correspond **une action et un décideur identifiés**.
+
+| Écart | Qui décide | Action concrète |
+|---|---|---|
+| **< 5 %** | Moi (pilotage projet) | Rien de plus que le suivi : on note la cause dans le reporting mensuel. |
+| **5 – 10 %** | Moi + Product Owner | Analyse de cause sous 48 h. On **re-priorise le sprint suivant** : ce qui est « nice to have » sort, on absorbe l'écart sur les semaines restantes. |
+| **> 10 %** | Direction + direction financière | **Alerte immédiate.** On présente 2 ou 3 options chiffrées, pas un simple constat. |
+
+Au-delà de 10 %, les options que je mets sur la table sont toujours les mêmes, dans cet ordre :
+
+1. **Réallouer entre postes** — si l'infrastructure dérape de 500 €/mois mais qu'un lot RH a été plus rapide que prévu, on compense en interne sans toucher à l'enveloppe globale. C'est le levier le moins douloureux.
+2. **Réduire le périmètre** — on protège le « must have » (signalement, traitement, supervision) et on repousse le reste au lot suivant. Le budget tient, la date tient, c'est le contenu qui s'ajuste.
+3. **Étaler dans le temps** — on allonge la phase d'un mois en réduisant la charge mensuelle, par exemple en passant le DevOps senior à temps partiel une fois les fondations posées.
+4. **Demander une rallonge** — en dernier recours seulement, et uniquement si elle est justifiée par de la valeur : une nouvelle collectivité signée qui change le dimensionnement, par exemple.
+
+Un point important : je distingue toujours le dépassement **ponctuel** — un pic d'un mois, qu'on résorbe sur les mois suivants — du dépassement **structurel**, où la trajectoire elle-même est fausse. Dans le second cas, on ne bricole pas : on révise le plan avec la direction. Et dans les deux cas, la cause est documentée pour que la prochaine estimation soit meilleure.
+
+### Comment la plateforme tiendrait-elle avec 100 collectivités ?
+
+Réponse défendable :
+
+L'architecture que je propose est volontairement dimensionnée pour le démarrage, mais elle est pensée pour **évoluer par paliers** — je ne construis pas aujourd'hui une usine pour un trafic qui n'existe pas, mais je sais où sont les points de rupture et ce qu'on fait à chacun.
+
+| Palier | Ce qui casse en premier | Ce qu'on met en place |
+|---|---|---|
+| **1 – 10** | Rien : le socle actuel suffit | VPS + Docker, tel que présenté. |
+| **10 – 30** | La base de données et le stockage photo | Séparation de la base sur son propre serveur, réplicas de lecture, CDN pour les médias, cache applicatif (Redis). |
+| **30 – 60** | Le serveur applicatif unique (point de défaillance) | Passage en **plusieurs instances derrière un load balancer**, sessions externalisées, déploiement sans coupure. |
+| **60 – 100+** | L'exploitation manuelle et le support | **Orchestration** (Kubernetes ou service managé), autoscaling, observabilité centralisée, et surtout **renforts humains** : QA dédié, support niveau 1, second DevOps. |
+
+Trois points que je tiens à souligner. D'abord, à 100 collectivités le vrai goulot d'étranglement n'est **pas technique mais humain** : le support, l'onboarding et la gestion des demandes. C'est pour ça qu'à partir d'une trentaine de clients je prévois un **onboarding self-service** — création de compte, paramétrage, import des données — plutôt que d'ajouter du personnel proportionnellement.
+
+Ensuite, la question du **multi-tenant** : dès le départ, les données sont cloisonnées par collectivité. C'est un choix structurant qu'on ne peut pas rattraper facilement après coup, donc il est pris tôt même si aujourd'hui on n'a que quelques clients.
+
+Enfin, l'aspect contractuel : à cette échelle on ne fonctionne plus au « best effort », on s'engage sur des **SLA** — disponibilité, délai de prise en charge des incidents — ce qui implique une astreinte organisée et facturée. Le modèle économique suit la même logique par paliers que la technique.
 
 ---
 
