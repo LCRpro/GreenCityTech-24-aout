@@ -314,6 +314,24 @@ On pourrait me demander pourquoi le portail citoyen et l'interface d'administrat
 
 Enfin, sur la mutualisation : React et React Native partagent le même langage et la même logique de composants. On mutualise donc la **logique métier, les types TypeScript et les appels API** dans un package commun. Ce qui diffère, c'est uniquement la couche d'interface — composants web d'un côté, composants natifs de l'autre. C'est précisément ce qui rend cette stack cohérente avec une équipe de quatre développeurs.
 
+### Pourquoi React Native plutôt que du développement natif ou Flutter ?
+
+Réponse défendable :
+
+La raison principale tient à la **taille de l'équipe**. Nous avons quatre développeurs, qui travaillent déjà en React sur le web. React Native, c'est le même langage, le même paradigme de composants, les mêmes hooks : ils peuvent donc contribuer à l'application mobile sans repartir de zéro. Et une seule base de code alimente iOS et Android, avec une très large part de code commun.
+
+J'ai regardé les alternatives.
+
+Le **natif**, Swift pour iOS et Kotlin pour Android, offre les meilleures performances et l'accès le plus direct aux fonctions du téléphone. Mais cela signifie deux bases de code, deux compétences distinctes, et donc en pratique deux profils spécialisés à recruter. Avec quatre développeurs et un budget contraint, c'est injustifiable — on doublerait le coût du mobile pour un gain que nos usages ne réclament pas.
+
+**Flutter** est techniquement excellent, avec de très bonnes performances. Mais il impose le langage **Dart**, que l'équipe ne connaît pas : il faudrait former tout le monde, et surtout on perdrait toute mutualisation avec le web, qui reste en React. L'argument de cohérence disparaît.
+
+Une simple **application web mobile** aurait été moins coûteuse, mais l'accès aux fonctions natives — appareil photo, géolocalisation en arrière-plan, notifications — est plus limité, et on perdrait la présence sur les stores, qui compte pour la crédibilité auprès des collectivités.
+
+J'assume aussi les **limites de React Native**. Les performances restent en deçà du natif sur des animations complexes ou du traitement lourd — mais notre application, c'est un formulaire, une photo, une carte et une liste : on est loin des cas qui posent problème. On dépend également de bibliothèques tierces pour certaines fonctions natives, et les montées de version peuvent demander du travail. Ce sont des contraintes connues, acceptables au regard du gain.
+
+Enfin, comme pour le reste de la stack : le prototype existe déjà. Mon rôle est de le consolider, pas de rouvrir le débat technologique sans raison.
+
 ### Avec trois applications, avez-vous un seul dépôt ou plusieurs ?
 
 Réponse défendable :
@@ -325,6 +343,24 @@ Le raisonnement est simple. Ces applications ne sont pas indépendantes : elles 
 La stratégie Git reste identique — `main`, `develop`, branches courtes — elle s'applique juste à un dépôt unique.
 
 La contrepartie, que j'assume : le pipeline doit être un peu plus intelligent. On utilise des **filtres par chemin** : si seul le dossier de l'API a changé, on ne reconstruit et ne redéploie que l'API, pas les trois interfaces. Sans cela, chaque commit relancerait toute la chaîne inutilement.
+
+### Pourquoi un monorepo plutôt que des dépôts séparés ?
+
+Réponse défendable :
+
+Quatre raisons, dans l'ordre d'importance.
+
+D'abord la **cohérence des changements transverses**, que je viens d'évoquer : un même besoin métier touche souvent l'API et les interfaces en même temps. Dans un monorepo, cela reste une seule modification, testée et revue ensemble. En dépôts séparés, on prend le risque qu'une partie parte en production sans l'autre.
+
+Ensuite le **partage réel de code** : les types TypeScript, les règles de validation, la logique métier commune vivent dans un dossier partagé, importé par les autres. En multi-dépôts, il faudrait soit dupliquer ce code — avec la dérive garantie — soit publier un paquet interne et gérer ses versions, ce qui est lourd pour une équipe de quatre.
+
+Puis l'**homogénéité de l'outillage** : une seule configuration ESLint, TypeScript, tests, un seul pipeline. Avec quatre dépôts, les configurations divergent inévitablement au fil du temps, et on se retrouve avec des règles de qualité différentes selon les projets.
+
+Enfin, l'aspect **pratique au quotidien** : un seul clone pour être opérationnel, un historique unique, et un commit qui représente un état cohérent de tout le système — ce qui est très utile pour revenir en arrière.
+
+Je reconnais volontiers que le multi-dépôts a ses cas d'usage : quand plusieurs équipes autonomes possèdent chacune leur service, avec des cycles de vie et des rythmes de livraison indépendants, la séparation se justifie pleinement. Ce n'est pas notre situation : une seule équipe, un seul produit, des composants fortement liés.
+
+Et j'assume les **inconvénients**. Le dépôt grossit avec le temps. Le pipeline demande des filtres par chemin, sinon on reconstruit tout à chaque commit. Et il faut de la discipline pour ne pas créer de couplages involontaires entre applications sous prétexte que le code est accessible — la séparation logique doit rester nette même si tout est au même endroit. Si l'équipe grandissait fortement, ce serait un choix à réexaminer.
 
 ### Concrètement, comment ces applications se déploient-elles sur le VPS ?
 
